@@ -20,8 +20,8 @@ cover_color: blue
 
 # The blog button should not be removed.
 blog_button:
-    title: Blog
-    description: Visit blog
+    title: 博客
+    description: 访问博客
 
 # Navigation buttons in the front page.
 nav:
@@ -34,8 +34,8 @@ paginate: 10
 paginate_path: "page/:num/"
 
 # Comment
-comment:
-    disqus: vno-jekyll
+#comment:
+    #disqus: vno-jekyll
     # duoshuo: 
     
 # Social
