@@ -34,9 +34,9 @@ paginate: 10
 paginate_path: "page/:num/"
 
 # Comment
-#comment:
-    #disqus: vno-jekyll
-    # duoshuo: 
+comment:
+    #disqus: leopard
+    duoshuo: matieli
     
 # Social
 social:
