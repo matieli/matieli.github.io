@@ -5,11 +5,16 @@ date: 2016-08-11 15:32:24.000000000 +09:00
 tag: Jekyll
 ---
 
-#### What's this
+* TOC
+{:toc}
+
+
+#### **What's this**
 
 [Vno Jekyll](https://github.com/onevcat/vno-jekyll) is a theme for [Jekyll](http://jekyllrb.com). It is a port of my Ghost theme [vno](https://github.com/onevcat/vno), which is originally developed from [Dale Anthony's Uno](https://github.com/daleanthony/uno).
 
 ---
+
 #### **安装Ruby、Gem**
 [Ruby Downloads](http://rubyinstaller.org/downloads)
 
@@ -82,9 +87,10 @@ $ cd your_site
 $ bundler install
 $ bundler exec jekyll serve
 ```
+
 ---
 
-#### **Window 10可能会启动不起来报错如下：**
+#### **Window10-错误**
 
 ```
 Syntax error: Invalid GBK character "\xE5"
@@ -107,4 +113,60 @@ Encoding.default_external = Encoding.find('utf-8')
 #### **配置与个性修改**
 
 修改_config.yml进行配置，修改对应的html进行修改吧。
+
 ---
+
+#### **替换成kramdown**
+
+使用默认的markdown，github上老给发警告邮件，建议换成kramdown
+现在，想尝试使用karkdown的语法。kramdown是一个Markdown解析器，它能够正确解释公式内部的符号，不会与Markdown语法冲突，比如不会将^符号变成 标签。
+
+安装kramdown
+
+```bash
+$ gem install kramdown
+```
+
+在_config.yml中的配置方式为：
+
+```
+markdown: kramdown
+kramdown:
+  input:  GFM
+  use_coderay: true #我使用的版本中提示需要换成：enable_coderay
+```
+
+在编写文章时，插入下面代码，渲染之后就可以生成TOC了：
+
+```
+* TOC
+{:toc}
+```
+
+krmadown支持和github一样的语法高亮，用三个 ```，但是需要安装coderay，而github pages上不支持coderay，所以该方式无法搞定，可行的解决方法是上传本地编译好的html。如果是本地或者自己的空间，可以安装coderay。
+
+```bash
+$ gem install coderay
+```
+
+最后的配置为
+
+```
+kramdown:
+  input: GFM
+  extensions:
+    - autolink
+    - footnotes
+    - smart
+  use_coderay: true
+  syntax_highlighter: rouge
+  coderay:
+    coderay_line_numbers:  nil
+```
+
+coderay支持的语言有限，并且rouge兼容Pygments，故这里使用rouge：
+
+```bash
+$ gem install rouge
+```
+

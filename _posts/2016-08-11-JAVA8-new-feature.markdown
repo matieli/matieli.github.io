@@ -5,6 +5,8 @@ date: 2016-08-11 15:32:24.000000000 +09:00
 tag: JAVA
 ---
 
+* TOC
+{:toc}
 
 Java8新特性，函数式编程，使用Lambdas我们能做到什么？
 
@@ -14,7 +16,7 @@ Java8新特性，函数式编程，使用Lambdas我们能做到什么？
 >- 实现Map和Reduce
 >- 实现事件处理/简化多线程
 
-### 内部循环和外部循环
+### **内部循环和外部循环**
 ``` java
 public static void test1() {
 	List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5, 6);
@@ -57,7 +59,7 @@ public static void test3(){
 >- 有利于JIT编译器对代码进行优化
 >- 代码看起来更简洁，完全交给编译器内部循环
 
-### 传递行为，而不仅仅是传值
+### **传递行为，而不仅仅是传值**
 
 ```
 //sumAll算法很简单，完成的是将List中所有元素相加。
@@ -176,7 +178,7 @@ sumAllByPredicate(numbers, n -> n > 3);
 
 代码是不是比上面简洁了很多？语义也很明确，重要的是不管以后怎么变，都可以一行代码就修改了。。。万金油啊
 
-### 使用lambdas 来实现 Runnable接口
+### **实现Runnable接口**
 
 ```
 // 1.1使用匿名内部类  
@@ -207,7 +209,7 @@ Runnable race2 = () -> System.out.println("race2,Hello lambda !");
 race2.run();
 ```
 
-### Consumer与Loan Pattern
+### **Consumer与Loan Pattern**
 
 ```
 class Resource {  
@@ -269,7 +271,7 @@ class ResourceJava8 {
 ResourceJava8.withResource(resourceJava8 -> resourceJava8.operate());
 ```
 
-### Streams与集合
+### **Streams与集合**
 Stream是对集合的包装,通常和lambda一起使用。 使用lambdas可以支持许多操作,如 map, filter, limit, sorted, count, min, max, sum, collect 等等。 同样,Stream使用懒运算,他们并不会真正地读取所有数据,遇到像getFirst() 这样的方法就会结束链式语法，通过下面一系列例子介绍：
 比如我有个Person类，就是一个简单的pojo:
 
@@ -406,7 +408,7 @@ List<Integer> distinct = numbers1.stream().distinct().collect(Collectors.toList(
 System.out.println(distinct);
 ```
 
-### 日期处理
+### **日期处理**
 Java8新增了LocalDate和LocalTime接口，为什么要搞一套全新的处理日期和时间的API？因为旧的java.util.Date实在是太难用了。
 
 >- java.util.Date月份从0开始，一月是0，十二月是11，变态吧！java.time.LocalDate月份和星期都改成了enum，就不可能再用错了。
@@ -512,7 +514,7 @@ public class Test1 {
 }
 ```
 
-### Default 方法
+### **Default方法**
 
 ```
 public class Test1 {
@@ -537,7 +539,7 @@ interface Formula {
 }
 ```
 
-### 字符串拼接
+### **字符串拼接**
 
 ```
 String joined = String.join("/", "usr","local","bin");
@@ -548,7 +550,7 @@ String ids = String.join(", ", ZoneId.getAvailableZoneIds());
 System.out.println(ids);
 ```
 
-### Objects 类
+### **Objects类**
 
 ```
 String aa = null;
@@ -565,7 +567,7 @@ if(Objects.equals(a, b)){
 }
 ```
 
-### Base64编码的规范化
+### **Base64编码**
 
 ```
 Base64.Encoder encoder = Base64.getEncoder();
@@ -575,7 +577,7 @@ System.out.println(str);
 System.out.println(new String(decoder.decode(str),StandardCharsets.UTF_8));
 ```
 
-### java 7新的捕获异常的类，以上异常的父类
+### **java7异常**
 
 ```
 try {
@@ -593,7 +595,7 @@ try {
 }
 ```
 
-### JAVA 7 自动资源管理
+### **JAVA7自动资源管理**
 
 之前写法
 
