@@ -7,6 +7,7 @@ tag: JAVA
 
 
 Java8新特性，函数式编程，使用Lambdas我们能做到什么？
+
 >- 遍历集合(List、Map等)、Sum、Max、Min、Avg、Sort、Distinct等等
 >- 函数接口
 >- 谓词(Predicate)使用
@@ -24,6 +25,7 @@ public static void test1() {
 }
 ```
 上述代码是传统方式的遍历一个List的写法，简单来说主要有3个不足：
+
 >-  只能顺序处理list中的数据(process one by one)
 >-  不能充分利用多核cpu
 >-  不利于编译器优化(jit)
@@ -49,6 +51,7 @@ public static void test3(){
 ```
 
 这样就能规避上面的三个问题：
+
 >- 不一定需要顺序处理List中的元素，顺序可以不确定
 >- 可以并行处理，充分利用多核CPU的优势
 >- 有利于JIT编译器对代码进行优化
@@ -172,6 +175,7 @@ sumAllByPredicate(numbers, n -> n > 3);
 ```
 
 代码是不是比上面简洁了很多？语义也很明确，重要的是不管以后怎么变，都可以一行代码就修改了。。。万金油啊
+
 ### 使用lambdas 来实现 Runnable接口
 
 ```
@@ -404,6 +408,7 @@ System.out.println(distinct);
 
 ### 日期处理
 Java8新增了LocalDate和LocalTime接口，为什么要搞一套全新的处理日期和时间的API？因为旧的java.util.Date实在是太难用了。
+
 >- java.util.Date月份从0开始，一月是0，十二月是11，变态吧！java.time.LocalDate月份和星期都改成了enum，就不可能再用错了。
 >- java.util.Date和SimpleDateFormatter都不是线程安全的，而LocalDate和LocalTime和最基本的String一样，是不变类型，不但线程安全，而且不能修改。
 >- java.util.Date是一个“万能接口”，它包含日期、时间，还有毫秒数，如果你只想用java.util.Date存储日期，或者只存储时间，那么，只有你知道哪些部分的数据是有用的，哪些部分的数据是不能用的。在新的Java8中，日期和时间被明确划分为LocalDate和LocalTime，LocalDate无法包含时间，LocalTime无法包含日期。
@@ -506,6 +511,7 @@ public class Test1 {
 	}
 }
 ```
+
 ### Default 方法
 
 ```
@@ -586,6 +592,7 @@ try {
 	e.printStackTrace();
 }
 ```
+
 ### JAVA 7 自动资源管理
 
 之前写法
