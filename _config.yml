@@ -42,7 +42,7 @@ blog_button:
 nav:
     - {title: Dba Log, description: DbaLog, url: 'http://www.dbalog.net/'}
     - {title: Share Hub, description: Share Hub, url: 'http://blog.xiaohansong.com/'}
-    - {title: 关于我, description: 关于我, url: '/about'}
+    - {title: 关于, description: 关于, url: '/about'}
     
 # Pagination
 gems: [jekyll-paginate]
