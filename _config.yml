@@ -64,5 +64,5 @@ social:
 
 # Google Analytics
 ga:
-     id: UA-82391671-1
-     host: https://matieli.github.io/
+     #id: your_ga_id
+     #host: your_host
