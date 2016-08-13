@@ -10,7 +10,7 @@ url: "https://matieli.github.io/"
 permalink: /:year/:month/:title/
 
 # Format
-highlighter: plain
+highlighter: rouge
 
 #2016-08-12 更换成 kramdown
 #markdown: redcarpet
@@ -20,6 +20,7 @@ highlighter: plain
 #2016-08-12 更换成 kramdown
 kramdown:
   input: GFM
+  #toc_levels: 2..3
   extensions:
     - autolink
     - footnotes

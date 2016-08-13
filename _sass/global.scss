@@ -6,6 +6,33 @@ html, body {
   height: 100%;
 }
 
+#markdown-toc:before {
+    content: "目录";
+    font-weight: bold;
+}
+ul#markdown-toc {
+    list-style: none;
+    position: fixed;
+    padding: 0px;
+    right: 10px;
+    bottom: 200px;
+    border-radius: 0.3em;
+    box-shadow: rgba(0,0,0,0.15) 0 1px 4px;
+    box-sizing: border-box;
+    border: #fff 0.5em solid;
+    background-color: white;
+}
+ul#markdown-toc a {
+    font-size: 14px;
+    color: #838383;
+    //background-color: #e8e8e8;
+    padding: 3px;
+    border: none;
+	 &:hover {
+    background-color: #e8e8e8;
+  }
+}
+
 html {
     height: 100%;
     max-height: 100%;
