@@ -1,7 +1,7 @@
 ---
 layout: post
 title: markdown-简单语法
-date: 2016-08-11 15:32:24.000000000 +09:00
+date: 2016-08-11
 tag: markdown
 ---
 
