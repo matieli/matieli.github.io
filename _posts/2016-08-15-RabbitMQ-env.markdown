@@ -8,8 +8,11 @@ tag: Rabbit MQ
 * TOC
 {:toc}
 
+
 使用生产上的版本：
+
 Rabbit MQ:3.2.2 
+
 erlang：R16B03
 
 ## **安装**
