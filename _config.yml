@@ -42,6 +42,7 @@ blog_button:
 nav:
     - {title: Dba Log, description: DbaLog, url: 'http://www.dbalog.net/'}
     - {title: Share Hub, description: Share Hub, url: 'http://blog.xiaohansong.com/'}
+    - {title: 架构师之路, description: 架构师之路, url: '/road'}
     - {title: 关于, description: 关于, url: '/about'}
     
 # Pagination
