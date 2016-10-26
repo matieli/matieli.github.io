@@ -231,7 +231,7 @@ tag: 读书
 * [实施微服务需要哪些基础框架｜技术热点](http://mp.weixin.qq.com/s?__biz=MjM5MDE0Mjc4MA==&mid=400645575&idx=1&sn=da55d75db55117046c520de88dde1123&scene=1&srcid=1109XAQ6ZhXGRe6trz3blGJb#wechat_redirect)
 
 ### 2016.06.16
-* [Redis中国用户组|大容量类Redis存储--Pika介绍](http://www.jianshu.com/p/878812193de4?from=timeline&isappinstalled=0)
+* [Redis中国用户组_大容量类Redis存储_Pika介绍](http://www.jianshu.com/p/878812193de4?from=timeline&isappinstalled=0)
 * [基于Redis实现库存的排队/占位/清位](http://www.wtoutiao.com/p/fb1DP3.html?from=timeline&isappinstalled=0)
 
 ### 2016.06.15
