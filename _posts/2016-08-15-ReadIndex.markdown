@@ -7,11 +7,67 @@ tag: 读书
 
 
 # 技术知识点索引
-
-### 每日一读
-
-* [架构知识点整理](http://www.jiagoushuo.com/tags.html)
 * [Spring Boot Reference Guide中文翻译 -《Spring Boot参考指南》](https://github.com/qibaoguang/Spring-Boot-Reference-Guide/blob/master/SUMMARY.md)
+
+## 每日一读
+
+### 2016.10.26
+* [Vue.js作者尢雨溪：Vue 2.0——渐进式前端解决方案](http://mp.weixin.qq.com/s?__biz=MjM5MDE0Mjc4MA==&mid=2650994529&idx=1&sn=953bf1d92cc2a7b278d0761d3e433803&chksm=bdbf0f328ac886245652735e4dfa1b39b1357b9f36ccf1b337714ac81810f8441d189ce89615&scene=0#rd)
+* [丰子恺最走心的20句话！](http://mp.weixin.qq.com/s?__biz=MjM5NDIxMzUyMg==&mid=2655010922&idx=2&sn=bca9c1354cd73971c878f34549ff5c5b&chksm=bd3fdb978a4852810816dd146eaf41f8638b183234b5a182876c8083420c46272f7afd27be30&mpshare=1&scene=2&srcid=1026STwFNcF7yYTNluNJRvVN#rd)
+
+### 2016.10.25
+* [微信PaxosStore内存云揭秘：十亿Paxos/分钟的挑战](http://mp.weixin.qq.com/s?__biz=MjM5MDE0Mjc4MA==&mid=2650994526&idx=1&sn=255dd87bd8601919bda3d597c65439f3&chksm=bdbf0f0d8ac8861bad452606b302ca6655cf84ed161584a1246a8cb9fd1361ec1ac1386ffd92&scene=0#rd)
+* [11种SQL中索引未使用的情况](http://mp.weixin.qq.com/s?__biz=MjM5OTkxOTc0Mw==&mid=2650225986&idx=1&sn=d2fe8a27c5825dfeba1d8ac934433121&chksm=bf37b45288403d44c589f03daa054ef476509f445082e325e28a3a031372c389c570d33740b0&mpshare=1&scene=2&srcid=1025JPxOxcDpT7YTLK33m0IT#rd)
+* [你瞎忙的样子看起来真失败](http://mp.weixin.qq.com/s?__biz=MjM5NzAwOTE2MQ==&mid=2662303481&idx=2&sn=1e71f5b0874e7a1f2fd19ad8401683f8&chksm=bdbba49f8acc2d8966ce4009ebb83eee2a344be370bc90d798c279ff6851382018fa2607ad4a&mpshare=1&scene=2&srcid=1024MEWLxHLVhs4Br4IbE9xN#rd)
+* [整天说Code Review重要，你知道应该关注哪些关键点吗？](http://mp.weixin.qq.com/s?__biz=MzA5Nzc4OTA1Mw==&mid=2659598372&idx=1&sn=7a3ebbd7eff29c30a2076d5123262701&chksm=8be99536bc9e1c20c48f0c4cd5f6c450170c68a76a24033653841d903068aacae2fd1db4f8f9&scene=0#rd)
+
+### 2016.10.21
+* [理解Java Integer的缓存策略](http://mp.weixin.qq.com/s?__biz=MjM5NzMyMjAwMA==&mid=2651477604&idx=1&sn=8f2cec5cc2e1d788a7d03489b27a0145&chksm=bd253a1b8a52b30dc9a86cbe5d659f464a84eaac76e9e36bb602e7f8ef239c8f98eae66c2c52&scene=0#rd)
+* [从建设到治理，从系统到团队，谈高可用架构之道](http://mp.weixin.qq.com/s?__biz=MzA5Nzc4OTA1Mw==&mid=2659598332&idx=1&sn=51bf1cb98a098ff988ebf14349ac0d45&chksm=8be9eaeebc9e63f898844bf7cc8cfdf9d3bee106bbde68b02d424a8da4b2130345a2ce5ea0f0&scene=0#rd)
+
+### 2016.10.19
+* [我的Java后端书架 (2016年暖冬版)](http://mp.weixin.qq.com/s?__biz=MzIzODYyNjkzNw==&mid=2247483658&idx=1&sn=353172738d161428871bf2f114efa727&chksm=e937301cde40b90a225a1ba7b98df8bb669a53a137c8cff82e15aa83160d7144196ab1a99575&mpshare=1&scene=2&srcid=10190OygDlAuyWlCXNHXU96f#rd)
+
+### 2016.10.11
+* [程序员的基础生存技能：高效用Google](http://mp.weixin.qq.com/s?__biz=MjM5NzMyMjAwMA==&mid=2651477574&idx=1&sn=27245e5771bc08596cb50070cab48899&chksm=bd253a398a52b32f7a57be4f73cd0628b949b169d66680a69aa6fa7ab1c9c6aae6c840a47ea5&scene=0#rd)
+
+### 2016.10.05
+* [Java 8 中你可能没听过的 10 个新特性](http://mp.weixin.qq.com/s?__biz=MjM5NzMyMjAwMA==&mid=2651477558&idx=1&sn=785f0861d82e73a624d811e58d47c3ec&chksm=bd253a498a52b35fd18bfd3f28078e826f4405c9cf84bcb3c3977160ccf10a171d852e867691&scene=0#rd)
+
+### 2016.09.29
+* [关于业务架构的一些思考](http://mp.weixin.qq.com/s?__biz=MjM5NzMyMjAwMA==&mid=2651477517&idx=2&sn=f1a0aaaf7f72d9ba5d13995b7a78c956&chksm=bd253a728a52b364a8451a3f8dec6743714b911108396f1909cee3a22e5b35516528559964f2&scene=0#rd)
+
+### 2016.09.27
+* [员工说：老板，2017年我想去单干！老板竟然这样说..](http://mp.weixin.qq.com/s?__biz=MzA5NzA4ODk0OQ==&mid=2651987917&idx=3&sn=ad875bbbe59c7da970a668455e6d3ffb&chksm=8b409b17bc3712012c65f171d6b19e12ec9994af0551153b506fe7c5914fec865ddd8122aef2&scene=0#rd)
+* [员工工资越高，企业成本最低](http://mp.weixin.qq.com/s?__biz=MzA5NzA4ODk0OQ==&mid=2651987906&idx=1&sn=24a076d4a28fd85006ec1d631c18de6d&chksm=8b409b18bc37120e62b4a42b29b30d20e02df300f5b5a81b6cc58c81c9baa37601c7666a2c00&scene=0#rd)
+* [日消息量突破50亿，谈小米的高可用推送系统设计](http://mp.weixin.qq.com/s?__biz=MzA5Nzc4OTA1Mw==&mid=2659598234&idx=1&sn=f36c03f8702add6ef5bcfbc9e65e27fe&scene=0#rd)
+
+### 2016.09.26
+* [5种调优Java NIO和NIO.2的方式](http://mp.weixin.qq.com/s?__biz=MjM5NzMyMjAwMA==&mid=2651477517&idx=1&sn=afab42a68beac3545f8f29d6629094a8&chksm=bd253a728a52b364b8650219706049439fa8c3cb8ff7edd84ab19bc85d32b910569a15071bc9&scene=0#rd)
+
+### 2016.09.24
+* [到了50岁你还愿意做编程工作吗？](http://mp.weixin.qq.com/s?__biz=MjM5NzQ3ODAwMQ==&mid=2686978266&idx=1&sn=f56d704a935dca08d9a61875c636c141&scene=0#rd)
+
+### 2016.09.23
+* [架构师多如过江之鲫，但你真的了解架构师这个工种吗？](http://mp.weixin.qq.com/s?__biz=MjM5MDE0Mjc4MA==&mid=2650994202&idx=1&sn=88accf562828552404198f1c427056d4&chksm=bdbf0e498ac8875fa085851ad2530933c1dc284ffc6cb8fc9146f03e56912fd23f6637878234&scene=0#rd)
+* [电商大逃亡，实体店即将崛起！](http://mp.weixin.qq.com/s?__biz=MzA5NzA4ODk0OQ==&mid=2651987898&idx=1&sn=8e32e9ddc2f817e2cac4743a50a6d41d&chksm=8b409b60bc37127613fef8f50bdb6ebfe9edb22e444bd12d2175a00a3097c3ef37130e92b173&scene=0#rd)
+
+### 2016.09.22
+* [互联网公司为啥不使用mysql分区表？](http://mp.weixin.qq.com/s?__biz=MjM5ODYxMDA5OQ==&mid=2651959604&idx=1&sn=9f3e21f5ff99abc5a16038a77f31843e&scene=0#rd)
+
+### 2016.09.21
+* [左耳朵耗子：什么是工程师文化？](http://mp.weixin.qq.com/s?__biz=MjM5MDE0Mjc4MA==&mid=2650994179&idx=1&sn=dc45ea9b83b098b809a58ea4635ec441&chksm=bdbf0e508ac88746324ed42adc6067a5c78788cd28592b05fb7cb5cf2327c15e604713a33594&scene=0#rd)
+
+### 2016.09.20
+* [分布式架构的核心要素和设计方法](http://mp.weixin.qq.com/s?__biz=MzIwMjE5MDU4OA==&mid=2653120634&idx=1&sn=8173b2f771c1118d775cad34ea028ed0&chksm=8d35b3e9ba423aff3a9facd8ddd4dab1462fd4f5584aeb3881c434f107b14a4f97bc628d4a1d&scene=0#rd)
+* [如何实施异构服务器的负载均衡及过载保护？](http://mp.weixin.qq.com/s?__biz=MjM5ODYxMDA5OQ==&mid=2651959601&idx=1&sn=5684c39676b1f6d9366d9d15a2cdcec3&scene=0#rd)
+* [一分钟了解负载均衡的一切](http://mp.weixin.qq.com/s?__biz=MjM5ODYxMDA5OQ==&mid=2651959585&idx=1&sn=0a9222cbfeb62a662edffafb7f0b43ae&scene=0#rd)
+* [阿里巴巴店铺的十年技术演变之路](http://mp.weixin.qq.com/s?__biz=MzA5Nzc4OTA1Mw==&mid=2659598195&idx=1&sn=a69628c628c474d1b1368d139d64714f&scene=0#rd)
+* [腾讯QQ团队开源分布式后台服务引擎msec](http://mp.weixin.qq.com/s?__biz=MzA5Nzc4OTA1Mw==&mid=2659598197&idx=1&sn=d32f74909ad70c1841f9fa5637cd893f&scene=0#rd)
+* [使用AOP与注解记录Java日志](http://mp.weixin.qq.com/s?__biz=MjM5NzMyMjAwMA==&mid=2651477508&idx=1&sn=81a2880811c92dd520f08d8102db1a61&chksm=bd253a7b8a52b36dcefc795a0986656c446e85f1a30f173a20befa9d74cb12b8d70281ac27d9&scene=0#rd)
+
+### 2016.09.19
+* [京东商城交易系统的演进之路](http://mp.weixin.qq.com/s?__biz=MzA5Nzc4OTA1Mw==&mid=2659598159&idx=1&sn=dce3e88f4c4816ef576bcdcc730eb712&scene=0#rd)
 
 ### 2016.09.18
 * [有效处理Java异常三原则](http://mp.weixin.qq.com/s?__biz=MjM5NzMyMjAwMA==&mid=2651477491&idx=1&sn=985b7b09222506a7b98559b01b44d418&scene=0#rd)
