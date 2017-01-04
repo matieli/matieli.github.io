@@ -6,8 +6,7 @@ tag: 读书
 ---
 
 
-# 技术知识点索引
-* [Spring Boot Reference Guide中文翻译 -《Spring Boot参考指南》](https://github.com/qibaoguang/Spring-Boot-Reference-Guide/blob/master/SUMMARY.md)
+# 2016年
 
 ## 每日一读
 
