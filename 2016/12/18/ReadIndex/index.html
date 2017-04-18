@@ -1,0 +1,1326 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="读书," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="2016年每日一读2016.12.31 余秋雨 ：来生，依旧等你&amp;amp;version=12010210&amp;amp;nettype=WIFI&amp;amp;fontScale=100&amp;amp;pass_ticket=ic8jNvshL0efRFoYoMS0tj06rD57a9nZE1o6dZrcIqjKRB7YwdDdsLoxjVftQdjg)  2016.12.29 几种简单的负载均衡算法及其 Jav">
+<meta name="keywords" content="读书">
+<meta property="og:type" content="article">
+<meta property="og:title" content="每日一读">
+<meta property="og:url" content="http://blog.matieli.me/2016/12/18/ReadIndex/index.html">
+<meta property="og:site_name" content="马老三">
+<meta property="og:description" content="2016年每日一读2016.12.31 余秋雨 ：来生，依旧等你&amp;amp;version=12010210&amp;amp;nettype=WIFI&amp;amp;fontScale=100&amp;amp;pass_ticket=ic8jNvshL0efRFoYoMS0tj06rD57a9nZE1o6dZrcIqjKRB7YwdDdsLoxjVftQdjg)  2016.12.29 几种简单的负载均衡算法及其 Jav">
+<meta property="og:updated_time" content="2017-04-18T02:52:06.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="每日一读">
+<meta name="twitter:description" content="2016年每日一读2016.12.31 余秋雨 ：来生，依旧等你&amp;amp;version=12010210&amp;amp;nettype=WIFI&amp;amp;fontScale=100&amp;amp;pass_ticket=ic8jNvshL0efRFoYoMS0tj06rD57a9nZE1o6dZrcIqjKRB7YwdDdsLoxjVftQdjg)  2016.12.29 几种简单的负载均衡算法及其 Jav">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://blog.matieli.me/2016/12/18/ReadIndex/"/>
+
+
+
+
+
+  <title> 每日一读 | 马老三 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">马老三</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">个人博客</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://blog.matieli.me/2016/12/18/ReadIndex/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="马铁利">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="马老三">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+            
+            
+              
+                每日一读
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-12-18T00:00:00+08:00">
+                2016-12-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2016/12/18/ReadIndex/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2016/12/18/ReadIndex/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="2016年"><a href="#2016年" class="headerlink" title="2016年"></a>2016年</h1><h2 id="每日一读"><a href="#每日一读" class="headerlink" title="每日一读"></a>每日一读</h2><h3 id="2016-12-31"><a href="#2016-12-31" class="headerlink" title="2016.12.31"></a>2016.12.31</h3><ul>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MjM5MTAxNjY4MA==&amp;mid=2652157870&amp;idx=4&amp;sn=16f3f37bf83190dd3dc10b7a7fba889a&amp;chksm=bd5be4298a2c6d3fcbd5d249e1deeb3565772c7d6678419daef27a4d866c685c117aa5a4df39&amp;scene=0&amp;key=15bec5edb1d9b9c9245ee39892fcbaf77ff6b0af4d8059d4c67b9f823b750911a3406316634563f7b1fff930a6a3e9c61958f7c1d6c9b94aab0c06ac51c8a9122f150282e55086380557f2d3c250b2a3&amp;ascene=0&amp;uin=MTg1NjUwMDMzNw%3D%3D&amp;devicetype=iMac+MacBookPro13%2C3+OSX+OSX+10.12.2+build(16C67" target="_blank" rel="external">余秋雨 ：来生，依旧等你</a>&amp;version=12010210&amp;nettype=WIFI&amp;fontScale=100&amp;pass_ticket=ic8jNvshL0efRFoYoMS0tj06rD57a9nZE1o6dZrcIqjKRB7YwdDdsLoxjVftQdjg)</li>
+</ul>
+<h3 id="2016-12-29"><a href="#2016-12-29" class="headerlink" title="2016.12.29"></a>2016.12.29</h3><ul>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MzI2MTIzMzY3Mw==&amp;mid=2247484426&amp;idx=1&amp;sn=ac1ed7eceb6b760b3898c5eb4194d34f&amp;chksm=ea5cc96cdd2b407a80c126c7562e3422b8cc02312afb767bb0e63bb9a40b844c243621ebf886&amp;scene=0&amp;key=2176f8683275c7bd2170c4a77e5b42e8d3e1ecb6266a8decfde18405c1517325575ce036bedc72f807aec9742f2224c6db603b870ed3b8a6757c11879eb8af09102cf25cd555fa1087ab9b30a183afb1&amp;ascene=0&amp;uin=MTg1NjUwMDMzNw%3D%3D&amp;devicetype=iMac+MacBookPro13%2C3+OSX+OSX+10.12.2+build(16C67" target="_blank" rel="external">几种简单的负载均衡算法及其 Java 代码实现</a>&amp;version=12010210&amp;nettype=WIFI&amp;fontScale=100&amp;pass_ticket=ic8jNvshL0efRFoYoMS0tj06rD57a9nZE1o6dZrcIqjKRB7YwdDdsLoxjVftQdjg)</li>
+</ul>
+<h3 id="2016-12-28"><a href="#2016-12-28" class="headerlink" title="2016.12.28"></a>2016.12.28</h3><ul>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MzI1NzQyOTM3Ng==&amp;mid=2247483950&amp;idx=1&amp;sn=6032ef54aafad065b2d276b03470ee36&amp;chksm=ea16d8c1dd6151d7dcf74c5beabe7fbfedecc0f20e208efecc6cc78a6a982014a5e7f9ac8199&amp;mpshare=1&amp;scene=2&amp;srcid=1228rcP87wuzFQHfzDb2GBMo&amp;key=7c064f74f0bf80ecf972eb2b66c400031373047a41511273d98f50b9616648bbca231fadf46c79b9642ba87846fdc7be165a4a1825cfd5afdd7ab35c053d36d094c594a65846901bcd33f7454746f0eb&amp;ascene=0&amp;uin=MTg1NjUwMDMzNw%3D%3D&amp;devicetype=iMac+MacBookPro13%2C3+OSX+OSX+10.12.2+build(16C67" target="_blank" rel="external">京东分布式服务跟踪系统-CallGraph</a>&amp;version=12010210&amp;nettype=WIFI&amp;fontScale=100&amp;pass_ticket=ic8jNvshL0efRFoYoMS0tj06rD57a9nZE1o6dZrcIqjKRB7YwdDdsLoxjVftQdjg)</li>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MzIwODA4NjMwNA==&amp;mid=2652898133&amp;idx=1&amp;sn=325b6273fb75ded7fb6bf02cb64cdec4&amp;chksm=8cdcd71abbab5e0c5056360cc63c89806fb41cf8fec2dd91eb71342ecf0102a78b085c8abfb6&amp;scene=0&amp;key=2176f8683275c7bd5056d2427773abceafb2406b7890e1c4857a2277188ae5a5738aef7c1988d47c1879ccac21191060b41737a4559fd35bc0dd6eb1d075bdb9362dd9982eacc39a9fbb5f1a2c4b5b96&amp;ascene=0&amp;uin=MTg1NjUwMDMzNw%3D%3D&amp;devicetype=iMac+MacBookPro13%2C3+OSX+OSX+10.12.2+build(16C67" target="_blank" rel="external">年底了，这些京东架构你学习了吗？</a>&amp;version=12010210&amp;nettype=WIFI&amp;fontScale=100&amp;pass_ticket=ic8jNvshL0efRFoYoMS0tj06rD57a9nZE1o6dZrcIqjKRB7YwdDdsLoxjVftQdjg)</li>
+</ul>
+<h3 id="2016-12-27"><a href="#2016-12-27" class="headerlink" title="2016.12.27"></a>2016.12.27</h3><ul>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MzIwMjE5MDU4OA==&amp;mid=2653121177&amp;idx=1&amp;sn=dbc2d1fd893bdee4d579108e3455f712&amp;chksm=8d35b10aba42381cae1f305dca315509bd2366629a093f551eb71001ed0287f17453a2c7c4df&amp;scene=0&amp;key=7c064f74f0bf80ecfe4924945b5017d6677dd52188daaca306082f872950c84744326862dec00ea2aafea97927b26e5145e983cf5de3235f1889f9e999bf327167acb32ae4093840e9100e031be3417a&amp;ascene=0&amp;uin=MTg1NjUwMDMzNw%3D%3D&amp;devicetype=iMac+MacBookPro13%2C3+OSX+OSX+10.12.2+build(16C67" target="_blank" rel="external">看360如何打造百万亿级的日志搜索引擎</a>&amp;version=12010210&amp;nettype=WIFI&amp;fontScale=100&amp;pass_ticket=ic8jNvshL0efRFoYoMS0tj06rD57a9nZE1o6dZrcIqjKRB7YwdDdsLoxjVftQdjg)</li>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MjM5NzMyMjAwMA==&amp;mid=2651477992&amp;idx=1&amp;sn=51dbe0e97b02f864403124407ed93338&amp;chksm=bd253b978a52b281d82a80364917566313653347876a22d5566dabdaf93eec0f51072face0c0&amp;scene=0&amp;key=2176f8683275c7bd29ba1a3a7e14660ad1dbaca1d8268dcb603f58cb43298024c87b356c1d49429e0efbe15622ff1ea3951e28a415691b134a1d74241802cba9ca7707cde50ef6e1a8a441bc048f6937&amp;ascene=0&amp;uin=MTg1NjUwMDMzNw%3D%3D&amp;devicetype=iMac+MacBookPro13%2C3+OSX+OSX+10.12.2+build(16C67" target="_blank" rel="external">Intellij IDEA 一些不为人知的技巧</a>&amp;version=12010210&amp;nettype=WIFI&amp;fontScale=100&amp;pass_ticket=ic8jNvshL0efRFoYoMS0tj06rD57a9nZE1o6dZrcIqjKRB7YwdDdsLoxjVftQdjg)</li>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MjM5ODYxMDA5OQ==&amp;mid=2651959785&amp;idx=1&amp;sn=0d15458f386ac904076251aad4d1983d&amp;chksm=bd2d04358a5a8d23eda79a622873024c6fa645586db4ba8a59a56a1d490363a939529a7f43ff&amp;scene=0&amp;key=150339418f659d2c1ec68059d0bf7f18e316d7b46d23e39f6db25a95db9389460306b98211b764f65968adb1db99585f90a0868159449d13daccb4628f696803888e388925e08058285758d3125e3176&amp;ascene=0&amp;uin=MTg1NjUwMDMzNw%3D%3D&amp;devicetype=iMac+MacBookPro13%2C3+OSX+OSX+10.12.2+build(16C67" target="_blank" rel="external">一分钟了解微服务的好处和陷阱</a>&amp;version=12010210&amp;nettype=WIFI&amp;fontScale=100&amp;pass_ticket=ic8jNvshL0efRFoYoMS0tj06rD57a9nZE1o6dZrcIqjKRB7YwdDdsLoxjVftQdjg)</li>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MjM5NTU2MTQwNA==&amp;mid=2650653193&amp;idx=1&amp;sn=a88b551bfe4ed72dc1f5338837fb101e&amp;chksm=beffc8da898841cc08c70fe16857a539215e36015d4844053e623ce3324cfe1e0274cf916761&amp;scene=0&amp;key=e3b1ba93cc346df030de8416208b4f19d92b3f31e093f732fdbb9bb92b62fa7c4b4ee58aae82fc718701ba2364b6263bbdbacc0272e45b44714968fb54f752b258169f17b8c89dd1ce30a2e27486590f&amp;ascene=0&amp;uin=MTg1NjUwMDMzNw%3D%3D&amp;devicetype=iMac+MacBookPro13%2C3+OSX+OSX+10.12.2+build(16C67" target="_blank" rel="external">Java开发代码性能优化总结</a>&amp;version=12010210&amp;nettype=WIFI&amp;fontScale=100&amp;pass_ticket=ic8jNvshL0efRFoYoMS0tj06rD57a9nZE1o6dZrcIqjKRB7YwdDdsLoxjVftQdjg)</li>
+</ul>
+<h3 id="2016-12-25"><a href="#2016-12-25" class="headerlink" title="2016.12.25"></a>2016.12.25</h3><ul>
+<li><a href="http://blog.didispace.com/microservice-framework/" target="_blank" rel="external">微服务架构的基础框架选择：Spring Cloud还是Dubbo？</a></li>
+</ul>
+<h3 id="2016-12-23"><a href="#2016-12-23" class="headerlink" title="2016.12.23"></a>2016.12.23</h3><ul>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MjM5MTM0NjQ2MQ==&amp;mid=2650140133&amp;idx=1&amp;sn=b49b3b29585fae30cb66203e0f52b1c6&amp;chksm=beb7b79789c03e81a4ddf263ea084d83e2e30d9a961b3a30217b5b176e123acca8daaadbd64e&amp;mpshare=1&amp;scene=2&amp;srcid=12237W74V0cTdOmjCch8ytdF&amp;key=d8edcb43a47ce5f6f6535179b3500a7fcd948ea92b0027622e8849a741fd47be14471e5cd6e578ae8c62be150954753321e8bbe3ee00f6b7350b08091805367c9ef53d11757da31e2cc1c132c6ff6fae&amp;ascene=0&amp;uin=MTg1NjUwMDMzNw%3D%3D&amp;devicetype=iMac+MacBookPro13%2C3+OSX+OSX+10.12.2+build(16C67" target="_blank" rel="external">Java开发代码性能优化总结</a>&amp;version=12010210&amp;nettype=WIFI&amp;fontScale=100&amp;pass_ticket=ic8jNvshL0efRFoYoMS0tj06rD57a9nZE1o6dZrcIqjKRB7YwdDdsLoxjVftQdjg)</li>
+</ul>
+<h3 id="2016-12-22"><a href="#2016-12-22" class="headerlink" title="2016.12.22"></a>2016.12.22</h3><ul>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MjM5ODMxNzY0MA==&amp;mid=2650920130&amp;idx=3&amp;sn=2cacd9190fbc415d5e48c9dbe932c7c8&amp;chksm=bd39efe58a4e66f3e02bcac588e23295a0c5edb95982096f2b3ec0e1597212ff0a076bfc1574&amp;mpshare=1&amp;scene=2&amp;srcid=1221f9LqOysAr64btLGd9Wy8&amp;key=7c064f74f0bf80ec898ab98c0a027b5aa8c306150f08b9b11b0be72f2c47f9587c4dc59d3d7221158f5d513317106c20c21abeec6dc51deb13a8d11a1f3bd38f75dbd78b459755d3e5ec24909dcd3578&amp;ascene=0&amp;uin=MTg1NjUwMDMzNw%3D%3D&amp;devicetype=iMac+MacBookPro13%2C3+OSX+OSX+10.12.2+build(16C67" target="_blank" rel="external">支付系统设计包含：账户，对账，风控…！史上最全的！</a>&amp;version=12010210&amp;nettype=WIFI&amp;fontScale=100&amp;pass_ticket=ic8jNvshL0efRFoYoMS0tj06rD57a9nZE1o6dZrcIqjKRB7YwdDdsLoxjVftQdjg)</li>
+</ul>
+<h3 id="2016-12-21"><a href="#2016-12-21" class="headerlink" title="2016.12.21"></a>2016.12.21</h3><ul>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MjM5ODYxMDA5OQ==&amp;mid=2651959773&amp;idx=1&amp;sn=7e4ad0dcd050f6662dfaf39d9de36f2c&amp;chksm=bd2d04018a5a8d17b92098b4840aac23982e32d179cdd957e4c55011f6a08f6bd31f9ba5cfee&amp;scene=0&amp;key=2176f8683275c7bd8f539cfa32769b0dc27d31f13bf5a4fa2c5c969d2bec1281216c854782eee3506e711f9e314e597fc1371a200a84996288fc92aeaaeac773209c01bad8dd64f503fa54d1e242dc79&amp;ascene=0&amp;uin=MTg1NjUwMDMzNw%3D%3D&amp;devicetype=iMac+MacBookPro13%2C3+OSX+OSX+10.12.2+build(16C67" target="_blank" rel="external">一分钟掌握数据库垂直拆分</a>&amp;version=12010210&amp;nettype=WIFI&amp;fontScale=100&amp;pass_ticket=ic8jNvshL0efRFoYoMS0tj06rD57a9nZE1o6dZrcIqjKRB7YwdDdsLoxjVftQdjg)</li>
+</ul>
+<h3 id="2016-12-20"><a href="#2016-12-20" class="headerlink" title="2016.12.20"></a>2016.12.20</h3><ul>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MzA5Nzc4OTA1Mw==&amp;mid=2659598729&amp;idx=1&amp;sn=9a0ca06813eba7333653e98748aa3ea2&amp;chksm=8be9949bbc9e1d8dcbab0208a7efca6500168333ac49d911061b738fd6f27bb7727c6b85f605&amp;mpshare=1&amp;scene=2&amp;srcid=1220HvAPVSSufeahI6Upfyln&amp;key=2176f8683275c7bd8fc2aeefc54e0186bd52d3045f00a6d3f1377545f6aa1a6dbf9b35a76ab2f3e4b8f8cf3081d7a3fd21786bf62543784f1e9122feb31cc88143d650cc7a13b63a2c5790a95dbf032c&amp;ascene=0&amp;uin=MTg1NjUwMDMzNw%3D%3D&amp;devicetype=iMac+MacBookPro13%2C3+OSX+OSX+10.12.2+build(16C67" target="_blank" rel="external">在SOA或者微服务架构中，应该如何决定服务的粒度？</a>&amp;version=12010210&amp;nettype=WIFI&amp;fontScale=100&amp;pass_ticket=ic8jNvshL0efRFoYoMS0tj06rD57a9nZE1o6dZrcIqjKRB7YwdDdsLoxjVftQdjg)</li>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MzIzODYyNjkzNw==&amp;mid=2247483688&amp;idx=1&amp;sn=daae658acaffbedfddde45d4fce7c4bf&amp;chksm=e937303ede40b928d2d8f85ff1abb8d2bed1b5d343ba2b6ac795a205b5a7633f13c8d69ccbed&amp;mpshare=1&amp;scene=2&amp;srcid=1102KKlBSEyDljRFIyw7Ttgz&amp;key=e3b1ba93cc346df0759c260eeb92c4f544cdf3e25621bf927fb3b7531cb76b81982396325b8ec159a81824a8237ea46fc14b8da0faca13f7ef9a2a6055b0c13eddef344d0cf38ab933fb2b74ca00ebaf&amp;ascene=0&amp;uin=MTg1NjUwMDMzNw%3D%3D&amp;devicetype=iMac+MacBookPro13%2C3+OSX+OSX+10.12.2+build(16C67" target="_blank" rel="external">Java性能优化指南 ，及唯品会的实战(修订版)</a>&amp;version=12010210&amp;nettype=WIFI&amp;fontScale=100&amp;pass_ticket=ic8jNvshL0efRFoYoMS0tj06rD57a9nZE1o6dZrcIqjKRB7YwdDdsLoxjVftQdjg)</li>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MzI4NTA1MDEwNg==&amp;mid=2650757450&amp;idx=1&amp;sn=13a2bb60c41821a9f9d0ef7ef75f3720&amp;chksm=f3f9ecdfc48e65c9535ecd601078a90b60481d4f22a79a4f0187cdaa0499fb3d6c7f3e68cb9e&amp;mpshare=1&amp;scene=2&amp;srcid=10275eQPH1OLhSxCs4cifq7E&amp;key=e3b1ba93cc346df0ca1374c3ae407a2fd8c89e86b8a657ee9f55bdfe031a8fc92841de1a6d55f3cf2775c7bdea5cd1b67dbe5fcf23bb222afcc748ced8359e6ffae3369c87338032527122b17c397891&amp;ascene=0&amp;uin=MTg1NjUwMDMzNw%3D%3D&amp;devicetype=iMac+MacBookPro13%2C3+OSX+OSX+10.12.2+build(16C67" target="_blank" rel="external">微服务架构下，如何打造别具一格的服务治理体验？(上)</a>&amp;version=12010210&amp;nettype=WIFI&amp;fontScale=100&amp;pass_ticket=ic8jNvshL0efRFoYoMS0tj06rD57a9nZE1o6dZrcIqjKRB7YwdDdsLoxjVftQdjg)</li>
+</ul>
+<h3 id="2016-12-18"><a href="#2016-12-18" class="headerlink" title="2016.12.18"></a>2016.12.18</h3><ul>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MjM5NzAwOTE2MQ==&amp;mid=2662303846&amp;idx=1&amp;sn=60479aa2a0d2dba13eb64f940b835ff9&amp;chksm=bdbbaa008acc23162d123fd4f058408a9bc71fc59537ab460b7392d1640853da5be335741ac8&amp;scene=0&amp;key=d8edcb43a47ce5f623de7c682ec55311d357a021397c742a593b2bc9adcab59f76a5ede57292124ae9fd46682aae230b494fd4c68a456c4acf8ce6b5598e49ffc9054cbb349e4c2f285503e96ba898fa&amp;ascene=0&amp;uin=MTg1NjUwMDMzNw%3D%3D&amp;devicetype=iMac+MacBookPro13%2C3+OSX+OSX+10.12.2+build(16C67" target="_blank" rel="external">你的格局，决定你的结局</a>&amp;version=12010210&amp;nettype=WIFI&amp;fontScale=100&amp;pass_ticket=ic8jNvshL0efRFoYoMS0tj06rD57a9nZE1o6dZrcIqjKRB7YwdDdsLoxjVftQdjg)</li>
+</ul>
+<h3 id="2016-12-14"><a href="#2016-12-14" class="headerlink" title="2016.12.14"></a>2016.12.14</h3><ul>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MjM5MDE0Mjc4MA==&amp;mid=2650995067&amp;idx=1&amp;sn=0e6ffc4cf4cc1c68f472012cda0d4f0d&amp;chksm=bdbf01288ac8883e8f6dc786887f515e2b66a8a24c3037a303bd359a3aee8f4d24ecbf27f5d7&amp;mpshare=1&amp;scene=1&amp;srcid=1214yDuFerdZKAOzR9NEkcXg&amp;key=150339418f659d2c3ce0110fa720e69d2434966c7b9a10db9528c69c594fac904d00f28327a957258c548ca1cf24a89ef5849ac814a3b31637846274e0d55a4364687fd6bf31d4964e37d622222f5157&amp;ascene=0&amp;uin=MTg1NjUwMDMzNw%3D%3D&amp;devicetype=iMac+MacBookPro13%2C3+OSX+OSX+10.12.2+build(16C67" target="_blank" rel="external">最新高清IT职业技能图谱：架构师、H5、DBA、移动、大数据、运维…</a>&amp;version=12010210&amp;nettype=WIFI&amp;fontScale=100&amp;pass_ticket=ic8jNvshL0efRFoYoMS0tj06rD57a9nZE1o6dZrcIqjKRB7YwdDdsLoxjVftQdjg)</li>
+</ul>
+<h3 id="2016-12-13"><a href="#2016-12-13" class="headerlink" title="2016.12.13"></a>2016.12.13</h3><ul>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MjM5ODYxMDA5OQ==&amp;mid=2651959755&amp;idx=1&amp;sn=e0875b539895578ce966fdad7f3c0365&amp;chksm=bd2d04178a5a8d01a66d30b5ac8958fc5a6108e6e1d90a265361a7d3b30197bcb51f4433f23b&amp;scene=0&amp;key=e3b1ba93cc346df03f65ffa565e425c2625781a93e750e0bf8916ed0d4c1072097e1c0d1db3ef8211347e102e780607343651b929410cdda53c73b0749607d78463e4af82db992568bd388f201a1d90e&amp;ascene=0&amp;uin=MTg1NjUwMDMzNw%3D%3D&amp;devicetype=iMac+MacBookPro13%2C3+OSX+OSX+10.12.2+build(16C67" target="_blank" rel="external">这才是真正的分布式锁</a>&amp;version=12010210&amp;nettype=WIFI&amp;fontScale=100&amp;pass_ticket=ic8jNvshL0efRFoYoMS0tj06rD57a9nZE1o6dZrcIqjKRB7YwdDdsLoxjVftQdjg)</li>
+</ul>
+<h3 id="2016-12-12"><a href="#2016-12-12" class="headerlink" title="2016.12.12"></a>2016.12.12</h3><ul>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MjM5MDE0Mjc4MA==&amp;mid=2650995035&amp;idx=1&amp;sn=e4c87e7fef969ba97e4b7004f5dc3311&amp;chksm=bdbf01088ac8881efd55bc5a59a17bbd386aa2bb9a4891be5f692134da8711ac7d6b492125bb&amp;scene=0&amp;key=15bec5edb1d9b9c9ee77be81d53b3a95c83e4278de9546be82deac37ee5a35ba3785cc63571fc3d4b5ceb5fcb961c80b28f44c6c0d95711e4f96b99bfb81bd88d8dfdd1a2bf4990759e85ca50c7d7143&amp;ascene=0&amp;uin=MTg1NjUwMDMzNw%3D%3D&amp;devicetype=iMac+MacBookPro13%2C3+OSX+OSX+10.12.2+build(16C67" target="_blank" rel="external">当互联网金融遇到区块链……</a>&amp;version=12010210&amp;nettype=WIFI&amp;fontScale=100&amp;pass_ticket=ic8jNvshL0efRFoYoMS0tj06rD57a9nZE1o6dZrcIqjKRB7YwdDdsLoxjVftQdjg)</li>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MjM5ODYxMDA5OQ==&amp;mid=2651959749&amp;idx=1&amp;sn=6727638930905089342662c24f5bba62&amp;chksm=bd2d04198a5a8d0f619f1b9be1ead542f015e6ff87b5aac5a61af94b714459964fedb89e6516&amp;scene=0&amp;key=2176f8683275c7bd5b161ec23b7aa36cc6255c01044c1ceb33865034b4689c90e8f52ddcbe2d689375cac00adf8f665bee6ae38595c1ef703f34df4c020d7f0aa608911e06ff957555794c72b7ffbdff&amp;ascene=0&amp;uin=MTg1NjUwMDMzNw%3D%3D&amp;devicetype=iMac+MacBookPro13%2C3+OSX+OSX+10.12.2+build(16C67" target="_blank" rel="external">一分钟实现分布式锁</a>&amp;version=12010210&amp;nettype=WIFI&amp;fontScale=100&amp;pass_ticket=ic8jNvshL0efRFoYoMS0tj06rD57a9nZE1o6dZrcIqjKRB7YwdDdsLoxjVftQdjg)</li>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MjM5ODYxMDA5OQ==&amp;mid=2651959731&amp;idx=1&amp;sn=50069e59ed895b9db860065446da4094&amp;chksm=bd2d046f8a5a8d7935ae29fb10c54e84aa8e8ce910a9a6c65e93b9bf5f81bab9f66a9aa4b6d1&amp;scene=0&amp;key=4a874d92793fbeb008ae18e9508855a4171eb3d35edc5ee30cc3096c1630ba24a313d30ac36649e68faf5df4f0f34e38d4c616fdf0722e3de9e3c22db899c0a98ead318b3ad22ab90e6abb73f4350f1a&amp;ascene=0&amp;uin=MTg1NjUwMDMzNw%3D%3D&amp;devicetype=iMac+MacBookPro13%2C3+OSX+OSX+10.12.2+build(16C67" target="_blank" rel="external">实录｜互联网架构“高可用”在线技术交流</a>&amp;version=12010210&amp;nettype=WIFI&amp;fontScale=100&amp;pass_ticket=ic8jNvshL0efRFoYoMS0tj06rD57a9nZE1o6dZrcIqjKRB7YwdDdsLoxjVftQdjg)</li>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MjM5ODYxMDA5OQ==&amp;mid=2651959728&amp;idx=1&amp;sn=933227840ec8cdc35d3a33ae3fe97ec5&amp;chksm=bd2d046c8a5a8d7a13551124af36bedf68f7a6e31f6f32828678d2adb108b86b7e08c678f22f&amp;scene=0&amp;key=d8edcb43a47ce5f626cbd67d7cf33bcd131083e93dfad2d28c615f254dfc4f47f247d49f7862e4b90f6f1337b56385e0e4278bec317f256d17288c214fef18a7adea46b862d2f51e9bf8b0ebff3d5e68&amp;ascene=0&amp;uin=MTg1NjUwMDMzNw%3D%3D&amp;devicetype=iMac+MacBookPro13%2C3+OSX+OSX+10.12.2+build(16C67" target="_blank" rel="external">究竟啥才是互联网架构“高可用”</a>&amp;version=12010210&amp;nettype=WIFI&amp;fontScale=100&amp;pass_ticket=ic8jNvshL0efRFoYoMS0tj06rD57a9nZE1o6dZrcIqjKRB7YwdDdsLoxjVftQdjg)</li>
+</ul>
+<h3 id="2016-12-8"><a href="#2016-12-8" class="headerlink" title="2016.12.8"></a>2016.12.8</h3><ul>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MjM5MDE0Mjc4MA==&amp;mid=2650995004&amp;idx=1&amp;sn=945c358bd08379ad5aeff8185184c0a3&amp;chksm=bdbf016f8ac88879f9c0e045764a495f465d8b166926fbb967ad4e98f1d65f0309018fb58545&amp;mpshare=1&amp;scene=2&amp;srcid=1208fUwU1I4QfD9XCoMQg1PM&amp;key=15bec5edb1d9b9c9d2a02581fd1cf1012e7a81660bf5777c4b59bd3ab7248af562c46c9a9ea48e94b63b9c8913e245c90ac54bca417b528244728c0ad81ae84a4b3695d0db62f889bbfb43468665faa2&amp;ascene=0&amp;uin=MTg1NjUwMDMzNw%3D%3D&amp;devicetype=iMac+MacBookPro13%2C3+OSX+OSX+10.12.2+build(16C67" target="_blank" rel="external">从设计方案到案例分析，详解常见性能优化策略</a>&amp;version=12010210&amp;nettype=WIFI&amp;fontScale=100&amp;pass_ticket=ic8jNvshL0efRFoYoMS0tj06rD57a9nZE1o6dZrcIqjKRB7YwdDdsLoxjVftQdjg)</li>
+</ul>
+<h3 id="2016-12-6"><a href="#2016-12-6" class="headerlink" title="2016.12.6"></a>2016.12.6</h3><ul>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MzI3MzEzMDI1OQ==&amp;mid=2651815502&amp;idx=1&amp;sn=ba36068070be434cbbd48f594f697532&amp;chksm=f0dc2832c7aba1242d0490e66caeaff83e7ab4d3b3e756f370157401666c12e939a731d2f460&amp;mpshare=1&amp;scene=2&amp;srcid=12069XW0Xhi2j3EWR4aBAVV2&amp;key=2176f8683275c7bd991991fb094ac3fc0e5bdce82cbf30a59aa9dfba590b87d82ba01dc9d00c17506a0592a8eab78bb33cb77a7289799b04f294304a63ef630466353b6217b719d4b1e234bba0c682fa&amp;ascene=0&amp;uin=MTg1NjUwMDMzNw%3D%3D&amp;devicetype=iMac+MacBookPro13%2C3+OSX+OSX+10.12.2+build(16C67" target="_blank" rel="external">微服务架构下的事务一致性保证</a>&amp;version=12010210&amp;nettype=WIFI&amp;fontScale=100&amp;pass_ticket=ic8jNvshL0efRFoYoMS0tj06rD57a9nZE1o6dZrcIqjKRB7YwdDdsLoxjVftQdjg)</li>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MzIzNjI1ODc2OA==&amp;mid=2650886922&amp;idx=1&amp;sn=4c95514fc43d9fe716b60bb923924863&amp;chksm=f32f67b5c458eea3519b2626e8a96ffc9b3ce3dd9b72271f6927034ad1fa3584250e9d7adb3d&amp;scene=0&amp;key=d8edcb43a47ce5f697be04419287b85995f7a81cd81609747a2bc5af2ca407a7bc37319b08353fbb9f3feb612abe1df48d00966a57e51ec40ac832276a4765b58cc144ab7504c437d7bce40b63639cc3&amp;ascene=0&amp;uin=MTg1NjUwMDMzNw%3D%3D&amp;devicetype=iMac+MacBookPro13%2C3+OSX+OSX+10.12.2+build(16C67" target="_blank" rel="external">JVM源码分析之一个Java进程究竟能创建多少线程</a>&amp;version=12010210&amp;nettype=WIFI&amp;fontScale=100&amp;pass_ticket=ic8jNvshL0efRFoYoMS0tj06rD57a9nZE1o6dZrcIqjKRB7YwdDdsLoxjVftQdjg)</li>
+</ul>
+<h3 id="2016-12-1"><a href="#2016-12-1" class="headerlink" title="2016.12.1"></a>2016.12.1</h3><ul>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MjM5ODYxMDA5OQ==&amp;mid=403963671&amp;idx=1&amp;sn=51a2d2fd70212451cd5f22bbe2c6f8d6&amp;mpshare=1&amp;scene=2&amp;srcid=1201HGQOWbMME8G2GztMe6Mr&amp;key=7c064f74f0bf80ecd7f6bcbadc614cf7757ad7d136e7e6e4b6106e3d93c1c7edd1a3ab8691992b30569c8844eba0cc995da9350a3cf270e8039aba8fb770aac5681085c406630bc4e0297be509deb816&amp;ascene=0&amp;uin=MTg1NjUwMDMzNw%3D%3D&amp;devicetype=iMac+MacBookPro13%2C3+OSX+OSX+10.12.2+build(16C67" target="_blank" rel="external">细聊冗余表数据一致性</a>&amp;version=12010210&amp;nettype=WIFI&amp;fontScale=100&amp;pass_ticket=ic8jNvshL0efRFoYoMS0tj06rD57a9nZE1o6dZrcIqjKRB7YwdDdsLoxjVftQdjg)</li>
+</ul>
+<h3 id="2016-11-30"><a href="#2016-11-30" class="headerlink" title="2016.11.30"></a>2016.11.30</h3><ul>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MzA5Nzc4OTA1Mw==&amp;mid=2659598580&amp;idx=1&amp;sn=3bac03fec905a455784ab51ffaecb316&amp;chksm=8be995e6bc9e1cf0da2e7e7c9f3edcdeb632971827c348f2a58ea0c31481611d62ea64f17543&amp;scene=0&amp;key=2176f8683275c7bd5fc8b835a5aae53378ce65efdd15a66ff73f7bbc23def253302dcf6df668f92727a4d4aee5af31ff07b605b8125c2f015513f1ef976bde7ae4a012a492e0b86e66a824f8582a2032&amp;ascene=0&amp;uin=MTg1NjUwMDMzNw%3D%3D&amp;devicetype=iMac+MacBookPro13%2C3+OSX+OSX+10.12.2+build(16C67" target="_blank" rel="external">以Netflix的API重构为例，谈如何权衡工程效率以及代码重用</a>&amp;version=12010210&amp;nettype=WIFI&amp;fontScale=100&amp;pass_ticket=ic8jNvshL0efRFoYoMS0tj06rD57a9nZE1o6dZrcIqjKRB7YwdDdsLoxjVftQdjg)</li>
+</ul>
+<h3 id="2016-11-29"><a href="#2016-11-29" class="headerlink" title="2016.11.29"></a>2016.11.29</h3><ul>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MzIzNjI1ODc2OA==&amp;mid=2650886902&amp;idx=1&amp;sn=387539905f56b9688327951bb5f134d2&amp;chksm=f32f6649c458ef5fdc189806f23a98d692b1a9073136de051b4c85474b08a3e5b40f779216c8&amp;scene=0&amp;key=e3b1ba93cc346df0e6c1d3115de2b9d9a37f11b7e737ed4b23413184da4688504ba3eda039b9e3652f126556053af1b33231b41d79c2b53685148b0b4f447c9bb24cec6787fd122abaeda3a673b93161&amp;ascene=0&amp;uin=MTg1NjUwMDMzNw%3D%3D&amp;devicetype=iMac+MacBookPro13%2C3+OSX+OSX+10.12.2+build(16C67" target="_blank" rel="external">JVM源码分析之System.currentTimeMillis及nanoTime原理详解</a>&amp;version=12010210&amp;nettype=WIFI&amp;fontScale=100&amp;pass_ticket=ic8jNvshL0efRFoYoMS0tj06rD57a9nZE1o6dZrcIqjKRB7YwdDdsLoxjVftQdjg)</li>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MzIwMjE5MDU4OA==&amp;mid=2653121026&amp;idx=1&amp;sn=f84f2f9c67eb68cfaf75e710205648f1&amp;chksm=8d35b191ba42388741b39b79294e5794a9a1ae4d7390d7a14c7e5f010b41b569b480a84df0c3&amp;scene=0&amp;key=150339418f659d2cda8db71a8871a5125a521eea7b213b049db9541df74ede67ce7275d3fbaba09c2203c6299ea622d6da3bc6f6ecf3c7cf84779a931a93e91f7e6e3fabd683a847f5c636f0b85aef5c&amp;ascene=0&amp;uin=MTg1NjUwMDMzNw%3D%3D&amp;devicetype=iMac+MacBookPro13%2C3+OSX+OSX+10.12.2+build(16C67" target="_blank" rel="external">构建微服务体系下的全链路监控系统</a>&amp;version=12010210&amp;nettype=WIFI&amp;fontScale=100&amp;pass_ticket=ic8jNvshL0efRFoYoMS0tj06rD57a9nZE1o6dZrcIqjKRB7YwdDdsLoxjVftQdjg)</li>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MjM5NzMyMjAwMA==&amp;mid=2651477810&amp;idx=1&amp;sn=10d3f5207733292872a3e7701a181a49&amp;chksm=bd253b4d8a52b25bbdb8de0e015a8aebeca21aab2fa0037c740840b9e1f04048e88558ef1d55&amp;scene=0&amp;key=d8edcb43a47ce5f647b854e28704656612136c56386ee9c09efc6b5f404d985538b76e8c96ecd27f1563ceaedf119c3d89ebe027b535e447b62c7e04d76cd0526beb16f279a4fc7fce65c71a0f0d77f9&amp;ascene=0&amp;uin=MTg1NjUwMDMzNw%3D%3D&amp;devicetype=iMac+MacBookPro13%2C3+OSX+OSX+10.12.2+build(16C67" target="_blank" rel="external">JAVA 面试，你常常忘记它们</a>&amp;version=12010210&amp;nettype=WIFI&amp;fontScale=100&amp;pass_ticket=ic8jNvshL0efRFoYoMS0tj06rD57a9nZE1o6dZrcIqjKRB7YwdDdsLoxjVftQdjg)</li>
+</ul>
+<h3 id="2016-11-28"><a href="#2016-11-28" class="headerlink" title="2016.11.28"></a>2016.11.28</h3><ul>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MzIwMjE5MDU4OA==&amp;mid=2653121003&amp;idx=1&amp;sn=3a82b8b7025272a15e539b62cdb969fb&amp;chksm=8d35b278ba423b6e2c5e7646c2b72aa1a6a2414bf3ddc95c447a9b5958b6b37d1e7178459366&amp;mpshare=1&amp;scene=2&amp;srcid=1128wAvdgUvaPB9kZo156pcz&amp;key=15bec5edb1d9b9c90791b6004d4afe337cd7d8e0f0da1e50f7b92ae98a707f0ed36346c34a13302ea826450d645653ab0cd298403c030624147e6602d01430f1d78e69fbd4b5065cc07f89d1befbf709&amp;ascene=0&amp;uin=MTg1NjUwMDMzNw%3D%3D&amp;devicetype=iMac+MacBookPro13%2C3+OSX+OSX+10.12.2+build(16C67" target="_blank" rel="external">JVM虚拟化——重新定义Java容器热部署资源管理机制</a>&amp;version=12010210&amp;nettype=WIFI&amp;fontScale=100&amp;pass_ticket=ic8jNvshL0efRFoYoMS0tj06rD57a9nZE1o6dZrcIqjKRB7YwdDdsLoxjVftQdjg)</li>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MzIzOTU0NTQ0MA==&amp;mid=2247484067&amp;idx=1&amp;sn=ccb2503adb68adc0ec1332632e52c774&amp;chksm=e9293facde5eb6ba8e171568b3218ba1142e5bbf8523a22e516bde78ee56a0b7b5d1cd5b1846&amp;mpshare=1&amp;scene=2&amp;srcid=1128J5vaOYVxZjR09p1sKrsl&amp;key=150339418f659d2cab2fa909b4cf78eac80029f4ce863d1aebffe3cb2974bc43da922fcbda37504fed388439d8dfeb017a2c0f28f9f076442014f791d456dbdd02d65e1590a7f67129b4c70e0b6d613b&amp;ascene=0&amp;uin=MTg1NjUwMDMzNw%3D%3D&amp;devicetype=iMac+MacBookPro13%2C3+OSX+OSX+10.12.2+build(16C67" target="_blank" rel="external">[重磅]Apache基金会宣布接收阿里消息中间件RocketMQ为孵化项目</a>&amp;version=12010210&amp;nettype=WIFI&amp;fontScale=100&amp;pass_ticket=ic8jNvshL0efRFoYoMS0tj06rD57a9nZE1o6dZrcIqjKRB7YwdDdsLoxjVftQdjg)</li>
+</ul>
+<h3 id="2016-11-26"><a href="#2016-11-26" class="headerlink" title="2016.11.26"></a>2016.11.26</h3><ul>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MzIzODYyNjkzNw==&amp;mid=2247483735&amp;idx=1&amp;sn=4df89b0b46bc0fbd4ea2c5d4a49e1736&amp;chksm=e9373041de40b95787fe7a710ea643de2376a3f881868e718b1b10f61e1daf50159a2b9ce7f8&amp;scene=0&amp;key=150339418f659d2c9a46667c525f829187d4276dfe60c51341a9be7f78a2ca841c49c37fe76791e14fd1033b9a2b733b779c7ccf9013cc2adf45ed4d02c91fcd822935d110c2c44e22e3c2c439640e71&amp;ascene=0&amp;uin=MTg1NjUwMDMzNw%3D%3D&amp;devicetype=iMac+MacBookPro13%2C3+OSX+OSX+10.12.2+build(16C67" target="_blank" rel="external">Java8下的集合小抄</a>&amp;version=12010210&amp;nettype=WIFI&amp;fontScale=100&amp;pass_ticket=ic8jNvshL0efRFoYoMS0tj06rD57a9nZE1o6dZrcIqjKRB7YwdDdsLoxjVftQdjg)</li>
+</ul>
+<h3 id="2016-11-25"><a href="#2016-11-25" class="headerlink" title="2016.11.25"></a>2016.11.25</h3><ul>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MzA5NzkxMzg1Nw==&amp;mid=2653161439&amp;idx=1&amp;sn=70cbfa09c520f9e758a03bc5ca202f86&amp;chksm=8b493ab1bc3eb3a792e45f0caf843589d4adcf30321be9a1fb1ee0c324b193e215f19c289d5c&amp;mpshare=1&amp;scene=2&amp;srcid=1125mbMUExpaI2x23j7sCmZo&amp;key=15bec5edb1d9b9c90acb9e43d2facf8ae94a5f4c7259d741da2b93604c1c95dbfd5883a41885724982dec3f78904f2fb6a2d8388edb9ca575d35e2ce976d69a700bd33a5637415e639bc26ed7a13bdf0&amp;ascene=0&amp;uin=MTg1NjUwMDMzNw%3D%3D&amp;devicetype=iMac+MacBookPro13%2C3+OSX+OSX+10.12.2+build(16C67" target="_blank" rel="external">去哪儿网支付系统架构演进</a>&amp;version=12010210&amp;nettype=WIFI&amp;fontScale=100&amp;pass_ticket=ic8jNvshL0efRFoYoMS0tj06rD57a9nZE1o6dZrcIqjKRB7YwdDdsLoxjVftQdjg)</li>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MjM5NTU2MTQwNA==&amp;mid=2650653071&amp;idx=1&amp;sn=0066bfa6bd7899fe4b4933d0759c5c0f&amp;chksm=beffcb5c8988424a9c4b91b056100e97bf0a2ac6acc75ce067df4e17f6330c3e918e1d0cfc33&amp;mpshare=1&amp;scene=2&amp;srcid=1125NyGmFUJG0l9aWAL85LYm&amp;key=7c064f74f0bf80ecc1679bf947cfe83d4f8f874d09d5d2cfc7a2c67904f445c6c8d007a1f8a9f6196ec1fbe7c10da7e0f6e84863991e2e626e192dcef7f30256a21fb06f9b2f26d9781393439c9ac81f&amp;ascene=0&amp;uin=MTg1NjUwMDMzNw%3D%3D&amp;devicetype=iMac+MacBookPro13%2C3+OSX+OSX+10.12.2+build(16C67" target="_blank" rel="external">绝密实录！浅谈Nginx优化</a>&amp;version=12010210&amp;nettype=WIFI&amp;fontScale=100&amp;pass_ticket=ic8jNvshL0efRFoYoMS0tj06rD57a9nZE1o6dZrcIqjKRB7YwdDdsLoxjVftQdjg)</li>
+</ul>
+<h3 id="2016-11-24"><a href="#2016-11-24" class="headerlink" title="2016.11.24"></a>2016.11.24</h3><ul>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MzI3MzEzMDI1OQ==&amp;mid=2651815460&amp;idx=1&amp;sn=3c40803958b98b6acc43f2cbc1fc93f1&amp;chksm=f0dc2858c7aba14ed4ba4743c66f89a17d33983246bd833b5ac5f0f1bd437f4e11d4730ad1c0&amp;scene=0&amp;key=4a874d92793fbeb048bfd51a1b039b156711f8f2154eeec8c2cd388fa64d5e2ad20986ee521264ac6a1fa950a628b21d041cc4b4e3c8f0e5a11be5595d3f9fe537419706337839acc5b319b5ad3e2c80&amp;ascene=0&amp;uin=MTg1NjUwMDMzNw%3D%3D&amp;devicetype=iMac+MacBookPro13%2C3+OSX+OSX+10.12.2+build(16C67" target="_blank" rel="external">大神讲解微服务治理的技术演进和架构实践</a>&amp;version=12010210&amp;nettype=WIFI&amp;fontScale=100&amp;pass_ticket=ic8jNvshL0efRFoYoMS0tj06rD57a9nZE1o6dZrcIqjKRB7YwdDdsLoxjVftQdjg)</li>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MzI3MzEzMDI1OQ==&amp;mid=2651815450&amp;idx=1&amp;sn=4eb3b5b183995cae327573f0d8c51b19&amp;chksm=f0dc2866c7aba1704f459e1231a5ae0184abfb8221ef6b1e7045c24e6878e98d54558e3afde5&amp;scene=0&amp;key=d8edcb43a47ce5f624426e8bbedb187c4a9ee839e3d6cabaf24041ac6fdb81782ccb7f62629faddc45f0772bdf90ab3aadc1bd2bd7dee5b5d4bd29b5131722ac612eb6fd72a46bd9b4ba158eb3b68074&amp;ascene=0&amp;uin=MTg1NjUwMDMzNw%3D%3D&amp;devicetype=iMac+MacBookPro13%2C3+OSX+OSX+10.12.2+build(16C67" target="_blank" rel="external">作为一名基层管理者如何利用情商管理自己和团队（一）</a>&amp;version=12010210&amp;nettype=WIFI&amp;fontScale=100&amp;pass_ticket=ic8jNvshL0efRFoYoMS0tj06rD57a9nZE1o6dZrcIqjKRB7YwdDdsLoxjVftQdjg)</li>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MzI4NTA1MDEwNg==&amp;mid=2650758346&amp;idx=1&amp;sn=834f54cb79835106e7edc55e3bfa8c45&amp;chksm=f3f9e95fc48e60496816548a333a37856c9cf55a1a104c1e4d1cc27d74dbba00efd7e538ff3b&amp;scene=0&amp;key=7c064f74f0bf80ece6f926e9637f1508dd5040c118c87544d9ca4f4dfe9a1667847fb6d94d5b7e37887c63a0d904467d156bc59a92f8d23ff61090d0db298072290de5955a4efad0d3e621311c36938c&amp;ascene=0&amp;uin=MTg1NjUwMDMzNw%3D%3D&amp;devicetype=iMac+MacBookPro13%2C3+OSX+OSX+10.12.2+build(16C67" target="_blank" rel="external">从架构到监控报警，支付系统的设计如何步步为营</a>&amp;version=12010210&amp;nettype=WIFI&amp;fontScale=100&amp;pass_ticket=ic8jNvshL0efRFoYoMS0tj06rD57a9nZE1o6dZrcIqjKRB7YwdDdsLoxjVftQdjg)</li>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MzA5Nzc4OTA1Mw==&amp;mid=2659598530&amp;idx=1&amp;sn=b3e52c3f9b78454b680e8874d8b51990&amp;chksm=8be995d0bc9e1cc61faa722dea85e70888ec3395821f40cd4c3b5f6e28ce5891ebc831084f4a&amp;scene=0&amp;key=4a874d92793fbeb09550a95b34b6e2519289e8187a325855b7568eda393aedf4f747d1c0fa242f0b7eeb53749a442113688e2fe370a473076403af665097cc0f343186cbc2d2561ec06b337e7319a313&amp;ascene=0&amp;uin=MTg1NjUwMDMzNw%3D%3D&amp;devicetype=iMac+MacBookPro13%2C3+OSX+OSX+10.12.2+build(16C67" target="_blank" rel="external">Tomcat类加载机制触发的Too many open files问题分析</a>&amp;version=12010210&amp;nettype=WIFI&amp;fontScale=100&amp;pass_ticket=ic8jNvshL0efRFoYoMS0tj06rD57a9nZE1o6dZrcIqjKRB7YwdDdsLoxjVftQdjg)</li>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MzA5Nzc4OTA1Mw==&amp;mid=2659598511&amp;idx=1&amp;sn=5267113160f0da7c2d11d2ab4ffc5b8c&amp;chksm=8be995bdbc9e1cab944d8a7e9f050fa3712bc5edb3d7a7c28f96fd313f094ab8e101fda04e92&amp;scene=0&amp;key=7c064f74f0bf80ec4c71454a210bdb731ee84d07aeb217c4fb4a096ea790f2490b7cdac18376f68c642cc07ddded36127eb875b90931cef0c597969cc8220a6f4b54943d8efefcee7e622dd762fe4f21&amp;ascene=0&amp;uin=MTg1NjUwMDMzNw%3D%3D&amp;devicetype=iMac+MacBookPro13%2C3+OSX+OSX+10.12.2+build(16C67" target="_blank" rel="external">一个经验证可落地的秒杀系统实践思路</a>&amp;version=12010210&amp;nettype=WIFI&amp;fontScale=100&amp;pass_ticket=ic8jNvshL0efRFoYoMS0tj06rD57a9nZE1o6dZrcIqjKRB7YwdDdsLoxjVftQdjg)</li>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MzI2MTIzMzY3Mw==&amp;mid=2247484314&amp;idx=1&amp;sn=24b8aa870085b310e69e9c6918024411&amp;chksm=ea5ccefcdd2b47ea7e27885708cd9b952a814258f273f0a02a58fc773a1b54441cdd76274936&amp;scene=0&amp;key=15bec5edb1d9b9c9a596c5fdbe17429c8f59fba0a2ea03c4c267e99f7bb1d5fa28a6d6ab31859379cf5ecba1edb084ac0dc484b8b187f424f80a9659bdd09732f24a3abf09cabe2d0ea84b0f838cae85&amp;ascene=0&amp;uin=MTg1NjUwMDMzNw%3D%3D&amp;devicetype=iMac+MacBookPro13%2C3+OSX+OSX+10.12.2+build(16C67" target="_blank" rel="external">阿里巴巴前架构师 360 度无死角剖析微服务</a>&amp;version=12010210&amp;nettype=WIFI&amp;fontScale=100&amp;pass_ticket=ic8jNvshL0efRFoYoMS0tj06rD57a9nZE1o6dZrcIqjKRB7YwdDdsLoxjVftQdjg)</li>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MjM5MDE0Mjc4MA==&amp;mid=2650994851&amp;idx=1&amp;sn=3c197d1dd03b77c2e28d53eea51ceb03&amp;chksm=bdbf00f08ac889e6578cf9c007420083ad6a211aa7d9010469df838ad9970abfe626c7d4277e&amp;scene=0&amp;key=150339418f659d2c5fde1d48af2339d8379407a8b74ddb5ab26d34196c7d03acee21cfd5c7485db9999bdcc9346d4d04febfdf8bb31a50145bf08ff88febadff24fd88ca4b8598e64be197ddde5c3698&amp;ascene=0&amp;uin=MTg1NjUwMDMzNw%3D%3D&amp;devicetype=iMac+MacBookPro13%2C3+OSX+OSX+10.12.2+build(16C67" target="_blank" rel="external">现代化Web的微服务架构最佳实践全景</a>&amp;version=12010210&amp;nettype=WIFI&amp;fontScale=100&amp;pass_ticket=ic8jNvshL0efRFoYoMS0tj06rD57a9nZE1o6dZrcIqjKRB7YwdDdsLoxjVftQdjg)</li>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MzA3NDcyMTQyNQ==&amp;mid=2649256229&amp;idx=1&amp;sn=ff3cb8ea943c243d2071241ab6bbd5a1&amp;chksm=8767a0dbb01029cd7c3d56f5a61cf292be790cc65043ba29968e2bc1df123146f88b7d2aad7e&amp;scene=0&amp;key=e3b1ba93cc346df0958a060b7662958dd70fa81194bfc70b5fdadccf191acda6c3565910e29d42c739a8bd3d9340e03a93661b033ca58af51f61d598e64ea55f5a3b3f69a0118726dbba4b6a28eeba2f&amp;ascene=0&amp;uin=MTg1NjUwMDMzNw%3D%3D&amp;devicetype=iMac+MacBookPro13%2C3+OSX+OSX+10.12.2+build(16C67" target="_blank" rel="external">JVM源码分析之自定义类加载器如何拉长YGC</a>&amp;version=12010210&amp;nettype=WIFI&amp;fontScale=100&amp;pass_ticket=ic8jNvshL0efRFoYoMS0tj06rD57a9nZE1o6dZrcIqjKRB7YwdDdsLoxjVftQdjg)</li>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MzA3NDcyMTQyNQ==&amp;mid=2649256239&amp;idx=1&amp;sn=b3a38d4913b95ce6c3d1f1e10d6e2cfe&amp;chksm=8767a0d1b01029c739ff7e2c5f89f181de481b0cdad83c1e2c52731ed9e434778a86dd14d4c5&amp;scene=0&amp;key=2176f8683275c7bdb841a874d4a8da423b866ff518a7aa18aa54d6b4d96da0ed5998a07317e643a4f525f5785b00709e10b6fc7d4404989f8f646aa25431a06fc397941a6d8e73d1e19778110f33f868&amp;ascene=0&amp;uin=MTg1NjUwMDMzNw%3D%3D&amp;devicetype=iMac+MacBookPro13%2C3+OSX+OSX+10.12.2+build(16C67" target="_blank" rel="external">深入浅出 Redis client/server交互流程</a>&amp;version=12010210&amp;nettype=WIFI&amp;fontScale=100&amp;pass_ticket=ic8jNvshL0efRFoYoMS0tj06rD57a9nZE1o6dZrcIqjKRB7YwdDdsLoxjVftQdjg)</li>
+</ul>
+<h3 id="2016-11-22"><a href="#2016-11-22" class="headerlink" title="2016.11.22"></a>2016.11.22</h3><ul>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MzIzODYyNjkzNw==&amp;mid=2247483732&amp;idx=1&amp;sn=5e3533b6f79823083e567e092a0e65fc&amp;chksm=e9373042de40b95466784930dfc9468a7974ddd1bae05b02f9776c0e8a2074463f2df7ed59e0&amp;scene=0&amp;key=e3b1ba93cc346df004990383ac6c4ea34757e772f7f396423a93f96c26d06d250266f05c3575dbc819031e968ef37f006fbea9e7aff3c87b3dfeb2bc08491aa8e615382bdb9343200e7c9a464dc018ce&amp;ascene=0&amp;uin=MTg1NjUwMDMzNw%3D%3D&amp;devicetype=iMac+MacBookPro13%2C3+OSX+OSX+10.12.2+build(16C67" target="_blank" rel="external">服务化之－路由</a>&amp;version=12010210&amp;nettype=WIFI&amp;fontScale=100&amp;pass_ticket=ic8jNvshL0efRFoYoMS0tj06rD57a9nZE1o6dZrcIqjKRB7YwdDdsLoxjVftQdjg)</li>
+</ul>
+<h3 id="2016-11-21"><a href="#2016-11-21" class="headerlink" title="2016.11.21"></a>2016.11.21</h3><ul>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MzIwMjE5MDU4OA==&amp;mid=2653120932&amp;idx=1&amp;sn=016c03e843c9c2148e23e6773fbc2139&amp;chksm=8d35b237ba423b2101f76488725e032726473f53a11136aad31848b31e7f94eb8c17351c8943&amp;mpshare=1&amp;scene=2&amp;srcid=1121YlIfdHKLQQOvXFb4Tfwr&amp;key=2176f8683275c7bd962c6787a4368905e374b1542e3898abac6b993e7b9615d0e7590acef5a17b9c538889ac3dca16b35e5f1e47f650e529de0f4952432fcdf461ea5d97d34c45bac97b9b91a74cd0e7&amp;ascene=0&amp;uin=MTg1NjUwMDMzNw%3D%3D&amp;devicetype=iMac+MacBookPro13%2C3+OSX+OSX+10.12.2+build(16C67" target="_blank" rel="external">映客直播服务端架构优化之路</a>&amp;version=12010210&amp;nettype=WIFI&amp;fontScale=100&amp;pass_ticket=ic8jNvshL0efRFoYoMS0tj06rD57a9nZE1o6dZrcIqjKRB7YwdDdsLoxjVftQdjg)</li>
+</ul>
+<h3 id="2016-11-18"><a href="#2016-11-18" class="headerlink" title="2016.11.18"></a>2016.11.18</h3><ul>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MzI2MTIzMzY3Mw==&amp;mid=2247484282&amp;idx=1&amp;sn=e08351d7580d01857ed8ccd2e4dbcc24&amp;chksm=ea5cce1cdd2b470a62748410bdefbf5ef854a0fc23ffb84aba86cfeeb48be7099e61a1a93bd8&amp;scene=0&amp;key=15bec5edb1d9b9c9adbc7b4a011da4962af6f36be487f9b5153b1c3c1e665ceaf9ba5e83b1afa0f5cf0f54efa29baa48cc26f48398f70ca3dc82bc6d92451e289e5a058d0659d1616d9b5a1995a7d507&amp;ascene=0&amp;uin=MTg1NjUwMDMzNw%3D%3D&amp;devicetype=iMac+MacBookPro13%2C3+OSX+OSX+10.12.2+build(16C67" target="_blank" rel="external">性能优化的常见模式及趋势</a>&amp;version=12010210&amp;nettype=WIFI&amp;fontScale=100&amp;pass_ticket=ic8jNvshL0efRFoYoMS0tj06rD57a9nZE1o6dZrcIqjKRB7YwdDdsLoxjVftQdjg)</li>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MzI2MTIzMzY3Mw==&amp;mid=2247484284&amp;idx=1&amp;sn=c601ec85055bbf2c59788e6f20750606&amp;chksm=ea5cce1add2b470ce46d97a7d241ac53adea45f3bc9a4efe386dc6d907185c8592845e8e9d8a&amp;scene=0&amp;key=7c064f74f0bf80ecc88ab44f2f9b5e1ca2e4b4426f7d0022a06b6ceee19e3049a580bf9cb3e6bf70f57eda74c20faff160c20ea2632ce7090a1ed7f3471705a142a2d9b7510ac3306f342c08e7c647f9&amp;ascene=0&amp;uin=MTg1NjUwMDMzNw%3D%3D&amp;devicetype=iMac+MacBookPro13%2C3+OSX+OSX+10.12.2+build(16C67" target="_blank" rel="external">代码重构方向原则指导</a>&amp;version=12010210&amp;nettype=WIFI&amp;fontScale=100&amp;pass_ticket=ic8jNvshL0efRFoYoMS0tj06rD57a9nZE1o6dZrcIqjKRB7YwdDdsLoxjVftQdjg)</li>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MzI2MTIzMzY3Mw==&amp;mid=2247484291&amp;idx=1&amp;sn=21666a421af9f8b461de594ba0e715b4&amp;chksm=ea5ccee5dd2b47f339d6c24e26df254f748913e776954b253c6b9968b21e0e67896e2dc60d4a&amp;scene=0&amp;key=7c064f74f0bf80ec4bfe9d6393361ba95ee25a58cc3392d06a19d03dda265dfff0871effdcd7705fc7fc93f34aeaded0b9ef5dc4f9d30d4c85d3975f1f8cb6fa7a528f829dc0717ec11ae8ceff12bad8&amp;ascene=0&amp;uin=MTg1NjUwMDMzNw%3D%3D&amp;devicetype=iMac+MacBookPro13%2C3+OSX+OSX+10.12.2+build(16C67" target="_blank" rel="external">一篇文读懂分布式系统本质：高吞吐、高可用、可扩展</a>&amp;version=12010210&amp;nettype=WIFI&amp;fontScale=100&amp;pass_ticket=ic8jNvshL0efRFoYoMS0tj06rD57a9nZE1o6dZrcIqjKRB7YwdDdsLoxjVftQdjg)</li>
+</ul>
+<h3 id="2016-11-16"><a href="#2016-11-16" class="headerlink" title="2016.11.16"></a>2016.11.16</h3><ul>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MjM5NzMyMjAwMA==&amp;mid=2651477731&amp;idx=1&amp;sn=dbac4de5b29a9337d779de3d12d583f6&amp;chksm=bd253a9c8a52b38a52f68f5b9e6c9d84e6b01c64bf079ab2051af3e3dddc6f86e10cbad675db&amp;scene=0&amp;key=2176f8683275c7bd2f8640aa85a6d8f46d1afe888da344f336d7b0a1ca03e55722e3ddddfc8b2283883834c7b7124a77a55967616a9f73ea6afd8b6c98d3fc443b7124fac9ff6117454a153e9c7f5911&amp;ascene=0&amp;uin=MTg1NjUwMDMzNw%3D%3D&amp;devicetype=iMac+MacBookPro13%2C3+OSX+OSX+10.12.2+build(16C67" target="_blank" rel="external">数据库相关中间件全家桶（上）</a>&amp;version=12010210&amp;nettype=WIFI&amp;fontScale=100&amp;pass_ticket=ic8jNvshL0efRFoYoMS0tj06rD57a9nZE1o6dZrcIqjKRB7YwdDdsLoxjVftQdjg)</li>
+</ul>
+<h3 id="2016-11-14"><a href="#2016-11-14" class="headerlink" title="2016.11.14"></a>2016.11.14</h3><ul>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MzA3NDcyMTQyNQ==&amp;mid=2649256173&amp;idx=1&amp;sn=e77dde47ba6134d7a6ce7a4cdd8fe719&amp;chksm=8767a113b010280568cbf0b7e70b4c519d018d33dddb6284db94a70278b07c7f1ad82c0a1cbb&amp;mpshare=1&amp;scene=2&amp;srcid=1114bxFv3ws6fpoBBBthHxG3&amp;key=150339418f659d2c4ffda8e43a285508ea10f8de919e903b255d1867db6363c62cbde4d32686dcac4a4609f5a4a695b4fb08d5d24d8db8063dd977949cbcbe43c03541b48ec380aac8a5aa271b353c62&amp;ascene=0&amp;uin=MTg1NjUwMDMzNw%3D%3D&amp;devicetype=iMac+MacBookPro13%2C3+OSX+OSX+10.12.2+build(16C67" target="_blank" rel="external">去哪儿网支付系统架构演进（上篇）</a>&amp;version=12010210&amp;nettype=WIFI&amp;fontScale=100&amp;pass_ticket=ic8jNvshL0efRFoYoMS0tj06rD57a9nZE1o6dZrcIqjKRB7YwdDdsLoxjVftQdjg)</li>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MzA3NDcyMTQyNQ==&amp;mid=2649256178&amp;idx=1&amp;sn=f07d0a1423d4c6c5a0943f9c8c36f39f&amp;chksm=8767a10cb010281afa1a7039db17aca034881cb17dbbc9cd9c3c1325028385376cc448fe312a&amp;mpshare=1&amp;scene=2&amp;srcid=1114mcvL5oxLESX8eHAvA9GY&amp;key=7c064f74f0bf80ec5468b057ca9287ee75c5f5ba80332e9d7cc52ce0b83e86f1f9e633cdb8ed42bd81db38b2b83ebcc01eef52487f18ea8d08b7c25630439694bbfa2406e7701f573279994aa3a28ca4&amp;ascene=0&amp;uin=MTg1NjUwMDMzNw%3D%3D&amp;devicetype=iMac+MacBookPro13%2C3+OSX+OSX+10.12.2+build(16C67" target="_blank" rel="external">去哪儿支付系统架构演进（下篇）</a>&amp;version=12010210&amp;nettype=WIFI&amp;fontScale=100&amp;pass_ticket=ic8jNvshL0efRFoYoMS0tj06rD57a9nZE1o6dZrcIqjKRB7YwdDdsLoxjVftQdjg)</li>
+</ul>
+<h3 id="2016-11-11"><a href="#2016-11-11" class="headerlink" title="2016.11.11"></a>2016.11.11</h3><ul>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MjM5NzMyMjAwMA==&amp;mid=2651477717&amp;idx=1&amp;sn=7175702d70f08d43aa29b9ce34b03b65&amp;chksm=bd253aaa8a52b3bc7b0b8cbce6487ad866debdb1ae10b5a08a9a30db4f1dfd54af2f8b2e1f3b&amp;scene=0&amp;key=7c064f74f0bf80ec41c7f19e56d61c9f3a66bb703ca1edec6c3f409deecc386c5c512519a7b2d88e08dffb9a0cdbe06b80dff770d9f10f037db619b03c14ebf5a7a107bdbb3c6cf1227478e2f67f59b6&amp;ascene=0&amp;uin=MTg1NjUwMDMzNw%3D%3D&amp;devicetype=iMac+MacBookPro13%2C3+OSX+OSX+10.12.2+build(16C67" target="_blank" rel="external">关于Java并发编程的总结和思考（上）</a>&amp;version=12010210&amp;nettype=WIFI&amp;fontScale=100&amp;pass_ticket=ic8jNvshL0efRFoYoMS0tj06rD57a9nZE1o6dZrcIqjKRB7YwdDdsLoxjVftQdjg)</li>
+</ul>
+<h3 id="2016-11-10"><a href="#2016-11-10" class="headerlink" title="2016.11.10"></a>2016.11.10</h3><ul>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MzA4ODgwNjk1MQ==&amp;mid=2653788496&amp;idx=1&amp;sn=d001f9fab4c6bd52f514b11030431a6d&amp;chksm=8bfdba18bc8a330e7e55e3d0a777116732c639e5ef9eb7f8edb4a52f52ca8f2abbb0ed809463&amp;mpshare=1&amp;scene=2&amp;srcid=11104WA3CDGN5l7K5bgBWH5m&amp;key=e3b1ba93cc346df0eb0bc4c0288d3f1a88c77daca207bb06ae10a2c314a7f8ffc7d4c94ee01b0aefc5be2f5c87d9798a5ca0d74ebf710e738ae60cc4b95ee3afe6dfff381898a4fa916b51accd2e1c1e&amp;ascene=0&amp;uin=MTg1NjUwMDMzNw%3D%3D&amp;devicetype=iMac+MacBookPro13%2C3+OSX+OSX+10.12.2+build(16C67" target="_blank" rel="external">我的时间管理系统</a>&amp;version=12010210&amp;nettype=WIFI&amp;fontScale=100&amp;pass_ticket=ic8jNvshL0efRFoYoMS0tj06rD57a9nZE1o6dZrcIqjKRB7YwdDdsLoxjVftQdjg)</li>
+</ul>
+<h3 id="2016-11-9"><a href="#2016-11-9" class="headerlink" title="2016.11.9"></a>2016.11.9</h3><ul>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MzA3OTkyODg2Mg==&amp;mid=2650680041&amp;idx=1&amp;sn=c699f0adb502cb729373808ce150b29a&amp;chksm=87a68198b0d1088eef92724d3fdd204025c9cf79268b9964f1def395493900ebb54c22c2daf0&amp;scene=0&amp;key=4a874d92793fbeb07c480d0a70ae33c2150fabe1b9dde0401bc5115545f5a49dffe53f48d8d1a7f794ebe11dffe95eed58906c94acd98562b07b5362c1ccaa2861838778c19f92a3971d9d25c88035ef&amp;ascene=0&amp;uin=MTg1NjUwMDMzNw%3D%3D&amp;devicetype=iMac+MacBookPro13%2C3+OSX+OSX+10.12.2+build(16C67" target="_blank" rel="external">京东刘强东：这10年的时间，我错过的就是支付，但是不后悔！</a>&amp;version=12010210&amp;nettype=WIFI&amp;fontScale=100&amp;pass_ticket=ic8jNvshL0efRFoYoMS0tj06rD57a9nZE1o6dZrcIqjKRB7YwdDdsLoxjVftQdjg)</li>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MzA5Nzc4OTA1Mw==&amp;mid=2659598436&amp;idx=1&amp;sn=6b30e5176ac15c8c85e3368a9f44cecd&amp;chksm=8be99576bc9e1c6045218eda98b3c446d83c00b22e5e546dda62272f6a0fe15777ab1ee85167&amp;scene=0&amp;key=2176f8683275c7bd981becc982072348441f6c859040bfd6461a6386741d61e1ad2780655e35d0d6150638c6b044b4cd05e797ddf771f2887e61c7ae479104ecc8435fbe1dcd8816fd7b6377dd2a4967&amp;ascene=0&amp;uin=MTg1NjUwMDMzNw%3D%3D&amp;devicetype=iMac+MacBookPro13%2C3+OSX+OSX+10.12.2+build(16C67" target="_blank" rel="external">一个可供创业团队参考的微服务开发、部署和运维最佳实践</a>&amp;version=12010210&amp;nettype=WIFI&amp;fontScale=100&amp;pass_ticket=ic8jNvshL0efRFoYoMS0tj06rD57a9nZE1o6dZrcIqjKRB7YwdDdsLoxjVftQdjg)</li>
+</ul>
+<h3 id="2016-11-8"><a href="#2016-11-8" class="headerlink" title="2016.11.8"></a>2016.11.8</h3><ul>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MjM5OTkxOTc0Mw==&amp;mid=2650226007&amp;idx=1&amp;sn=c0e156fbc37e2c5b2be614e6d93510f0&amp;chksm=bf37b44788403d51ee1fea2af4ba50d001edabbcf64602ce00acc12005d82ff985f7da50be05&amp;scene=0&amp;key=15bec5edb1d9b9c9c53d3d6bd39007dba833b06e8435e0a1bdfb3cb72fe459291b19a465089034e0ea4b62903f1eb1f9437685aeda79cdda1062ac070dbecf795788e824d2aad0cb3ec872c1179d4ce4&amp;ascene=0&amp;uin=MTg1NjUwMDMzNw%3D%3D&amp;devicetype=iMac+MacBookPro13%2C3+OSX+OSX+10.12.2+build(16C67" target="_blank" rel="external">如何在最常见的oracle场景中收集统计信息（上）</a>&amp;version=12010210&amp;nettype=WIFI&amp;fontScale=100&amp;pass_ticket=ic8jNvshL0efRFoYoMS0tj06rD57a9nZE1o6dZrcIqjKRB7YwdDdsLoxjVftQdjg)</li>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MjM5OTkxOTc0Mw==&amp;mid=2650226010&amp;idx=1&amp;sn=8e5ef25b1345f77b8214dc3042727b27&amp;chksm=bf37b44a88403d5cf4eced47a3c9c676ebfed98722ca836b0639f2e46ba578768953af99fb6b&amp;scene=0&amp;key=4a874d92793fbeb072b0318b1d6aefbb36a5cb85c491cf54318cf9f46671abc83bd4e332e7b4b3f0372c1d000a08845c418b857593c135c95cd9d4252c3cf1e3c2c83e0fc1048b1f6b2860fb5b916bf1&amp;ascene=0&amp;uin=MTg1NjUwMDMzNw%3D%3D&amp;devicetype=iMac+MacBookPro13%2C3+OSX+OSX+10.12.2+build(16C67" target="_blank" rel="external">如何在最常见的oracle场景中收集统计信息（下）</a>&amp;version=12010210&amp;nettype=WIFI&amp;fontScale=100&amp;pass_ticket=ic8jNvshL0efRFoYoMS0tj06rD57a9nZE1o6dZrcIqjKRB7YwdDdsLoxjVftQdjg)</li>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MzI3MzEzMDI1OQ==&amp;mid=2651815387&amp;idx=1&amp;sn=5e15923e36e0525e273bff4343360ec8&amp;chksm=f0dc2ba7c7aba2b1d1db447b09d7c0b63f209e41f3ddaf293c2729545a880b822b785fc6e9a9&amp;scene=0&amp;key=d8edcb43a47ce5f649ff65e48509ee3794dcc5f982fba9614a180603a57d63d7fc50e883437fe113981b9279eaa1d95fbf5d04ea9d15f24a8872a1ea598566dec898e6110e4cd4da5321fea99c5a400f&amp;ascene=0&amp;uin=MTg1NjUwMDMzNw%3D%3D&amp;devicetype=iMac+MacBookPro13%2C3+OSX+OSX+10.12.2+build(16C67" target="_blank" rel="external">性能优化的常见模式及趋势-小丘</a>&amp;version=12010210&amp;nettype=WIFI&amp;fontScale=100&amp;pass_ticket=ic8jNvshL0efRFoYoMS0tj06rD57a9nZE1o6dZrcIqjKRB7YwdDdsLoxjVftQdjg)</li>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MzI3MzEzMDI1OQ==&amp;mid=2651815389&amp;idx=1&amp;sn=05618dd7095e94f139301f2bf083c1de&amp;chksm=f0dc2ba1c7aba2b782ac43123bdcee300d6a0b05a013efa17d76dfa3ff8b28672fcc192f0380&amp;scene=0&amp;key=4a874d92793fbeb02d9a21efaaefb1840176d3e51d786f6d5bfc00a0b3abc3da37b3e97722400fa29b614f2fd69952407189da331e176591798c5948b998daff6ab7a8b47174a9e5e7f9f55eaee35843&amp;ascene=0&amp;uin=MTg1NjUwMDMzNw%3D%3D&amp;devicetype=iMac+MacBookPro13%2C3+OSX+OSX+10.12.2+build(16C67" target="_blank" rel="external">性能优化之几种常见压测模型及优缺点-小丘</a>&amp;version=12010210&amp;nettype=WIFI&amp;fontScale=100&amp;pass_ticket=ic8jNvshL0efRFoYoMS0tj06rD57a9nZE1o6dZrcIqjKRB7YwdDdsLoxjVftQdjg)</li>
+</ul>
+<h3 id="2016-11-6"><a href="#2016-11-6" class="headerlink" title="2016.11.6"></a>2016.11.6</h3><ul>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MzI3MzEzMDI1OQ==&amp;mid=2651815383&amp;idx=1&amp;sn=dd55f73df9f054b4d1354675f76b2f61&amp;chksm=f0dc2babc7aba2bdbdcb567f392d443cc96b2ea5c164902a45a1ccae15bb49f6e7aa94adecc5&amp;scene=0&amp;key=d8edcb43a47ce5f61e272788ab91dd44910a2948b37fbf4a2fe4dc9320229727a01afaa46c9035d9e55a5693dc91c55943d7b8f5b331355f85238fe3b87d5782d98cf1ec7a4162615cd4956a6b2de782&amp;ascene=0&amp;uin=MTg1NjUwMDMzNw%3D%3D&amp;devicetype=iMac+MacBookPro13%2C3+OSX+OSX+10.12.2+build(16C67" target="_blank" rel="external">区块链——2016最耀眼的新兴技术之一</a>&amp;version=12010210&amp;nettype=WIFI&amp;fontScale=100&amp;pass_ticket=ic8jNvshL0efRFoYoMS0tj06rD57a9nZE1o6dZrcIqjKRB7YwdDdsLoxjVftQdjg)</li>
+</ul>
+<h3 id="2016-11-3"><a href="#2016-11-3" class="headerlink" title="2016.11.3"></a>2016.11.3</h3><ul>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MzI3MzEzMDI1OQ==&amp;mid=2651815375&amp;idx=1&amp;sn=563f45af24ca94bdcdec24fcafe5fa9e&amp;chksm=f0dc2bb3c7aba2a5797ab8efc262df5e17e5ddab6bacf76739805cbf22aafa7ff1f3525f773d&amp;scene=0&amp;key=150339418f659d2cd0dca9e8fc0440b6600895c2cea545e9f47b33adeccc27e351f792fbf28ec9c3cda77bb0d688bac0cc5e52ac4d6cb46fa8e854d59084e66de037c6d23626df86cec9e846fe1fc09b&amp;ascene=0&amp;uin=MTg1NjUwMDMzNw%3D%3D&amp;devicetype=iMac+MacBookPro13%2C3+OSX+OSX+10.12.2+build(16C67" target="_blank" rel="external">区块链技术分享</a>&amp;version=12010210&amp;nettype=WIFI&amp;fontScale=100&amp;pass_ticket=ic8jNvshL0efRFoYoMS0tj06rD57a9nZE1o6dZrcIqjKRB7YwdDdsLoxjVftQdjg)</li>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MjM5NzAwOTE2MQ==&amp;mid=2662303582&amp;idx=1&amp;sn=4e17206a78d6c518c687080d49050caf&amp;chksm=bdbba5388acc2c2e2c4eca8f8a5709f3286db1b4ca82db7a7f4b05201fae1bbba52dcf9a193c&amp;scene=0&amp;key=4a874d92793fbeb08bf27f29e9ed753a9cedade4684214a4916ea618b53d6017b5c4a4d2e71a83c6f49652d0634475a36241d6d84749930c706401aa088097bfac7ed0a7debade866b1f1e8ac2b36667&amp;ascene=0&amp;uin=MTg1NjUwMDMzNw%3D%3D&amp;devicetype=iMac+MacBookPro13%2C3+OSX+OSX+10.12.2+build(16C67" target="_blank" rel="external">35岁以前成功的黄金法则：你要避开11个成功陷阱</a>&amp;version=12010210&amp;nettype=WIFI&amp;fontScale=100&amp;pass_ticket=ic8jNvshL0efRFoYoMS0tj06rD57a9nZE1o6dZrcIqjKRB7YwdDdsLoxjVftQdjg)</li>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MjM5ODYxMDA5OQ==&amp;mid=2651959629&amp;idx=1&amp;sn=053d85a862df6e6c01147a1cf95bdbf2&amp;chksm=bd2d04918a5a8d87a32305fa8ef1603bb0e73e5c4b78afb5a144327841e08840188c4541b4aa&amp;scene=0&amp;key=2176f8683275c7bd5a110a7b0cc1817fe707732a8a1698a90f1dd6ce20d78409e96b62d4e97f79f4626825b1ea5484b0c1ac70f11b145170a628900b6dd73e6832fcca0509d627f4d0fe1006e5477588&amp;ascene=0&amp;uin=MTg1NjUwMDMzNw%3D%3D&amp;devicetype=iMac+MacBookPro13%2C3+OSX+OSX+10.12.2+build(16C67" target="_blank" rel="external">微信为啥不丢“离线消息”？</a>&amp;version=12010210&amp;nettype=WIFI&amp;fontScale=100&amp;pass_ticket=ic8jNvshL0efRFoYoMS0tj06rD57a9nZE1o6dZrcIqjKRB7YwdDdsLoxjVftQdjg)</li>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MzA5Nzc4OTA1Mw==&amp;mid=2659598399&amp;idx=1&amp;sn=9653d3349110628f7cab2a338957de0a&amp;chksm=8be9952dbc9e1c3b3f5648ac536b42c7317ac911b6e17c053416cd06739d138b5343a0c2d2d8&amp;scene=0&amp;key=4a874d92793fbeb05f8bdbc676325cbeed4dba0c1ef58c363889bffdd6adbe9345f4f7c983b81e8b5f9be932db585b42dd1f1c44f8c7118c4eba91c1072ec43994a145d48b2308781f1ec2595e2ab5d3&amp;ascene=0&amp;uin=MTg1NjUwMDMzNw%3D%3D&amp;devicetype=iMac+MacBookPro13%2C3+OSX+OSX+10.12.2+build(16C67" target="_blank" rel="external">奇谈怪论：从容器想到去IOE、去库存和独角兽</a>&amp;version=12010210&amp;nettype=WIFI&amp;fontScale=100&amp;pass_ticket=ic8jNvshL0efRFoYoMS0tj06rD57a9nZE1o6dZrcIqjKRB7YwdDdsLoxjVftQdjg)</li>
+</ul>
+<h3 id="2016-11-2"><a href="#2016-11-2" class="headerlink" title="2016.11.2"></a>2016.11.2</h3><ul>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MjM5OTkxOTc0Mw==&amp;mid=2650226003&amp;idx=1&amp;sn=f1410c52bd0eb6b5de4e900747338c5c&amp;chksm=bf37b44388403d55ae79ab77a5c48758ec5f50e0d7bb46c49a377250be73196d5615ff354df4&amp;scene=0&amp;key=7c064f74f0bf80ec83e490e7639cc5a14fb0bf2d5342b36de0092705f4e5d76782662e9e1cf3d2065a8e7b8184971b8eb749fed71d2f797769821f407b1bcbf086271a675da64a74166aa8bd41b9f024&amp;ascene=0&amp;uin=MTg1NjUwMDMzNw%3D%3D&amp;devicetype=iMac+MacBookPro13%2C3+OSX+OSX+10.12.2+build(16C67" target="_blank" rel="external">牛刀小试Oracle GoldenGate</a>&amp;version=12010210&amp;nettype=WIFI&amp;fontScale=100&amp;pass_ticket=ic8jNvshL0efRFoYoMS0tj06rD57a9nZE1o6dZrcIqjKRB7YwdDdsLoxjVftQdjg)</li>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MjM5NzMyMjAwMA==&amp;mid=2651477662&amp;idx=2&amp;sn=a364ccf803394c9fe0f627f181e7b345&amp;chksm=bd253ae18a52b3f716d69ac789a4477cfd6250b43b365dc6a086924be3ffdb3c93be5796064f&amp;scene=0&amp;key=e3b1ba93cc346df0201016ae2750f87b56054fc619e68e2a7f79771a02e035bfb08142407be8bc01d349f940735dd05d073a776f4cd3a3204346bfed65985e8461569f48c3c7c5ca809cc4b6546a43fc&amp;ascene=0&amp;uin=MTg1NjUwMDMzNw%3D%3D&amp;devicetype=iMac+MacBookPro13%2C3+OSX+OSX+10.12.2+build(16C67" target="_blank" rel="external">哪个更快：Java堆还是本地内存</a>&amp;version=12010210&amp;nettype=WIFI&amp;fontScale=100&amp;pass_ticket=ic8jNvshL0efRFoYoMS0tj06rD57a9nZE1o6dZrcIqjKRB7YwdDdsLoxjVftQdjg)</li>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MjM5NzMyMjAwMA==&amp;mid=2651477672&amp;idx=3&amp;sn=a1eb6b133c16059ef06e4e86fb759db0&amp;chksm=bd253ad78a52b3c1d7e89f0f2e9715ac9a943d178e1f91d30af3853237d66348485ee1d408ff&amp;scene=0&amp;key=150339418f659d2cad6270811a7f0e6825bc07de5b48f33d89f50ad649afb9d3179f2f9e6888e37468968d0222e1a9446aa0f92f4c89431935edd2e2ae9866a176f868e2197806ea7bda527a2ed3728c&amp;ascene=0&amp;uin=MTg1NjUwMDMzNw%3D%3D&amp;devicetype=iMac+MacBookPro13%2C3+OSX+OSX+10.12.2+build(16C67" target="_blank" rel="external">JDK数则</a>&amp;version=12010210&amp;nettype=WIFI&amp;fontScale=100&amp;pass_ticket=ic8jNvshL0efRFoYoMS0tj06rD57a9nZE1o6dZrcIqjKRB7YwdDdsLoxjVftQdjg)</li>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MjM5NzAwOTE2MQ==&amp;mid=2662303571&amp;idx=1&amp;sn=c7b92509c9f3c619e03eabcef0ba111b&amp;chksm=bdbba5358acc2c23e8c4d3572e27d3136126e1f0f4820ede01ce80bbea00513f3ad6516f365a&amp;scene=0&amp;key=150339418f659d2ca1aa109a5420040b768056c37ae49b615f81fc52c0416e413d0ca3bc8743fa807e58d591dbc291eb8ab8a549382747a475e0949f2a5021b558d44892681c8a46120e88ef771c874b&amp;ascene=0&amp;uin=MTg1NjUwMDMzNw%3D%3D&amp;devicetype=iMac+MacBookPro13%2C3+OSX+OSX+10.12.2+build(16C67" target="_blank" rel="external">一个四十岁的人给你提个醒</a>&amp;version=12010210&amp;nettype=WIFI&amp;fontScale=100&amp;pass_ticket=ic8jNvshL0efRFoYoMS0tj06rD57a9nZE1o6dZrcIqjKRB7YwdDdsLoxjVftQdjg)</li>
+</ul>
+<h3 id="2016-11-1"><a href="#2016-11-1" class="headerlink" title="2016.11.1"></a>2016.11.1</h3><ul>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MjM5MDE0Mjc4MA==&amp;mid=2650994555&amp;idx=1&amp;sn=b196e2dfb293ec7829523011316a7e06&amp;chksm=bdbf0f288ac8863e014eae215469f4bbc0b8e88fa286c3cd38b467348466c663415ffed0e4ca&amp;scene=0&amp;key=7c064f74f0bf80ec543ef71edf6b9a540fffbf2cd4c0beeef6e113bcb5d3977a2cbb16fd265e00db7ac8fec61e354bc294e56a8f63f115aa0bb0af78c486df68383f38a8a5459442c8522c950fb6d434&amp;ascene=0&amp;uin=MTg1NjUwMDMzNw%3D%3D&amp;devicetype=iMac+MacBookPro13%2C3+OSX+OSX+10.12.2+build(16C67" target="_blank" rel="external">关于Code Review，你「必须」了解的一些关键点……</a>&amp;version=12010210&amp;nettype=WIFI&amp;fontScale=100&amp;pass_ticket=ic8jNvshL0efRFoYoMS0tj06rD57a9nZE1o6dZrcIqjKRB7YwdDdsLoxjVftQdjg)</li>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MzI3MzEzMDI1OQ==&amp;mid=2651815348&amp;idx=1&amp;sn=d163e2dd0856c5245d333b57cd3e84f1&amp;chksm=f0dc2bc8c7aba2ded937f2f96a90c5323e30da411dba06a296358ff8383a4d63cb88877d554a&amp;scene=0&amp;key=e3b1ba93cc346df0099b1f960a1ac8116df26e5f309a28ac7559a9fbea498e618a812de8d53856643764e14c68c2c3d39e3a4120e686949295af20db0697dfed08c46516a327111a8696279123c745e2&amp;ascene=0&amp;uin=MTg1NjUwMDMzNw%3D%3D&amp;devicetype=iMac+MacBookPro13%2C3+OSX+OSX+10.12.2+build(16C67" target="_blank" rel="external">可能是最详尽的证券服务治理框架思路-华泰证券企业服务化思考-中生代38期</a>&amp;version=12010210&amp;nettype=WIFI&amp;fontScale=100&amp;pass_ticket=ic8jNvshL0efRFoYoMS0tj06rD57a9nZE1o6dZrcIqjKRB7YwdDdsLoxjVftQdjg)</li>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MjM5NzAwOTE2MQ==&amp;mid=2662303550&amp;idx=1&amp;sn=3712f58392772a88e9de411500f7ef71&amp;chksm=bdbba5588acc2c4e044b32ea74f8b37bcf40e27f4310a095be5a59715276a1d7d63485500f07&amp;scene=0&amp;key=15bec5edb1d9b9c9f8d55c950c821b36a9cab48bf3ad575799f8378fb3c9a0d8ad39d41b176e9ba2052eeb167896533b1a0eda767de7a5fddb6389cd82c46acbd027e6c6370be186f0eec81cc323b995&amp;ascene=0&amp;uin=MTg1NjUwMDMzNw%3D%3D&amp;devicetype=iMac+MacBookPro13%2C3+OSX+OSX+10.12.2+build(16C67" target="_blank" rel="external">雷军表白刘强东：瞬间明白了小米为啥这么招骂</a>&amp;version=12010210&amp;nettype=WIFI&amp;fontScale=100&amp;pass_ticket=ic8jNvshL0efRFoYoMS0tj06rD57a9nZE1o6dZrcIqjKRB7YwdDdsLoxjVftQdjg)</li>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MzA5NzA4ODk0OQ==&amp;mid=2651988246&amp;idx=1&amp;sn=f7ba6e125426399f4f428827fca6de8b&amp;chksm=8b40a5ccbc372cda54bc6a9ae88f34806f92b0866b3f567dbb3d6dcbafafb32e1d3c7ca15e4d&amp;scene=0&amp;key=c1335a074c40fd4f1400b8594afa44fcc44cf59e208320e97120e5151ed3d74ab83110f973e4c8953757b3126dbc90b9734066ad87e0f96fac1447c83af4edcb7ff2a7e92b099c98526c7310514c5748&amp;ascene=0&amp;uin=MTg1NjUwMDMzNw%3D%3D&amp;devicetype=iMac+MacBookPro13%2C3+OSX+OSX+10.12.2+build(16C67" target="_blank" rel="external">张飞之死，死在情绪（再忙也要深读此文 ）</a>&amp;version=12010210&amp;nettype=WIFI&amp;fontScale=100&amp;pass_ticket=ic8jNvshL0efRFoYoMS0tj06rD57a9nZE1o6dZrcIqjKRB7YwdDdsLoxjVftQdjg)</li>
+</ul>
+<h3 id="2016-10-29"><a href="#2016-10-29" class="headerlink" title="2016.10.29"></a>2016.10.29</h3><ul>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MjM5ODYxMDA5OQ==&amp;mid=2651959618&amp;idx=1&amp;sn=912a9af6d000c6681dc645e53590729b&amp;chksm=bd2d049e8a5a8d884f6acb35bc5b40edf88127219542c9e3033bb4c2e33854657c315c8a93b7&amp;scene=0&amp;key=150339418f659d2cce104203fc7028da295492d938343439d2242e5b8076642557f8fcfc50d913e523ffe06ca4f7c43ba123bd688af2a00d8fd71c53be9c0707bc17cc63d3ba5ec0c8fa0e7787570ace&amp;ascene=0&amp;uin=MTg1NjUwMDMzNw%3D%3D&amp;devicetype=iMac+MacBookPro13%2C3+OSX+OSX+10.12.2+build(16C67" target="_blank" rel="external">QQ状态同步究竟是推还是拉？</a>&amp;version=12010210&amp;nettype=WIFI&amp;fontScale=100&amp;pass_ticket=ic8jNvshL0efRFoYoMS0tj06rD57a9nZE1o6dZrcIqjKRB7YwdDdsLoxjVftQdjg)</li>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MzI3MzEzMDI1OQ==&amp;mid=2651815337&amp;idx=1&amp;sn=8e846e11e908735a5175c9eacb642329&amp;chksm=f0dc2bd5c7aba2c3fafa009019cc475a9f118178e72ea88511aacb8df5b9aca3e7e226d8d7f2&amp;mpshare=1&amp;scene=2&amp;srcid=1029kPHvPVASkJGLkadPY93H&amp;key=7c064f74f0bf80ecbf961cb34d562b7d5fd5fd38afe582c43e11b17de29dbd59cffbb76b56f3369b5a858f3baeb0b6d53b337ecf4a329ea7ab8e1c617c53d430bd1a7b10cb2ffe5f1a963e66f903a108&amp;ascene=0&amp;uin=MTg1NjUwMDMzNw%3D%3D&amp;devicetype=iMac+MacBookPro13%2C3+OSX+OSX+10.12.2+build(16C67" target="_blank" rel="external">大神手把手教你Java性能优化-江南白衣（加强版）</a>&amp;version=12010210&amp;nettype=WIFI&amp;fontScale=100&amp;pass_ticket=ic8jNvshL0efRFoYoMS0tj06rD57a9nZE1o6dZrcIqjKRB7YwdDdsLoxjVftQdjg)</li>
+</ul>
+<h3 id="2016-10-28"><a href="#2016-10-28" class="headerlink" title="2016.10.28"></a>2016.10.28</h3><ul>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MzAwNjY4NTQ4MA==&amp;mid=2651175055&amp;idx=1&amp;sn=adb8bf1b59953841394f9b0079941ddc&amp;chksm=80f88ec8b78f07de5dc6137c8434564eabeb89c72f7d1f515646500b85df1e191391b8499f2e&amp;mpshare=1&amp;scene=2&amp;srcid=1028LkLcEaH1WH7z947OZKN5&amp;key=2176f8683275c7bd911e80f702825d25330a23e6c2a725ab0b2cf57c1897d1f7ce73746774a5d69cd0b942f038ed1de3db8777280d40562c170c978d95ccdbb045d3e2cae2984d836bbed8a3be3c059d&amp;ascene=0&amp;uin=MTg1NjUwMDMzNw%3D%3D&amp;devicetype=iMac+MacBookPro13%2C3+OSX+OSX+10.12.2+build(16C67" target="_blank" rel="external">结合JVM源代码，深入了解OutOfMemoryError</a>&amp;version=12010210&amp;nettype=WIFI&amp;fontScale=100&amp;pass_ticket=ic8jNvshL0efRFoYoMS0tj06rD57a9nZE1o6dZrcIqjKRB7YwdDdsLoxjVftQdjg)</li>
+</ul>
+<h3 id="2016-10-27"><a href="#2016-10-27" class="headerlink" title="2016.10.27"></a>2016.10.27</h3><ul>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MjM5NzAwOTE2MQ==&amp;mid=2662303515&amp;idx=1&amp;sn=9e0845c7e4193c477e46da6e23894911&amp;chksm=bdbba57d8acc2c6b299a9ccea5c71eaa326827b4fe5477ba14a52297ed4b31ffa94f9810757f&amp;scene=0&amp;key=e3b1ba93cc346df019e6d97dedf8b12952c9a6880b28a5a8d8435024b0253b0b8489f2c55a635abb303b952793f89c9eaa2f046f2f5d7f6ca35a88c187b4ba28d968edd41ed52f75a35b6fced66af882&amp;ascene=0&amp;uin=MTg1NjUwMDMzNw%3D%3D&amp;devicetype=iMac+MacBookPro13%2C3+OSX+OSX+10.12.2+build(16C67" target="_blank" rel="external">这10件事拎不清，你连死都不知道自己是怎么死的</a>&amp;version=12010210&amp;nettype=WIFI&amp;fontScale=100&amp;pass_ticket=ic8jNvshL0efRFoYoMS0tj06rD57a9nZE1o6dZrcIqjKRB7YwdDdsLoxjVftQdjg)</li>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MjM5NzMyMjAwMA==&amp;mid=2651477638&amp;idx=1&amp;sn=4ebb4e58fe65913d422ee83549fa6258&amp;chksm=bd253af98a52b3efb130b63013508dbed91c478d57317f720c619ed263053b0911a9e698c4c8&amp;scene=0&amp;key=150339418f659d2c9f3054875f65be563273f6a66cfad3b329c5e933ff7c20db8d825295c100012316d4dec2d40859dd74be2824f96e47d7da385f86975a062b76f68a671315c7f1a142a972de983656&amp;ascene=0&amp;uin=MTg1NjUwMDMzNw%3D%3D&amp;devicetype=iMac+MacBookPro13%2C3+OSX+OSX+10.12.2+build(16C67" target="_blank" rel="external">理解 Java 垃圾回收机制</a>&amp;version=12010210&amp;nettype=WIFI&amp;fontScale=100&amp;pass_ticket=ic8jNvshL0efRFoYoMS0tj06rD57a9nZE1o6dZrcIqjKRB7YwdDdsLoxjVftQdjg)</li>
+</ul>
+<h3 id="2016-10-26"><a href="#2016-10-26" class="headerlink" title="2016.10.26"></a>2016.10.26</h3><ul>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MjM5OTkxOTc0Mw==&amp;mid=2650225990&amp;idx=1&amp;sn=91bb966a8be5c621e82686507d37ecb9&amp;chksm=bf37b45688403d405decaf3176b853dfc42d92db52e3084882d924d6f6d34e8330ce39310455&amp;scene=0&amp;key=7c064f74f0bf80ecb24fab3495f6ee8a91987c12e1f1de8f860357a83286408de6ce4897bf5d0e9e5a2350e69e162a51e23d806ab15a328359b3ea7d10856fbd06bc9babb4e47ace6c8addd885cb8545&amp;ascene=0&amp;uin=MTg1NjUwMDMzNw%3D%3D&amp;devicetype=iMac+MacBookPro13%2C3+OSX+OSX+10.12.2+build(16C67" target="_blank" rel="external">详解Oracle的锁机制</a>&amp;version=12010210&amp;nettype=WIFI&amp;fontScale=100&amp;pass_ticket=ic8jNvshL0efRFoYoMS0tj06rD57a9nZE1o6dZrcIqjKRB7YwdDdsLoxjVftQdjg)</li>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MjM5MDE0Mjc4MA==&amp;mid=2650994529&amp;idx=1&amp;sn=953bf1d92cc2a7b278d0761d3e433803&amp;chksm=bdbf0f328ac886245652735e4dfa1b39b1357b9f36ccf1b337714ac81810f8441d189ce89615&amp;scene=0#rd" target="_blank" rel="external">Vue.js作者尢雨溪：Vue 2.0——渐进式前端解决方案</a></li>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MjM5NDIxMzUyMg==&amp;mid=2655010922&amp;idx=2&amp;sn=bca9c1354cd73971c878f34549ff5c5b&amp;chksm=bd3fdb978a4852810816dd146eaf41f8638b183234b5a182876c8083420c46272f7afd27be30&amp;mpshare=1&amp;scene=2&amp;srcid=1026STwFNcF7yYTNluNJRvVN#rd" target="_blank" rel="external">丰子恺最走心的20句话！</a></li>
+</ul>
+<h3 id="2016-10-25"><a href="#2016-10-25" class="headerlink" title="2016.10.25"></a>2016.10.25</h3><ul>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MjM5MDE0Mjc4MA==&amp;mid=2650994526&amp;idx=1&amp;sn=255dd87bd8601919bda3d597c65439f3&amp;chksm=bdbf0f0d8ac8861bad452606b302ca6655cf84ed161584a1246a8cb9fd1361ec1ac1386ffd92&amp;scene=0#rd" target="_blank" rel="external">微信PaxosStore内存云揭秘：十亿Paxos/分钟的挑战</a></li>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MjM5OTkxOTc0Mw==&amp;mid=2650225986&amp;idx=1&amp;sn=d2fe8a27c5825dfeba1d8ac934433121&amp;chksm=bf37b45288403d44c589f03daa054ef476509f445082e325e28a3a031372c389c570d33740b0&amp;mpshare=1&amp;scene=2&amp;srcid=1025JPxOxcDpT7YTLK33m0IT#rd" target="_blank" rel="external">11种SQL中索引未使用的情况</a></li>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MjM5NzAwOTE2MQ==&amp;mid=2662303481&amp;idx=2&amp;sn=1e71f5b0874e7a1f2fd19ad8401683f8&amp;chksm=bdbba49f8acc2d8966ce4009ebb83eee2a344be370bc90d798c279ff6851382018fa2607ad4a&amp;mpshare=1&amp;scene=2&amp;srcid=1024MEWLxHLVhs4Br4IbE9xN#rd" target="_blank" rel="external">你瞎忙的样子看起来真失败</a></li>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MzA5Nzc4OTA1Mw==&amp;mid=2659598372&amp;idx=1&amp;sn=7a3ebbd7eff29c30a2076d5123262701&amp;chksm=8be99536bc9e1c20c48f0c4cd5f6c450170c68a76a24033653841d903068aacae2fd1db4f8f9&amp;scene=0#rd" target="_blank" rel="external">整天说Code Review重要，你知道应该关注哪些关键点吗？</a></li>
+</ul>
+<h3 id="2016-10-21"><a href="#2016-10-21" class="headerlink" title="2016.10.21"></a>2016.10.21</h3><ul>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MjM5NzMyMjAwMA==&amp;mid=2651477604&amp;idx=1&amp;sn=8f2cec5cc2e1d788a7d03489b27a0145&amp;chksm=bd253a1b8a52b30dc9a86cbe5d659f464a84eaac76e9e36bb602e7f8ef239c8f98eae66c2c52&amp;scene=0#rd" target="_blank" rel="external">理解Java Integer的缓存策略</a></li>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MzA5Nzc4OTA1Mw==&amp;mid=2659598332&amp;idx=1&amp;sn=51bf1cb98a098ff988ebf14349ac0d45&amp;chksm=8be9eaeebc9e63f898844bf7cc8cfdf9d3bee106bbde68b02d424a8da4b2130345a2ce5ea0f0&amp;scene=0#rd" target="_blank" rel="external">从建设到治理，从系统到团队，谈高可用架构之道</a></li>
+</ul>
+<h3 id="2016-10-19"><a href="#2016-10-19" class="headerlink" title="2016.10.19"></a>2016.10.19</h3><ul>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MzIzODYyNjkzNw==&amp;mid=2247483658&amp;idx=1&amp;sn=353172738d161428871bf2f114efa727&amp;chksm=e937301cde40b90a225a1ba7b98df8bb669a53a137c8cff82e15aa83160d7144196ab1a99575&amp;mpshare=1&amp;scene=2&amp;srcid=10190OygDlAuyWlCXNHXU96f#rd" target="_blank" rel="external">我的Java后端书架 (2016年暖冬版)</a></li>
+</ul>
+<h3 id="2016-10-11"><a href="#2016-10-11" class="headerlink" title="2016.10.11"></a>2016.10.11</h3><ul>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MjM5NzMyMjAwMA==&amp;mid=2651477574&amp;idx=1&amp;sn=27245e5771bc08596cb50070cab48899&amp;chksm=bd253a398a52b32f7a57be4f73cd0628b949b169d66680a69aa6fa7ab1c9c6aae6c840a47ea5&amp;scene=0#rd" target="_blank" rel="external">程序员的基础生存技能：高效用Google</a></li>
+</ul>
+<h3 id="2016-10-05"><a href="#2016-10-05" class="headerlink" title="2016.10.05"></a>2016.10.05</h3><ul>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MjM5NzMyMjAwMA==&amp;mid=2651477558&amp;idx=1&amp;sn=785f0861d82e73a624d811e58d47c3ec&amp;chksm=bd253a498a52b35fd18bfd3f28078e826f4405c9cf84bcb3c3977160ccf10a171d852e867691&amp;scene=0#rd" target="_blank" rel="external">Java 8 中你可能没听过的 10 个新特性</a></li>
+</ul>
+<h3 id="2016-09-29"><a href="#2016-09-29" class="headerlink" title="2016.09.29"></a>2016.09.29</h3><ul>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MjM5NzMyMjAwMA==&amp;mid=2651477517&amp;idx=2&amp;sn=f1a0aaaf7f72d9ba5d13995b7a78c956&amp;chksm=bd253a728a52b364a8451a3f8dec6743714b911108396f1909cee3a22e5b35516528559964f2&amp;scene=0#rd" target="_blank" rel="external">关于业务架构的一些思考</a></li>
+</ul>
+<h3 id="2016-09-27"><a href="#2016-09-27" class="headerlink" title="2016.09.27"></a>2016.09.27</h3><ul>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MzA5NzA4ODk0OQ==&amp;mid=2651987917&amp;idx=3&amp;sn=ad875bbbe59c7da970a668455e6d3ffb&amp;chksm=8b409b17bc3712012c65f171d6b19e12ec9994af0551153b506fe7c5914fec865ddd8122aef2&amp;scene=0#rd" target="_blank" rel="external">员工说：老板，2017年我想去单干！老板竟然这样说..</a></li>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MzA5NzA4ODk0OQ==&amp;mid=2651987906&amp;idx=1&amp;sn=24a076d4a28fd85006ec1d631c18de6d&amp;chksm=8b409b18bc37120e62b4a42b29b30d20e02df300f5b5a81b6cc58c81c9baa37601c7666a2c00&amp;scene=0#rd" target="_blank" rel="external">员工工资越高，企业成本最低</a></li>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MzA5Nzc4OTA1Mw==&amp;mid=2659598234&amp;idx=1&amp;sn=f36c03f8702add6ef5bcfbc9e65e27fe&amp;scene=0#rd" target="_blank" rel="external">日消息量突破50亿，谈小米的高可用推送系统设计</a></li>
+</ul>
+<h3 id="2016-09-26"><a href="#2016-09-26" class="headerlink" title="2016.09.26"></a>2016.09.26</h3><ul>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MjM5NzMyMjAwMA==&amp;mid=2651477517&amp;idx=1&amp;sn=afab42a68beac3545f8f29d6629094a8&amp;chksm=bd253a728a52b364b8650219706049439fa8c3cb8ff7edd84ab19bc85d32b910569a15071bc9&amp;scene=0#rd" target="_blank" rel="external">5种调优Java NIO和NIO.2的方式</a></li>
+</ul>
+<h3 id="2016-09-24"><a href="#2016-09-24" class="headerlink" title="2016.09.24"></a>2016.09.24</h3><ul>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MjM5NzQ3ODAwMQ==&amp;mid=2686978266&amp;idx=1&amp;sn=f56d704a935dca08d9a61875c636c141&amp;scene=0#rd" target="_blank" rel="external">到了50岁你还愿意做编程工作吗？</a></li>
+</ul>
+<h3 id="2016-09-23"><a href="#2016-09-23" class="headerlink" title="2016.09.23"></a>2016.09.23</h3><ul>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MjM5MDE0Mjc4MA==&amp;mid=2650994202&amp;idx=1&amp;sn=88accf562828552404198f1c427056d4&amp;chksm=bdbf0e498ac8875fa085851ad2530933c1dc284ffc6cb8fc9146f03e56912fd23f6637878234&amp;scene=0#rd" target="_blank" rel="external">架构师多如过江之鲫，但你真的了解架构师这个工种吗？</a></li>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MzA5NzA4ODk0OQ==&amp;mid=2651987898&amp;idx=1&amp;sn=8e32e9ddc2f817e2cac4743a50a6d41d&amp;chksm=8b409b60bc37127613fef8f50bdb6ebfe9edb22e444bd12d2175a00a3097c3ef37130e92b173&amp;scene=0#rd" target="_blank" rel="external">电商大逃亡，实体店即将崛起！</a></li>
+</ul>
+<h3 id="2016-09-22"><a href="#2016-09-22" class="headerlink" title="2016.09.22"></a>2016.09.22</h3><ul>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MjM5ODYxMDA5OQ==&amp;mid=2651959604&amp;idx=1&amp;sn=9f3e21f5ff99abc5a16038a77f31843e&amp;scene=0#rd" target="_blank" rel="external">互联网公司为啥不使用mysql分区表？</a></li>
+</ul>
+<h3 id="2016-09-21"><a href="#2016-09-21" class="headerlink" title="2016.09.21"></a>2016.09.21</h3><ul>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MjM5MDE0Mjc4MA==&amp;mid=2650994179&amp;idx=1&amp;sn=dc45ea9b83b098b809a58ea4635ec441&amp;chksm=bdbf0e508ac88746324ed42adc6067a5c78788cd28592b05fb7cb5cf2327c15e604713a33594&amp;scene=0#rd" target="_blank" rel="external">左耳朵耗子：什么是工程师文化？</a></li>
+</ul>
+<h3 id="2016-09-20"><a href="#2016-09-20" class="headerlink" title="2016.09.20"></a>2016.09.20</h3><ul>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MzIwMjE5MDU4OA==&amp;mid=2653120634&amp;idx=1&amp;sn=8173b2f771c1118d775cad34ea028ed0&amp;chksm=8d35b3e9ba423aff3a9facd8ddd4dab1462fd4f5584aeb3881c434f107b14a4f97bc628d4a1d&amp;scene=0#rd" target="_blank" rel="external">分布式架构的核心要素和设计方法</a></li>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MjM5ODYxMDA5OQ==&amp;mid=2651959601&amp;idx=1&amp;sn=5684c39676b1f6d9366d9d15a2cdcec3&amp;scene=0#rd" target="_blank" rel="external">如何实施异构服务器的负载均衡及过载保护？</a></li>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MjM5ODYxMDA5OQ==&amp;mid=2651959585&amp;idx=1&amp;sn=0a9222cbfeb62a662edffafb7f0b43ae&amp;scene=0#rd" target="_blank" rel="external">一分钟了解负载均衡的一切</a></li>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MzA5Nzc4OTA1Mw==&amp;mid=2659598195&amp;idx=1&amp;sn=a69628c628c474d1b1368d139d64714f&amp;scene=0#rd" target="_blank" rel="external">阿里巴巴店铺的十年技术演变之路</a></li>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MzA5Nzc4OTA1Mw==&amp;mid=2659598197&amp;idx=1&amp;sn=d32f74909ad70c1841f9fa5637cd893f&amp;scene=0#rd" target="_blank" rel="external">腾讯QQ团队开源分布式后台服务引擎msec</a></li>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MjM5NzMyMjAwMA==&amp;mid=2651477508&amp;idx=1&amp;sn=81a2880811c92dd520f08d8102db1a61&amp;chksm=bd253a7b8a52b36dcefc795a0986656c446e85f1a30f173a20befa9d74cb12b8d70281ac27d9&amp;scene=0#rd" target="_blank" rel="external">使用AOP与注解记录Java日志</a></li>
+</ul>
+<h3 id="2016-09-19"><a href="#2016-09-19" class="headerlink" title="2016.09.19"></a>2016.09.19</h3><ul>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MzA5Nzc4OTA1Mw==&amp;mid=2659598159&amp;idx=1&amp;sn=dce3e88f4c4816ef576bcdcc730eb712&amp;scene=0#rd" target="_blank" rel="external">京东商城交易系统的演进之路</a></li>
+</ul>
+<h3 id="2016-09-18"><a href="#2016-09-18" class="headerlink" title="2016.09.18"></a>2016.09.18</h3><ul>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MjM5NzMyMjAwMA==&amp;mid=2651477491&amp;idx=1&amp;sn=985b7b09222506a7b98559b01b44d418&amp;scene=0#rd" target="_blank" rel="external">有效处理Java异常三原则</a></li>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MjM5NzMyMjAwMA==&amp;mid=2651477491&amp;idx=2&amp;sn=2531879e3e9a3f91da3cabc5b2148cd3&amp;scene=0#rd" target="_blank" rel="external">JVM类加载的那些事</a></li>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MjM5ODYxMDA5OQ==&amp;mid=2651959595&amp;idx=1&amp;sn=5f0633afd24c547b895f29f6538baa99&amp;scene=2&amp;srcid=0918jw94iCrM8IRB7v9MjEPl#rd" target="_blank" rel="external">lvs为何不能完全替代DNS轮询</a></li>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MzA5Nzc4OTA1Mw==&amp;mid=2659598159&amp;idx=1&amp;sn=dce3e88f4c4816ef576bcdcc730eb712&amp;scene=0#rd" target="_blank" rel="external">京东商城交易系统的演进之路</a></li>
+</ul>
+<h3 id="2016-09-12"><a href="#2016-09-12" class="headerlink" title="2016.09.12"></a>2016.09.12</h3><ul>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MjM5ODMxNzY0MA==&amp;mid=2650919502&amp;idx=3&amp;sn=aeaf679847bfce29709a22c8be93788b&amp;scene=2&amp;srcid=0911eVItZzTyBzWLgf6lACSQ#rd" target="_blank" rel="external">京东支付平台总体架构设计图</a></li>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MjM5ODMxNzY0MA==&amp;mid=2650919502&amp;idx=1&amp;sn=0865bab62bf84b00ba98b3b41d5542e4&amp;scene=2&amp;srcid=09116X7gewpY4fCodnLnpF6n#rd" target="_blank" rel="external">微信支付商户系统的架构揭秘</a></li>
+</ul>
+<h3 id="2016-09-10"><a href="#2016-09-10" class="headerlink" title="2016.09.10"></a>2016.09.10</h3><ul>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MzA5Nzc4OTA1Mw==&amp;mid=2659598136&amp;idx=1&amp;sn=234fea3caca2cda0d4a4b17fd4541684&amp;scene=0#rd" target="_blank" rel="external">付钱拉后台支付系统的架构设计理念和业务痛点</a></li>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MzA5Nzc4OTA1Mw==&amp;mid=2659598135&amp;idx=1&amp;sn=2f1daf51d92b9c5ed06d9422fdd19d49&amp;scene=0#rd" target="_blank" rel="external">分库分表的几种常见形式以及可能遇到的难题</a></li>
+</ul>
+<h3 id="2016-09-07"><a href="#2016-09-07" class="headerlink" title="2016.09.07"></a>2016.09.07</h3><ul>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MjM5NzMyMjAwMA==&amp;mid=2651477471&amp;idx=1&amp;sn=0dbb6500001c86ca8fc415918e09252a&amp;scene=0#rd" target="_blank" rel="external">Java for-each循环解惑</a></li>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MzA5Nzc4OTA1Mw==&amp;mid=2659598086&amp;idx=1&amp;sn=f9383422d6d3109d995b7c849d41cdd0&amp;scene=0#rd" target="_blank" rel="external">以平安科技为例，谈金融云平台的技术选型、架构和难点</a></li>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MzA5Nzc4OTA1Mw==&amp;mid=2659598134&amp;idx=1&amp;sn=f5f73354d162a7561b3d73c204a4d1f5&amp;scene=0#rd" target="_blank" rel="external">分布式事务：不过是在一致性、吞吐量和复杂度之间，做一个选择</a></li>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MjM5NzQ3ODAwMQ==&amp;mid=2686978238&amp;idx=1&amp;sn=e6287f5a0c9276059b67ffaace1044f6&amp;scene=0#rd" target="_blank" rel="external">很认真的聊一聊程序员的自我修养</a></li>
+</ul>
+<h3 id="2016-09-05"><a href="#2016-09-05" class="headerlink" title="2016.09.05"></a>2016.09.05</h3><ul>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MjM5NzMyMjAwMA==&amp;mid=2651477462&amp;idx=1&amp;sn=a64dfedb9cf431b3b47cfdae24424bbf&amp;scene=0#rd" target="_blank" rel="external">Java并发的四种风味：Thread、Executor、ForkJoin和Actor</a></li>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MjM5NzMyMjAwMA==&amp;mid=2651477462&amp;idx=2&amp;sn=33785a99e8db0202e0db4fda02dc5003&amp;scene=0#rd" target="_blank" rel="external">高并发Java（4）：无锁</a></li>
+</ul>
+<h3 id="2016-09-03"><a href="#2016-09-03" class="headerlink" title="2016.09.03"></a>2016.09.03</h3><ul>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MjM5NzMyMjAwMA==&amp;mid=2651477458&amp;idx=1&amp;sn=51c8b98141490024825d485333b46a4f&amp;scene=0#rd" target="_blank" rel="external">为什么要使用SLF4J而不是Log4J</a></li>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MjM5NzMyMjAwMA==&amp;mid=2651477460&amp;idx=2&amp;sn=d5204455d353b75279f0abb7ec158069&amp;scene=0#rd" target="_blank" rel="external">高并发Java（2）：多线程基础</a></li>
+</ul>
+<h3 id="2016-09-02"><a href="#2016-09-02" class="headerlink" title="2016.09.02"></a>2016.09.02</h3><ul>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MjM5NzMyMjAwMA==&amp;mid=2651477448&amp;idx=2&amp;sn=8c0bb2f16545c650b90d64c74fed47f7&amp;scene=0#rd" target="_blank" rel="external">高并发Java（1）：前言</a></li>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MjM5NzMyMjAwMA==&amp;mid=2651477445&amp;idx=2&amp;sn=84dc3c866a6ac2c06f8555c9ab2f828b&amp;scene=0#rd" target="_blank" rel="external">并发性能优化 ： 降低锁粒度</a></li>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MjM5NzMyMjAwMA==&amp;mid=2651477440&amp;idx=2&amp;sn=c0c5df26a40e1b081ff015690ce09055&amp;scene=0#rd" target="_blank" rel="external">HashMap的实现与优化</a></li>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MjM5NzMyMjAwMA==&amp;mid=2651477440&amp;idx=1&amp;sn=72d173f9e470e2610d588e30a91250ee&amp;scene=0#rd" target="_blank" rel="external">Web基础架构：负载均衡和LVS</a></li>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MjM5NzMyMjAwMA==&amp;mid=2651477456&amp;idx=3&amp;sn=3c34a7d6440bf07e3cedbbade2b8aff0&amp;scene=0#rd" target="_blank" rel="external">高并发Java（3）：Java内存模型和线程安全</a></li>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MjM5NzMyMjAwMA==&amp;mid=2651477448&amp;idx=3&amp;sn=e962b23a1a13eb17536d8a9065f19b28&amp;scene=0#rd" target="_blank" rel="external">十分钟理解Java中的弱引用</a></li>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MzA5Nzc4OTA1Mw==&amp;mid=2659598084&amp;idx=1&amp;sn=2e1d25597fe4b1527040183798afb314&amp;scene=0#rd" target="_blank" rel="external">gRPC 1.0发布，来自Google的RPC框架</a></li>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MzA5Nzc4OTA1Mw==&amp;mid=2659598052&amp;idx=1&amp;sn=631897c7a2792dd3a67774eedc966e29&amp;scene=0#rd" target="_blank" rel="external">JAVA服务治理实践之无侵入的应用服务监控</a></li>
+</ul>
+<h3 id="2016-08-27"><a href="#2016-08-27" class="headerlink" title="2016.08.27"></a>2016.08.27</h3><ul>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MjM5NzMyMjAwMA==&amp;mid=2651477438&amp;idx=1&amp;sn=53c26a85d0af8c18a6f9d15d242c01be&amp;scene=0#rd" target="_blank" rel="external">深入理解JDBC的超时设置</a></li>
+</ul>
+<h3 id="2016-08-26"><a href="#2016-08-26" class="headerlink" title="2016.08.26"></a>2016.08.26</h3><ul>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MjM5NzMyMjAwMA==&amp;mid=2651477433&amp;idx=1&amp;sn=6a50cb4a24f0db5e3d034cfd22fead89&amp;scene=0#rd" target="_blank" rel="external">Web服务器的工作原理</a></li>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MjM5NzMyMjAwMA==&amp;mid=2651477435&amp;idx=1&amp;sn=176194dfc4d451a425f266c84c841e8c&amp;scene=0#rd" target="_blank" rel="external">Spring @Transactional工作原理</a></li>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MzA5Nzc4OTA1Mw==&amp;mid=2659597997&amp;idx=1&amp;sn=f117fd097aa8fe4b0b0101db205fe433&amp;scene=0#rd" target="_blank" rel="external">架构漫谈（十）：软件的架构拆分之道</a></li>
+</ul>
+<h3 id="2016-08-25"><a href="#2016-08-25" class="headerlink" title="2016.08.25"></a>2016.08.25</h3><ul>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MjM5ODYxMDA5OQ==&amp;mid=2651959553&amp;idx=1&amp;sn=c1084e91875721c5f6baf544450afa38&amp;scene=2&amp;srcid=0825M5ch6pHGCP1FnnQNyVFg#rd" target="_blank" rel="external">为什么说要搞定微服务架构，先搞定RPC框架？</a></li>
+</ul>
+<h3 id="2016-08-24"><a href="#2016-08-24" class="headerlink" title="2016.08.24"></a>2016.08.24</h3><ul>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MjM5MDE0Mjc4MA==&amp;mid=2650993847&amp;idx=1&amp;sn=5777f5c5274f07bac3aa115b7e42541a&amp;scene=0#rd" target="_blank" rel="external">程序员简易成长指南：从菜鸟码农到架构师</a></li>
+</ul>
+<h3 id="2016-08-23"><a href="#2016-08-23" class="headerlink" title="2016.08.23"></a>2016.08.23</h3><ul>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MjM5Njc0MjIwMA==&amp;mid=2649639666&amp;idx=1&amp;sn=edf3c24ee36288c42ab5724438693f7f&amp;scene=2&amp;srcid=0823ng0G3XstA3RSxCZMmIOB#rd" target="_blank" rel="external">为什么程序员要学GC</a></li>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MjM5NzMyMjAwMA==&amp;mid=2651477422&amp;idx=2&amp;sn=7c44bc748530214bfb1344a2f012cc99&amp;scene=0#rd" target="_blank" rel="external">深入浅出 ThreadLocal</a></li>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MjM5NzMyMjAwMA==&amp;mid=2651477420&amp;idx=2&amp;sn=1ae3b78f6b07b387d1d64e5198d1f05d&amp;scene=0#rd" target="_blank" rel="external">Java中的注解是如何工作的？</a></li>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MjM5NzMyMjAwMA==&amp;mid=2651477431&amp;idx=2&amp;sn=e5401b60b7814685be3723917dfe038c&amp;scene=0#rd" target="_blank" rel="external">深入浅出 synchronized</a></li>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MjM5NzMyMjAwMA==&amp;mid=2651477431&amp;idx=1&amp;sn=244196d18eb07d2f19057c45e3f7ea7b&amp;scene=0#rd" target="_blank" rel="external">IntelliJ IDEA的光芒会盖过Eclipse吗</a></li>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MzA5Nzc4OTA1Mw==&amp;mid=2659597972&amp;idx=1&amp;sn=b0ff7d1130442c318bde89564eb433b3&amp;scene=0#rd" target="_blank" rel="external">撇开代码不说，谈谈我对架构的6个冷思考</a></li>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MzA5Nzc4OTA1Mw==&amp;mid=2659597985&amp;idx=1&amp;sn=5ca3f1a574bf61322abca404f64b6b49&amp;scene=0#rd" target="_blank" rel="external">华为内部如何实施微服务架构？基本就靠这5大原则</a></li>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MjM5MDE0Mjc4MA==&amp;mid=2650993844&amp;idx=1&amp;sn=98771dd48d40b63588aad8a6b5b6e661&amp;scene=0#rd" target="_blank" rel="external">移动支付背后的高可用架构丨视频+PPT下载</a></li>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MjM5MDE0Mjc4MA==&amp;mid=2650993842&amp;idx=1&amp;sn=c5d442786d39e4400bf88acce297ede7&amp;scene=0#rd" target="_blank" rel="external">不负责问答：怎样才能叫高级程序员？</a></li>
+</ul>
+<h3 id="2016-08-21"><a href="#2016-08-21" class="headerlink" title="2016.08.21"></a>2016.08.21</h3><ul>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MjM5NzMyMjAwMA==&amp;mid=2651477418&amp;idx=1&amp;sn=0db123b065921f807e09fbb0e4af6aa4&amp;scene=24&amp;srcid=0821yOkemkUi5pMz7kNgYzuY#rd" target="_blank" rel="external">深入分析Java ClassLoader原理</a></li>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MjM5NzMyMjAwMA==&amp;mid=2651477397&amp;idx=1&amp;sn=4c289732d65deb0ac9e4cca168f77f7c&amp;scene=24&amp;srcid=0821wUo8D9Ehqkdw6qdo4L7D#rd" target="_blank" rel="external">降低Java垃圾回收开销的5条建议</a></li>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MjM5NzMyMjAwMA==&amp;mid=2651477392&amp;idx=3&amp;sn=154a365950a6c2d5210974448025c4b5&amp;scene=24&amp;srcid=0821O7IzHOZRGQYA86LZhM3N#rd" target="_blank" rel="external">聊一聊ThreadLocal</a></li>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MjM5NzMyMjAwMA==&amp;mid=2651477367&amp;idx=1&amp;sn=0fc7a1191c1d9ec56db985aa835e1a25&amp;scene=24&amp;srcid=0821hqUHMoQLeKqJ4oyyQ7jn#rd" target="_blank" rel="external">4 张 GIF 图帮助你理解二叉查找树</a></li>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MjM5NzMyMjAwMA==&amp;mid=2651477367&amp;idx=2&amp;sn=3f9dab023764da289518ea66dac9053b&amp;scene=24&amp;srcid=0821Xt7K4WGSRRdLgAv1hYQI#rd" target="_blank" rel="external">Java enum的使用以及字符串其字符串之间的转换</a></li>
+</ul>
+<h3 id="2016-08-18"><a href="#2016-08-18" class="headerlink" title="2016.08.18"></a>2016.08.18</h3><ul>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MzA5Nzc4OTA1Mw==&amp;mid=2659597249&amp;idx=1&amp;sn=d82b022592efed30db6ec923d84b1957&amp;scene=2&amp;srcid=0523J49NVU6Xs1fquLWV4BD1#rd" target="_blank" rel="external">先厘清服务治理与组织架构的关系，再来谈微服务吧</a></li>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MzA5NzA4ODk0OQ==&amp;mid=2651987184&amp;idx=1&amp;sn=2b1d2350bc0146debbf09758e7ed8de5&amp;scene=2&amp;srcid=0621Qh22IJ13Vx05a6tsGejb#rd" target="_blank" rel="external">这种员工，将来都是做高管的料！</a></li>
+</ul>
+<h3 id="2016-08-11"><a href="#2016-08-11" class="headerlink" title="2016.08.11"></a>2016.08.11</h3><ul>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MzIxMTIwNDcxOA==&amp;mid=2649787051&amp;idx=1&amp;sn=2c0bfb7f64971b2a2ed93402e2d1ccd2&amp;scene=0#wechat_redirect" target="_blank" rel="external">浅谈web架构之架构设计</a></li>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MjM5ODYxMDA5OQ==&amp;mid=2651959519&amp;idx=1&amp;sn=065074b135fc9cb243abe897261e1a72&amp;scene=0#wechat_redirect" target="_blank" rel="external">互联网架构为什么要做服务化？</a></li>
+</ul>
+<h3 id="2016-08-10"><a href="#2016-08-10" class="headerlink" title="2016.08.10"></a>2016.08.10</h3><ul>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MjM5MDQ2NjYzNQ==&amp;mid=2656595738&amp;idx=1&amp;sn=418718992942904c72499bae0bc063d1&amp;scene=23&amp;srcid=0810xVMFFZMRSQMaJLLzRDne#rd" target="_blank" rel="external">不谈架构，看看如何从代码层面优化系统性能！</a></li>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MzA3MzYwNjQ3NA==&amp;mid=2651296996&amp;idx=2&amp;sn=5f4811d73e74e2a63b1cb0d3d532862a&amp;scene=23&amp;srcid=08093FVw9nBy03Mw6q8cQ2ve#rd" target="_blank" rel="external">深入浅出 Redis Cluster 原理，来自一次干货分享</a>   </li>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MzIxNTE1NzU3OA==&amp;mid=2649855435&amp;idx=1&amp;sn=1c4461848b9676ee57f2770a1e4dda02&amp;scene=2&amp;srcid=0809KjTUe1SPnSpNy9QNE6Gj#wechat_redirect" target="_blank" rel="external">如何审查流水和征信？——十大风险点分析！</a></li>
+</ul>
+<h3 id="2016-08-09"><a href="#2016-08-09" class="headerlink" title="2016.08.09"></a>2016.08.09</h3><ul>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MzI4NTA1MDEwNg==&amp;mid=2650756319&amp;idx=1&amp;sn=007d636799cdaddd09b6c3b3f68b5ba2&amp;scene=23&amp;srcid=08091CospbXBUVAQ4O3URTvw#rd" target="_blank" rel="external">可用性高达五个9！支付系统高可用架构设计实战</a></li>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MzIyNjE4NjI2Nw==&amp;mid=2652557005&amp;idx=1&amp;sn=d92465682845c4f07254f6ce28b72abf&amp;scene=23&amp;srcid=08099oKx0npvcR8rDPIcMIKJ#rd" target="_blank" rel="external">Elasticsearch 架构以及源码概览</a></li>
+</ul>
+<h3 id="2016-08-08"><a href="#2016-08-08" class="headerlink" title="2016.08.08"></a>2016.08.08</h3><ul>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MzAwNjQwNzU2NQ==&amp;mid=402352799&amp;idx=1&amp;sn=9eba59fe92297789f1d0f0004414531c&amp;scene=23&amp;srcid=0308mn1hMPMp8VjSwnqpliiy#rd" target="_blank" rel="external">Kafka深度解析（一）</a></li>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MzI3MzEzMDI1OQ==&amp;mid=2651814734&amp;idx=1&amp;sn=e432a6739cb490229c7704d8d4887fa8&amp;scene=23&amp;srcid=0808DrPTuQf1hpTkCNYOAKFl#rd" target="_blank" rel="external">Netty的http client连接池设计</a></li>
+</ul>
+<h3 id="2016-08-04"><a href="#2016-08-04" class="headerlink" title="2016.08.04"></a>2016.08.04</h3><ul>
+<li><a href="http://www.woshipm.com/pd/385099.html?from=groupmessage&amp;isappinstalled=0" target="_blank" rel="external">中国的支付清算体系是怎么玩的？</a></li>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MzIyNjE4NjI2Nw==&amp;mid=2652556917&amp;idx=1&amp;sn=44d45d9aecef9abb53aab5d55c5720c9&amp;scene=23&amp;srcid=0804M3VhOvGSDGro0HQR9BiA#rd" target="_blank" rel="external">分布式开放消息系统(RocketMQ)的原理与实践</a></li>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MzA5Nzc4OTA1Mw==&amp;mid=2659597869&amp;idx=1&amp;sn=4e74bcc2ef914efc7db6237c7db7f294&amp;scene=0#wechat_redirect" target="_blank" rel="external">关于系统性能优化的十个建议</a></li>
+</ul>
+<h3 id="2016-08-03"><a href="#2016-08-03" class="headerlink" title="2016.08.03"></a>2016.08.03</h3><ul>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MzAxOTg2NDUyOA==&amp;mid=2657554861&amp;idx=1&amp;sn=5de35bd5f46608505eaa4b1a0dc724a3&amp;scene=23&amp;srcid=0803hm1sFxXFwXP59paEptS0#rd" target="_blank" rel="external">一次性能优化，tps从400+到4k+</a></li>
+</ul>
+<h3 id="2016-08-02"><a href="#2016-08-02" class="headerlink" title="2016.08.02"></a>2016.08.02</h3><ul>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MzAwMDU1MTE1OQ==&amp;mid=2653547612&amp;idx=1&amp;sn=849342b58c0c375992b44644e54e2599&amp;scene=23&amp;srcid=0802jzpKFZ79iusIXuGxb6Vn#rd" target="_blank" rel="external">容器化OpenStack对未来架构的影响</a></li>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MzI4MjE3MTcwNA==&amp;mid=2664334712&amp;idx=1&amp;sn=f2c8ce1083f051e07ddb863c1d59f2c1&amp;scene=23&amp;srcid=0802PBbneorxCAJxHkwDyJny#rd" target="_blank" rel="external">大话微服务与DevOps</a></li>
+</ul>
+<h3 id="2016-08-01"><a href="#2016-08-01" class="headerlink" title="2016.08.01"></a>2016.08.01</h3><ul>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MjM5ODYxMDA5OQ==&amp;mid=2651959502&amp;idx=1&amp;sn=7a1c7d81a8e030856fb920844dc571c6&amp;scene=23&amp;srcid=0801u2hSdg5RnXW8YB9dtWKn#rd" target="_blank" rel="external">如何实现超高并发的无锁缓存？</a></li>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MzA4Nzg5Nzc5OA==&amp;mid=2651661116&amp;idx=1&amp;sn=39d670dad240c9c340e9e0d61ec6b8be&amp;scene=23&amp;srcid=0728EwGeJnXlgToFmxuRZ1lZ#rd" target="_blank" rel="external">都是套路：高并发系统的降级特技</a></li>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MzA5Nzc4OTA1Mw==&amp;mid=2659597854&amp;idx=1&amp;sn=4e1d62535590b5e2233931a4ce996ca2&amp;scene=0&amp;ptlang=2052&amp;ADUIN=54017194&amp;ADSESSION=1470791992&amp;ADTAG=CLIENT.QQ.5491_.0&amp;ADPUBNO=26609#wechat_redirect" target="_blank" rel="external">一个由多线程而引发内存溢出故障的案例分析</a></li>
+</ul>
+<h3 id="2016-07-28"><a href="#2016-07-28" class="headerlink" title="2016.07.28"></a>2016.07.28</h3><ul>
+<li><a href="https://segmentfault.com/a/1190000006079389?from=timeline&amp;isappinstalled=0" target="_blank" rel="external">Coroutine in Java - Quasar Fiber实现</a></li>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MzIyNjE4NjI2Nw==&amp;mid=2652556841&amp;idx=1&amp;sn=650449b00751fe10c4d2d29f3e76297d&amp;scene=1&amp;srcid=0810ZjcxR11O0xgmYZ6oNMXQ#wechat_redirect" target="_blank" rel="external">Flume+Kafka+Storm+Redis实时分析系统基本架构</a></li>
+<li><a href="http://geek.csdn.net/news/detail/71824" target="_blank" rel="external">次时代Java编程（一）：Java里的协程</a></li>
+</ul>
+<h3 id="2016-07-27"><a href="#2016-07-27" class="headerlink" title="2016.07.27"></a>2016.07.27</h3><ul>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MzA5Nzc4OTA1Mw==&amp;mid=2659597788&amp;idx=1&amp;sn=8b226411fdf8d3f803d08d0c067e4ac2&amp;scene=23&amp;srcid=0726HWiCOo3qAbBTKLMSALaN#rd" target="_blank" rel="external">一篇文章，读懂Netty的高性能架构之道</a></li>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MzI0ODA2ODU2NQ==&amp;mid=2651129804&amp;idx=1&amp;sn=775cfa9e256af3428e74ae69184b4a3d&amp;scene=23&amp;srcid=0726bUz3RubzTd2N4NItNhip#rd" target="_blank" rel="external">10倍提升应用性能的10个建议</a></li>
+</ul>
+<h3 id="2016-07-25"><a href="#2016-07-25" class="headerlink" title="2016.07.25"></a>2016.07.25</h3><ul>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MzI3NzA4NTQ2Mw==&amp;mid=2649147018&amp;idx=1&amp;sn=ae94789b76aa4c9d466191c39ea494fc&amp;scene=23&amp;srcid=0613ZEYXoQeFdBLBXNzGpLCl#rd" target="_blank" rel="external">说说区块链</a></li>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MzI3NzA4NTQ2Mw==&amp;mid=2649147018&amp;idx=1&amp;sn=ae94789b76aa4c9d466191c39ea494fc&amp;scene=23&amp;srcid=0613ZEYXoQeFdBLBXNzGpLCl#rd" target="_blank" rel="external">Docker五种存储驱动原理及应用场景和性能测试对比</a></li>
+</ul>
+<h3 id="2016-07-22"><a href="#2016-07-22" class="headerlink" title="2016.07.22"></a>2016.07.22</h3><ul>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MzA3MzYwNjQ3NA==&amp;mid=208308603&amp;idx=1&amp;sn=94774eaa0e9e071186d0afd12e290296&amp;scene=23&amp;srcid=0922s778jBQ99BRe7INlMKlJ#rd" target="_blank" rel="external">支付宝之所以牛逼的原因：来看内部架构剖析</a></li>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MzI4NTA1MDEwNg==&amp;mid=2650756146&amp;idx=1&amp;sn=577fed96bebf07394c28b4730e972319&amp;scene=23&amp;srcid=0722A4KHfE3VDp0TiYze9JDx#rd" target="_blank" rel="external">轻松应对千万级海量数据：异步并行批处理框架设计指南</a></li>
+</ul>
+<h3 id="2016-07-20"><a href="#2016-07-20" class="headerlink" title="2016.07.20"></a>2016.07.20</h3><ul>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MzA5ODM5MDU3MA==&amp;mid=2650861845&amp;idx=1&amp;sn=7ce6bc4b75bbe6d68c1ca313a4221c09&amp;scene=23&amp;srcid=07194De6P71w4PsiJrZLZwTx#rd" target="_blank" rel="external">聊聊阻塞与非阻塞、同步与异步、I/O 模型</a></li>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MzA5Nzc4OTA1Mw==&amp;mid=2659597726&amp;idx=1&amp;sn=2c19e234aaa59c880a8d8f291ccac118&amp;scene=23&amp;srcid=0719M2K6G25SJ8s2jriMJrsr#rd" target="_blank" rel="external">基于Raft构建弹性伸缩的存储系统的一些实践</a></li>
+</ul>
+<h3 id="2016-07-19"><a href="#2016-07-19" class="headerlink" title="2016.07.19"></a>2016.07.19</h3><ul>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MzA5OTAyNzQ2OA==&amp;mid=2649690838&amp;idx=1&amp;sn=3311478250ddf0b487efb4b1ff0f9b4a&amp;scene=23&amp;srcid=0718JJmHa487XpNrb3jiPRiS#rd" target="_blank" rel="external">微服务实战：从架构到部署</a></li>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MjM5MDE0Mjc4MA==&amp;mid=2650993357&amp;idx=1&amp;sn=51683b149e4c29e0095a33161511cafb&amp;scene=23&amp;srcid=0722RJ51mUZRfEoxvps6DVP5#rd" target="_blank" rel="external">覃超：Facebook iOS App技术演化十年之路</a></li>
+</ul>
+<h3 id="2016-07-18"><a href="#2016-07-18" class="headerlink" title="2016.07.18"></a>2016.07.18</h3><ul>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MzIxMzEzMjM5NQ==&amp;mid=2651029113&amp;idx=1&amp;sn=6e8d85e224bd991e8176e1e51a81f1dd&amp;scene=23&amp;srcid=07173l5wq1kgMfbBw0YK1gOE#rd" target="_blank" rel="external">软件质量稳定性之殇</a></li>
+</ul>
+<h3 id="2016-07-15"><a href="#2016-07-15" class="headerlink" title="2016.07.15"></a>2016.07.15</h3><ul>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MzA3MzYwNjQ3NA==&amp;mid=2651296736&amp;idx=2&amp;sn=d614e0956c783f9138d6b326fef2e93b&amp;scene=23&amp;srcid=0622XPmgizKRpyUG5fAc6Ufv#rd" target="_blank" rel="external">优酷土豆的Redis服务平台化之路</a></li>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MzA5Nzc4OTA1Mw==&amp;mid=2659597710&amp;idx=1&amp;sn=e8801d7aba68485489cfcac9ac2fd2ba&amp;scene=23&amp;srcid=0715l93tGT6dULGi5B9fdR92#rd" target="_blank" rel="external">设计高并发下的读服务？一个电商老兵的10条经验</a></li>
+</ul>
+<h3 id="2016-07-14"><a href="#2016-07-14" class="headerlink" title="2016.07.14"></a>2016.07.14</h3><ul>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MzI0ODE4MDEzOA==&amp;mid=2649541974&amp;idx=1&amp;sn=c35747a6f844bbc296f327ad40d2f115&amp;scene=23&amp;srcid=0714Ndo1zs2PNvrQ1D79eMin#rd" target="_blank" rel="external">聊聊三方支付对接那点事儿</a></li>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MzA5ODUxOTA5Mg==&amp;mid=2652549675&amp;idx=1&amp;sn=6745fa7aa4b744050056eae45fe67b45&amp;scene=23&amp;srcid=0713jbVwGnVtBOGU3WHS9y5T#rd" target="_blank" rel="external">使用SimHash进行海量文本去重</a></li>
+</ul>
+<h3 id="2016-07-13"><a href="#2016-07-13" class="headerlink" title="2016.07.13"></a>2016.07.13</h3><ul>
+<li><a href="http://blog.oneapm.com/apm-tech/769.html?utm_source=Community&amp;utm_medium=Article&amp;utm_term=Spring%20Data%20Redis%20%E8%AE%A9%20NoSQL%20%E5%BF%AB%E5%A6%82%E9%97%AA%E7%94%B5(2" target="_blank" rel="external">Spring Data Redis 让 NoSQL 快如闪电 (1)</a>&amp;utm_content=wk627-703&amp;utm_campaign=AiJavaArti&amp;from=jscljdvnok)</li>
+<li><a href="http://blog.oneapm.com/apm-tech/778.html?from=timeline&amp;isappinstalled=0" target="_blank" rel="external">Spring Data Redis 让 NoSQL 快如闪电(2)</a></li>
+</ul>
+<h3 id="2016-07-12"><a href="#2016-07-12" class="headerlink" title="2016.07.12"></a>2016.07.12</h3><ul>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MzI4NTA1MDEwNg==&amp;mid=2650756051&amp;idx=1&amp;sn=a449d2a8cab09b862fc6b454de6071c5&amp;scene=23&amp;srcid=0712vEWdkeXsOpFzBiZcj5Tx#rd" target="_blank" rel="external">腾讯后台开发高级工程师：分布式系统设计的求生之路</a></li>
+<li><a href="https://github.com/Martin404/KIndex/edit/master/README.md" target="_blank" rel="external">秒杀系统架构解密与防刷设计 - 高可用架构系列</a></li>
+</ul>
+<h3 id="2016-07-11"><a href="#2016-07-11" class="headerlink" title="2016.07.11"></a>2016.07.11</h3><ul>
+<li><a href="http://www.barretlee.com/blog/2016/06/02/thing-about-taobao-homepage/?hmsr=toutiao.io&amp;utm_medium=toutiao.io&amp;utm_source=toutiao.io&amp;from=timeline&amp;isappinstalled=0" target="_blank" rel="external">聊一聊淘宝首页和它背后的一套</a></li>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MzA5ODM5MDU3MA==&amp;mid=211442049&amp;idx=1&amp;sn=54462d455d5d1584489e1f97b0c58871&amp;scene=1&amp;srcid=0810YWsTKF2Q5omCCfhjnWdN#wechat_redirect" target="_blank" rel="external">一致性 hash 和 Solr 千万级数据分布式搜索引擎中的应用</a></li>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MjM5ODYxMDA5OQ==&amp;mid=2651959480&amp;idx=1&amp;sn=337bd74410a6bef616128fd17abd08a8&amp;scene=0#wechat_redirect" target="_blank" rel="external">单点系统架构的可用性与性能优化</a></li>
+</ul>
+<h3 id="2016-07-07"><a href="#2016-07-07" class="headerlink" title="2016.07.07"></a>2016.07.07</h3><ul>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MTEwNTM0ODI0MQ==&amp;mid=2653433290&amp;idx=1&amp;sn=ae9fc9a0485f432ba7e1618179621b0d&amp;scene=23&amp;srcid=0706lWI68wVQ5KkYKSVKgStB#rd" target="_blank" rel="external">【技术天花板】老司机乱谈破局——做自己的破壁人</a></li>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MzA3OTgyMDcwNg==&amp;mid=210611527&amp;idx=1&amp;sn=def2a10b3ea7e2d54ed13eb0f00f72d1&amp;scene=1&amp;srcid=0810BRWj9lg5Ap1L2aWNlw4q#wechat_redirect" target="_blank" rel="external">单表60亿记录等大数据场景的MySQL优化和运维之道——高可用架构</a></li>
+</ul>
+<h3 id="2016-07-06"><a href="#2016-07-06" class="headerlink" title="2016.07.06"></a>2016.07.06</h3><ul>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MzI4NTAyOTA0OA==&amp;mid=2457432848&amp;idx=1&amp;sn=c26c616bcf1422747db820f03df56d88&amp;scene=23&amp;srcid=0706O6tHSr6wisiRhZikdNgP#rd" target="_blank" rel="external">性能测试应该怎么做？</a></li>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MzA3OTgyMDcwNg==&amp;mid=210611527&amp;idx=1&amp;sn=def2a10b3ea7e2d54ed13eb0f00f72d1&amp;scene=1&amp;srcid=0810BRWj9lg5Ap1L2aWNlw4q#rd" target="_blank" rel="external">性能调优攻略</a></li>
+</ul>
+<h3 id="2016-07-05"><a href="#2016-07-05" class="headerlink" title="2016.07.05"></a>2016.07.05</h3><ul>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MjM5OTcxMzE0MQ==&amp;mid=207696233&amp;idx=1&amp;sn=660fa3434ddac01b391bbfffa9b14c66#rd" target="_blank" rel="external">如何编写一个分布式数据库</a></li>
+<li><a href="http://www.infoq.com/cn/articles/solution-of-distributed-system-transaction-consistency" target="_blank" rel="external">分布式系统事务一致性解决方案</a></li>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MzA5Nzc4OTA1Mw==&amp;mid=2659597647&amp;idx=1&amp;sn=9a95fa4a12ae2cf6ce9a23ef9ad71400&amp;scene=2&amp;srcid=07063Avyk8vw06cMLYrACsww#wechat_redirect" target="_blank" rel="external">一个完整的微服务系统，应该包含哪些功能？</a></li>
+</ul>
+<h3 id="2016-07-04"><a href="#2016-07-04" class="headerlink" title="2016.07.04"></a>2016.07.04</h3><ul>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MzAwMDU1MTE1OQ==&amp;mid=2653547492&amp;idx=1&amp;sn=be78ff0389fd5a8d8991abc567a191e2&amp;scene=23&amp;srcid=0704crX8M1sj7GXIH9bzMZHH#rd" target="_blank" rel="external">设计消息中间件时我关心什么?(解密电商数据一致性与完整性实现,含PPT)</a></li>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MjM5NjQ5MTI5OA==&amp;mid=2651745274&amp;idx=1&amp;sn=d839735113d06eb4368d42feeffa2239&amp;scene=23&amp;srcid=0702PWkug6AD63tGNX1FrBnG#rd" target="_blank" rel="external">消息队列设计精要</a></li>
+</ul>
+<h3 id="2016-07-01"><a href="#2016-07-01" class="headerlink" title="2016.07.01"></a>2016.07.01</h3><ul>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MzA5OTAyNzQ2OA==&amp;mid=2649690514&amp;idx=1&amp;sn=8cfaa34fe24aa114593f27088d7319ff&amp;scene=23&amp;srcid=0628tNnAddSa7Tc2Kp4Ybgpg#rd" target="_blank" rel="external">Jenkins+Docker搭建持续集成测试环境</a></li>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MzIwNjA0OTU0NQ==&amp;mid=210229356&amp;idx=1&amp;sn=f18cd04659d46bea363f28fc51603310&amp;scene=1&amp;srcid=0914ISePXahg34Dz7KeAs8Kz#wechat_redirect" target="_blank" rel="external">持续集成系统的演进之路</a></li>
+</ul>
+<h3 id="2016-06-30"><a href="#2016-06-30" class="headerlink" title="2016.06.30"></a>2016.06.30</h3><ul>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MzA4ODIxMzg5MQ==&amp;mid=2653995839&amp;idx=1&amp;sn=21dacffad0969b52589d2dcbd4bfb5a0&amp;scene=23&amp;srcid=0605zHZjbW9XOKVUFUtnSc2M#rd" target="_blank" rel="external">Mysql索引实现原理及相关优化策略</a></li>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MzA3MjEyNTE4MQ==&amp;mid=403459151&amp;idx=1&amp;sn=640ba3d9ea70e23ace8b99aff764e42f&amp;scene=1&amp;srcid=0107sRWBV0oBhdrHfXDMt7UL#wechat_redirect" target="_blank" rel="external">白话 IT 之要不要从 rabbitMQ 转 kafka？</a></li>
+</ul>
+<h3 id="2016-06-29"><a href="#2016-06-29" class="headerlink" title="2016.06.29"></a>2016.06.29</h3><ul>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MzA5NzQ2MjMxMQ==&amp;mid=2705021245&amp;idx=1&amp;sn=b8077cf134484fb2a1fcd060554ab4d7&amp;scene=23&amp;srcid=0601QGzBeussJyV7el8EFAbR#rd" target="_blank" rel="external">有一种焦虑叫做三十不立</a></li>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MzAwMDU1MTE1OQ==&amp;mid=2653547405&amp;idx=1&amp;sn=6da4bec072dce0263fe3e7160474a7f8&amp;scene=23&amp;srcid=0629hS3IsQYdFNEznBIs7Oht#rd" target="_blank" rel="external">互联网金融系统技术沙龙:小米风控实践</a></li>
+</ul>
+<h3 id="2016-06-28"><a href="#2016-06-28" class="headerlink" title="2016.06.28"></a>2016.06.28</h3><ul>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MjM5MDE0Mjc4MA==&amp;mid=2650993105&amp;idx=1&amp;sn=d1566927744480b3b47f06bc9ee86f79&amp;scene=23&amp;srcid=0628ZrcAj4dh45L6fTaEahWj#rd" target="_blank" rel="external">微信开源：生产级paxos类库PhxPaxos实现原理介绍</a></li>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MzAwMDU1MTE1OQ==&amp;mid=210272034&amp;idx=1&amp;sn=3be9d2b53c7fec88716ee8affd2515f8&amp;scene=1&amp;srcid=T2fQukZzs8m52P0ZusLw#wechat_redirect" target="_blank" rel="external">亿级商品详情页架构演进技术解密_高可用架构系列</a></li>
+</ul>
+<h3 id="2016-06-27"><a href="#2016-06-27" class="headerlink" title="2016.06.27"></a>2016.06.27</h3><ul>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MzAwMDU1MTE1OQ==&amp;mid=406063297&amp;idx=1&amp;sn=0cd1fc5495e1e26471d7a4ffcd96cd0f&amp;scene=23&amp;srcid=0627vRZUN3uCRDpSbF2u9kzG#rd" target="_blank" rel="external">校长:技术成长四个阶段需要的架构知识</a></li>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MzAxNjAzMTQyMA==&amp;mid=208597129&amp;idx=1&amp;sn=7ebe01ee88e511da93fe9c979a638788&amp;scene=1&amp;srcid=0929GNEV9jw2HV8R6ituGmvJ#wechat_redirect" target="_blank" rel="external">大型网站架构不得不考虑的10个问题</a></li>
+</ul>
+<h3 id="2016-06-24"><a href="#2016-06-24" class="headerlink" title="2016.06.24"></a>2016.06.24</h3><ul>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MzIyNjE4NjI2Nw==&amp;mid=2652556634&amp;idx=1&amp;sn=67f2c92745ab8035517291a35ba5f755&amp;scene=23&amp;srcid=06245F3VPcU9gJBblHL7WcJn#rd" target="_blank" rel="external">基于Dubbo框架构建分布式服务</a></li>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MjM5ODYxMDA5OQ==&amp;mid=400465735&amp;idx=1&amp;sn=8d7067de4cc8f73ea5558f07e0a9340e&amp;scene=1&amp;srcid=1102K7e6TeqHRlgbOM6sInRY#wechat_redirect" target="_blank" rel="external">数据库软件架构设计些什么</a></li>
+</ul>
+<h3 id="2016-06-23"><a href="#2016-06-23" class="headerlink" title="2016.06.23"></a>2016.06.23</h3><ul>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MzAwNzM1NjQyNg==&amp;mid=2649961505&amp;idx=1&amp;sn=ce3b291ca839739866ad4091bb687ef1&amp;scene=23&amp;srcid=0623Icyo7w8PqkOS87IH8VMe#rd" target="_blank" rel="external">挑战舒适区，人生更精彩</a></li>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MzI4NTA1MDEwNg==&amp;mid=401671407&amp;idx=1&amp;sn=dc4e60fc2c0dcbc5259c5f28cdaca0a3&amp;scene=1&amp;srcid=1225rioyxoYMRGiQVGMKOlzV#wechat_redirect" target="_blank" rel="external">听阿里巴巴JVM工程师为你分析常见Java故障案例</a></li>
+</ul>
+<h3 id="2016-06-22"><a href="#2016-06-22" class="headerlink" title="2016.06.22"></a>2016.06.22</h3><ul>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MzA5Nzc4OTA1Mw==&amp;mid=2659597537&amp;idx=1&amp;sn=9c91d231315b507b5eaea0e465a01423&amp;scene=23&amp;srcid=0622htSHJwVy7McdNuFhBFqb#rd" target="_blank" rel="external">缓存穿透、并发和失效，来自一线架构师的解决方案</a></li>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MzAwNjQwNzU2NQ==&amp;mid=400913920&amp;idx=1&amp;sn=dd274ce33291e4c9098a881072b3fd47&amp;scene=1&amp;srcid=1212h81O0O2vjfRNSMa90Gl9#wechat_redirect" target="_blank" rel="external">关于分布式事务、两阶段提交协议、三阶提交协议</a></li>
+</ul>
+<h3 id="2016-06-20"><a href="#2016-06-20" class="headerlink" title="2016.06.20"></a>2016.06.20</h3><ul>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MjM5MDE0Mjc4MA==&amp;mid=2650993001&amp;idx=1&amp;sn=e063b825bc6dcda8a7d1b2cc292402cf&amp;scene=23&amp;srcid=0620FYuah8mCQtQ5wpvEeln9#rd" target="_blank" rel="external">50天10万行代码，一号专车系统重构细节回顾</a></li>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MjM5MDE0Mjc4MA==&amp;mid=400645575&amp;idx=1&amp;sn=da55d75db55117046c520de88dde1123&amp;scene=1&amp;srcid=1109XAQ6ZhXGRe6trz3blGJb#wechat_redirect" target="_blank" rel="external">实施微服务需要哪些基础框架｜技术热点</a></li>
+</ul>
+<h3 id="2016-06-16"><a href="#2016-06-16" class="headerlink" title="2016.06.16"></a>2016.06.16</h3><ul>
+<li><a href="http://www.jianshu.com/p/878812193de4?from=timeline&amp;isappinstalled=0" target="_blank" rel="external">Redis中国用户组_大容量类Redis存储_Pika介绍</a></li>
+<li><a href="http://www.wtoutiao.com/p/fb1DP3.html?from=timeline&amp;isappinstalled=0" target="_blank" rel="external">基于Redis实现库存的排队/占位/清位</a></li>
+</ul>
+<h3 id="2016-06-15"><a href="#2016-06-15" class="headerlink" title="2016.06.15"></a>2016.06.15</h3><ul>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MjM5OTA1MDUyMA==&amp;mid=2655436059&amp;idx=1&amp;sn=8f1e005bef34f736df897a2116cb0738&amp;scene=23&amp;srcid=0609m7zxN6wcirffRphdS1l3#rd" target="_blank" rel="external">相似图片搜索的原理</a></li>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MjM5NDMwNjMzNA==&amp;mid=208256276&amp;idx=1&amp;sn=4a0fc22075e4b77e2d25ef9cee1f5cd2&amp;scene=1&amp;srcid=0923UFFQ3zNLkSlnKQ7v5kJN#wechat_redirect" target="_blank" rel="external">Web系统大规模并发：电商秒杀与抢购</a></li>
+</ul>
+<h3 id="2016-06-14"><a href="#2016-06-14" class="headerlink" title="2016.06.14"></a>2016.06.14</h3><ul>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MjM5ODI5Njc2MA==&amp;mid=2655807432&amp;idx=1&amp;sn=6ee6af53f1fbaee19960446afba1b575&amp;scene=23&amp;srcid=0612MSJoh4CKtiAb9zacQvWx#rd" target="_blank" rel="external">这20个正则表达式，让你少写1,000行代码</a></li>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MzAwMDU1MTE1OQ==&amp;mid=402166895&amp;idx=1&amp;sn=a8c6ed9c41085ee15d53eb4b9ed6bbc7&amp;scene=1&amp;srcid=1203zt4r9d5KVmmsn2etdekm#wechat_redirect" target="_blank" rel="external">小米抢购限流峰值系统架构历年演进历程</a></li>
+</ul>
+<h3 id="2016-06-13"><a href="#2016-06-13" class="headerlink" title="2016.06.13"></a>2016.06.13</h3><ul>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MzA5Nzc4OTA1Mw==&amp;mid=2659597332&amp;idx=1&amp;sn=f2f6a3f660386aa9a89133db82697770&amp;scene=23&amp;srcid=0613tEf671j8Y8VzRsK4cjvR#rd" target="_blank" rel="external">一个可供参考的Java高并发异步应用案例</a></li>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MzAwMDU1MTE1OQ==&amp;mid=400931866&amp;idx=1&amp;sn=b96873fc9f726e5705b2653968f1d992&amp;scene=1&amp;srcid=1029jQRJKUK2rkUPMTn9c4mm#wechat_redirect" target="_blank" rel="external">腾讯防刷负责人：基于用户画像大数据的电商防刷架构</a></li>
+</ul>
+<h3 id="2016-06-12"><a href="#2016-06-12" class="headerlink" title="2016.06.12"></a>2016.06.12</h3><ul>
+<li><a href="http://m.xinli001.com/info/100010029?from=timeline&amp;isappinstalled=0" target="_blank" rel="external">从30岁至35岁：为你的生命多积累一些厚度</a></li>
+<li><a href="https://segmentfault.com/a/1190000003759271?hmsr=toutiao.io&amp;utm_medium=toutiao.io&amp;utm_source=toutiao.io&amp;from=timeline&amp;isappinstalled=0" target="_blank" rel="external">技术团队代码分支管理指南</a></li>
+</ul>
+<h3 id="2016-06-07"><a href="#2016-06-07" class="headerlink" title="2016.06.07"></a>2016.06.07</h3><ul>
+<li><a href="https://zhuanlan.zhihu.com/p/20872901?hmsr=toutiao.io&amp;utm_medium=toutiao.io&amp;utm_source=toutiao.io&amp;from=timeline&amp;isappinstalled=0" target="_blank" rel="external">API 调用次数限制实现</a></li>
+</ul>
+<h3 id="2016-06-06"><a href="#2016-06-06" class="headerlink" title="2016.06.06"></a>2016.06.06</h3><ul>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MzA4ODIxMzg5MQ==&amp;mid=2653995836&amp;idx=1&amp;sn=f8d11e5c82a1d8d0700752fab1409a0f&amp;scene=23&amp;srcid=0602KKSsJltnPnznJXQBK9c0#rd" target="_blank" rel="external">深入理解密码技术</a></li>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MzA5ODM5MDU3MA==&amp;mid=2650861704&amp;idx=1&amp;sn=feab1dbd443ba4b3fd81be29cf06d818&amp;scene=23&amp;srcid=0607rD52A0Kky4KPu1DPWeV3#rd" target="_blank" rel="external">搜索引擎索引的数据结构和算法</a></li>
+</ul>
+<h3 id="2016-06-02"><a href="#2016-06-02" class="headerlink" title="2016.06.02"></a>2016.06.02</h3><ul>
+<li><a href="http://blog.jobbole.com/100349/?from=timeline&amp;isappinstalled=0" target="_blank" rel="external">如果有人问你数据库的原理，叫他看这篇文章</a></li>
+</ul>
+<h3 id="2016-05-31"><a href="#2016-05-31" class="headerlink" title="2016.05.31"></a>2016.05.31</h3><ul>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MzA5ODUxOTA5Mg==&amp;mid=2652549492&amp;idx=1&amp;sn=1ee3f3ac7e3939c2d043475ee94fc84a&amp;scene=23&amp;srcid=0531DMccxDQ92iXjh5ARkMj7#rd" target="_blank" rel="external">计算机网络基础知识总结</a></li>
+</ul>
+<h3 id="2016-05-30"><a href="#2016-05-30" class="headerlink" title="2016.05.30"></a>2016.05.30</h3><ul>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MjM5MDQ2NjYzNQ==&amp;mid=2656595541&amp;idx=1&amp;sn=1716eacff7a6db907083979a4f399cdb&amp;scene=23&amp;srcid=0530zpOotAICMsOASm1yFOMi#rd" target="_blank" rel="external">性能调优概述，这是一篇最通俗易懂性能调优的总结！</a></li>
+</ul>
+<h3 id="2016-05-27"><a href="#2016-05-27" class="headerlink" title="2016.05.27"></a>2016.05.27</h3><ul>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MzAwOTE0ODEwMQ==&amp;mid=2650686155&amp;idx=1&amp;sn=065d3df767e830a9ec960cd2947217d0&amp;scene=23&amp;srcid=0527vTa9k8heUAUShCTJzPuZ#rd" target="_blank" rel="external">MySQL笔记-锁、事务与并发控制</a></li>
+</ul>
+<h3 id="2016-05-25"><a href="#2016-05-25" class="headerlink" title="2016.05.25"></a>2016.05.25</h3><ul>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MjM5ODQ2MDIyMA==&amp;mid=2650712314&amp;idx=1&amp;sn=376d300402aa8b856db955ab821dd414&amp;scene=23&amp;srcid=0525L9F4KrOWdBXKtlHzcont#rd" target="_blank" rel="external">如何富成一个废物？</a></li>
+</ul>
+<h3 id="2016-05-24"><a href="#2016-05-24" class="headerlink" title="2016.05.24"></a>2016.05.24</h3><ul>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MzAwMDU1MTE1OQ==&amp;mid=2653547263&amp;idx=1&amp;sn=fe484b24660b7e1dc4beabca71fe1cb1&amp;scene=23&amp;srcid=0526S2Cgp3uew5NzDq3dXKd2#rd" target="_blank" rel="external">用最少的机器支撑万亿级访问，微博6年Redis优化历程</a></li>
+</ul>
+<h3 id="2016-05-23"><a href="#2016-05-23" class="headerlink" title="2016.05.23"></a>2016.05.23</h3><ul>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MzI4NTA1MDEwNg==&amp;mid=2650755456&amp;idx=1&amp;sn=b24c5a2479a99ccd472e630621e3ea9b&amp;scene=23&amp;srcid=0523r3jSsIPKEVR9vuepA2H3#rd" target="_blank" rel="external">力荐：一条update语句引发的“血案”</a></li>
+</ul>
+<h3 id="2016-05-20"><a href="#2016-05-20" class="headerlink" title="2016.05.20"></a>2016.05.20</h3><ul>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MzA4NTU2MTg3MQ==&amp;mid=2655157536&amp;idx=1&amp;sn=25f31cbd55cbdfbb40abedf30d268f49&amp;scene=23&amp;srcid=0519A86Ws4fIsLrsBxqgGcg7#rd" target="_blank" rel="external">15年编程生涯，资深架构师总结的7条经验</a></li>
+</ul>
+<h3 id="2016-05-19"><a href="#2016-05-19" class="headerlink" title="2016.05.19"></a>2016.05.19</h3><ul>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MjM5ODYxMDA5OQ==&amp;mid=2651959442&amp;idx=1&amp;sn=feb8ff75385d8031386e120ef3535329&amp;scene=23&amp;srcid=0519qz2wsYi0kSPWaUlGKsVI#rd" target="_blank" rel="external">DB主从一致性架构优化4种方法</a></li>
+</ul>
+<h3 id="2016-05-18"><a href="#2016-05-18" class="headerlink" title="2016.05.18"></a>2016.05.18</h3><ul>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MzA4Nzg5Nzc5OA==&amp;mid=2651659686&amp;idx=1&amp;sn=6e068869eba4a8ef7a6388c55494a85d&amp;scene=23&amp;srcid=0518XFFZ8nNuFw6e7XmMYoTp#rd" target="_blank" rel="external">京东：10万规模容器的实践及运营之道</a></li>
+</ul>
+<h3 id="2016-05-17"><a href="#2016-05-17" class="headerlink" title="2016.05.17"></a>2016.05.17</h3><ul>
+<li><a href="http://geek.csdn.net/news/detail/74130" target="_blank" rel="external">电商系统的高并发设计和挑战</a></li>
+</ul>
+<h3 id="2016-05-16"><a href="#2016-05-16" class="headerlink" title="2016.05.16"></a>2016.05.16</h3><ul>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MzAwMDU1MTE1OQ==&amp;mid=2653547163&amp;idx=1&amp;sn=82b94d484b532b21d89db4d529792a88&amp;scene=23&amp;srcid=0516VQS4I0Tjhl4XfYiOsqfB#rd" target="_blank" rel="external">为何服务器QPS上不去？Java线程调优权威指南</a></li>
+</ul>
+<h3 id="2016-05-13"><a href="#2016-05-13" class="headerlink" title="2016.05.13"></a>2016.05.13</h3><ul>
+<li><a href="http://blog.sina.cn/dpool/blog/s/blog_6d253a17010174ko.html?from=timeline&amp;isappinstalled=0" target="_blank" rel="external">写给技术和非技术 – 思考必须高尚，实施务必猥琐</a></li>
+</ul>
+<h3 id="2016-05-12"><a href="#2016-05-12" class="headerlink" title="2016.05.12"></a>2016.05.12</h3><ul>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MzAwNjQwNzU2NQ==&amp;mid=2650342612&amp;idx=1&amp;sn=a8a4c6565dfaa3c938c37eb95638aea5&amp;scene=23&amp;srcid=0511tuhzYQdGknRApKSP1ebN#rd" target="_blank" rel="external">缓存穿透、缓存并发、缓存失效之思路变迁</a></li>
+</ul>
+<h3 id="2016-05-11"><a href="#2016-05-11" class="headerlink" title="2016.05.11"></a>2016.05.11</h3><ul>
+<li><a href="http://hugnew.com/?p=851" target="_blank" rel="external">从一个简单的Java单例示例谈谈并发</a></li>
+<li><a href="http://www.infoq.com/cn/articles/architecture-optimization-and-design-the-architect-must-know" target="_blank" rel="external">关于架构优化和设计，架构师必须知道的事情</a></li>
+</ul>
+<h3 id="2016-05-10"><a href="#2016-05-10" class="headerlink" title="2016.05.10"></a>2016.05.10</h3><ul>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MjM5NzMyMjAwMA==&amp;mid=2651477112&amp;idx=1&amp;sn=71882c45a0144f12d0c2d9356b3c5bd9&amp;scene=23&amp;srcid=0509ZGjqTzGRQAFPDwR2yeEN#rd" target="_blank" rel="external">设计模式总结</a></li>
+</ul>
+<h3 id="2016-05-05"><a href="#2016-05-05" class="headerlink" title="2016.05.05"></a>2016.05.05</h3><ul>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MzIxMzEzMjM5NQ==&amp;mid=2651029052&amp;idx=1&amp;sn=ef35345dc7d44d72ed90cefb2b962069&amp;scene=23&amp;srcid=0503Fa2ZxtHOMWPQDQDpfBub#rd" target="_blank" rel="external">CAP的相对论</a></li>
+</ul>
+<h3 id="2016-05-04"><a href="#2016-05-04" class="headerlink" title="2016.05.04"></a>2016.05.04</h3><ul>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MzAwMDU1MTE1OQ==&amp;mid=2653547053&amp;idx=1&amp;sn=833fddbc83379d9cac8d7f757343412e&amp;scene=23&amp;srcid=0503pHYmjJ4XUa7CLifKaaMn#rd" target="_blank" rel="external">Redis实战：如何构建类微博的亿级社交平台</a></li>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MzIzMzEzODYwOA==&amp;mid=2665283950&amp;idx=1&amp;sn=9005fcaf85f8d4673c62f4067bf3d0ca&amp;scene=23&amp;srcid=0426fIzakWmrKbUiLkdqgktM#rd" target="_blank" rel="external">基于Flume+Kafka+ Elasticsearch+Storm的海量日志实时分析平台</a></li>
+</ul>
+<h3 id="之前的"><a href="#之前的" class="headerlink" title="之前的"></a>之前的</h3><ul>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MjM5MDE0Mjc4MA==&amp;mid=2650992259&amp;idx=1&amp;sn=035e300ef8ed7f1b75f6d75cabbb26c4&amp;scene=23&amp;srcid=0427fyFxm5NpcDm9Apo0K88Y#rd" target="_blank" rel="external">诊断Java代码中常见的数据库性能热点问题应该这么做！</a></li>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MjM5MDE0Mjc4MA==&amp;mid=2650992195&amp;idx=1&amp;sn=4b799a5e53ed35327e7467cbae1898d9&amp;scene=23&amp;srcid=#rd" target="_blank" rel="external">听《七周七并发模型》作者Paul 讲：编程语言演变对开发者的意义</a></li>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MzAwMDU1MTE1OQ==&amp;mid=2653546976&amp;idx=1&amp;sn=c3fb2338389a41e7ab998c0c21bd3e5d&amp;scene=23&amp;srcid=0419WcA01eDKZKA5SURTThq3#rd" target="_blank" rel="external">保证分布式系统数据一致性的6种方案</a></li>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MzA5Nzc4OTA1Mw==&amp;mid=410965974&amp;idx=1&amp;sn=f41b049d2acd18a48413aec137bbe78e&amp;scene=23&amp;srcid=0405uiTs4eEVHeY2bwhBxu0B#rd" target="_blank" rel="external">20年前GoF提出的设计模式，对这个时代是否还有指导意义？</a></li>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MjM5NzA1MTcyMA==&amp;mid=403498894&amp;idx=2&amp;sn=219c1a6001b5bb7e6bdc7963b1af8450&amp;scene=23&amp;srcid=0330soO5Pj6yE1feC04Ar4KJ#rd" target="_blank" rel="external">我是一个线程</a></li>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MzIxMzEzMjM5NQ==&amp;mid=403332194&amp;idx=1&amp;sn=2f784108a529ab9d095f57c139860fe5&amp;scene=23&amp;srcid=0330mV1L6FTLQ891WTPJXsw2#rd" target="_blank" rel="external">终身学习与传统文化[增强版]</a></li>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MjM5ODYxMDA5OQ==&amp;mid=404369373&amp;idx=1&amp;sn=cab2ac9ec0edf92e744a2329662b16cd&amp;scene=23&amp;srcid=0329nZKBaGcOaDrWUUWqxzXQ#rd" target="_blank" rel="external">线程数究竟设多少合理</a></li>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MzA4NTU2MTg3MQ==&amp;mid=406887772&amp;idx=1&amp;sn=35abd54f0cfcbe0c5a41bb86c5d9bbf5&amp;scene=23&amp;srcid=0329AlQwAp1CwAhQhPCes4yX#rd" target="_blank" rel="external">从0到1，项目与团队中的看板实践</a></li>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MjM5ODYxMDA5OQ==&amp;mid=404332602&amp;idx=1&amp;sn=a50ed411c893f6aeadbd66a25d31b94c&amp;scene=23&amp;srcid=03280eU6zn62OiwDOXYGCuWr#rd" target="_blank" rel="external">晋升的为什么不是你</a></li>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MzI4NzE1NTYyMg==&amp;mid=402348782&amp;idx=1&amp;sn=8fb1a9c255e50ebeb1c37c92af33895e&amp;scene=23&amp;srcid=0324nlGFzxTfo9FRn3YevxC0#rd" target="_blank" rel="external">秒杀业务架构优化之路</a></li>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MzA5MTA0NjgzMQ==&amp;mid=403675854&amp;idx=1&amp;sn=1315ab77402ea0e9c64c92cfc10f0536&amp;scene=23&amp;srcid=03221SEaJQjeAqwhw3mlHt5U#rd" target="_blank" rel="external">聊聊技术面试</a></li>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MzA5Nzc4OTA1Mw==&amp;mid=409203022&amp;idx=1&amp;sn=67f2f61b6b0874cd5fb9cd142573517f&amp;scene=23&amp;srcid=0221aPkkDOhENUv2o4tY91KU#rd" target="_blank" rel="external">案例分析：基于消息的分布式架构</a></li>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MzIwODA4NjMwNA==&amp;mid=405099864&amp;idx=1&amp;sn=3508ac8b0e66ebe899086eb20a94f8b9&amp;scene=23&amp;srcid=0321T9iXrkaOpzD4keB4PqTp#rd" target="_blank" rel="external">应用多级缓存模式支撑海量读服务</a></li>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MzA5Nzc4OTA1Mw==&amp;mid=410252715&amp;idx=1&amp;sn=d1d5f95de8d1905c4530955f862f735b&amp;scene=23&amp;srcid=0314LSXFQXhVjHFY9ySMFLTQ#rd" target="_blank" rel="external">如何成为架构师？7个关键的思考、习惯和经验</a></li>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MzA3MjY1MTQwNQ==&amp;mid=401892985&amp;idx=1&amp;sn=775a2fc323a811cb87a35d5f7cb83415&amp;scene=23&amp;srcid=0316aUjxN3YqAQcGrLdQYAYn#rd" target="_blank" rel="external">关于分布式数据库，你该了解的几件事</a></li>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MzA4NTU2MTg3MQ==&amp;mid=406002084&amp;idx=1&amp;sn=cee31b63173c6d9b8fd9ccd17fda273a&amp;scene=1&amp;srcid=0315y5mu06xYf2mSlJnO3xtm#wechat_redirect" target="_blank" rel="external">陈靖华：解读APM技术分类和实现方式</a></li>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MzAwMDU1MTE1OQ==&amp;mid=404472153&amp;idx=1&amp;sn=c588d4b4758775304cf19871c3f8bffe&amp;scene=23&amp;srcid=0311TPZAobUw5Z5lag2IzNpY#rd" target="_blank" rel="external">nice服务端架构重构与演进</a></li>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MjM5ODYxMDA5OQ==&amp;mid=403963671&amp;idx=1&amp;sn=51a2d2fd70212451cd5f22bbe2c6f8d6&amp;scene=23&amp;srcid=03015cy5AdBRssnPkOfEeQxT#rd" target="_blank" rel="external">细聊冗余表数据一致性</a></li>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MzAwMDU1MTE1OQ==&amp;mid=404242829&amp;idx=1&amp;sn=aacddf1c2c828281e6202eff8cd374f5&amp;scene=1&amp;srcid=0302BgU45Ei5RjY2CKXGpfjR#wechat_redirect" target="_blank" rel="external">并发之痛 Thread，Goroutine，Actor</a></li>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MzI0ODE4MDEzOA==&amp;mid=401612195&amp;idx=1&amp;sn=3d62c78d5f5d1bdcf46b45ea59685fa6&amp;scene=23&amp;srcid=0225zSoX0uyV2f2E8tBspN0s#rd" target="_blank" rel="external">互联网时代的自由职业观</a></li>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MjM5ODYxMDA5OQ==&amp;mid=403837240&amp;idx=1&amp;sn=ae9f2bf0cc5b0f68f9a2213485313127&amp;scene=1&amp;srcid=02220pchRp2g3SOjGgb2my2B#wechat_redirect" target="_blank" rel="external">细聊分布式ID生成方法</a></li>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MzI0MjA1Mjg2Ng==&amp;mid=401363118&amp;idx=1&amp;sn=3e30a2514bebea77ea339ab0ab144308&amp;scene=23&amp;srcid=0122kwViPPo0JmPtvrpMB1f0#rd" target="_blank" rel="external">曾经的中国互联网</a></li>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MzAwMDU1MTE1OQ==&amp;mid=403619448&amp;idx=1&amp;sn=df29fcbeb5a229b98379b86b162d916c&amp;scene=23&amp;srcid=0121tBUWQtMyjM4Qw51EZae3#rd" target="_blank" rel="external">微博分布式存储考试题：案例讲解及作业精选</a></li>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MzAwMDU1MTE1OQ==&amp;mid=403582309&amp;idx=1&amp;sn=80c006f4e84a8af35dc8e9654f018ace&amp;scene=23&amp;srcid=0118Xl5QXuCULS4R9LdijsaU#rd" target="_blank" rel="external">架构师需要了解的Paxos原理、历程及实战</a></li>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MzAwMDU1MTE1OQ==&amp;mid=403520625&amp;idx=1&amp;sn=c59f3944760a055ee7b6d1dda4431e0a&amp;scene=23&amp;srcid=01138qxBuGkMMdTiBO6FyrjG#rd" target="_blank" rel="external">关于烂代码的那些事 － 为什么每个团队存在大量烂代码</a></li>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MzAwMDU1MTE1OQ==&amp;mid=403270751&amp;idx=1&amp;sn=7269cd113d7b85e407319036d61ef786&amp;scene=23&amp;srcid=0108M9GcQ2oJDHdZFawzSiR7#rd" target="_blank" rel="external">深入理解同步/异步与阻塞/非阻塞区别</a></li>
+<li><a href="http://hugnew.com/?p=749" target="_blank" rel="external">MySQL HA方案之MySQL半复制+MHA+Keepalived+Atlas+LVS</a></li>
+<li><a href="http://hugnew.com/?p=822" target="_blank" rel="external">电商网站的初期技术选型</a></li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+<div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/uploads/wechat-qcode.jpg" alt="马铁利 wechat" style="width: 200px; max-width: 100%;"/>
+    <div>欢迎您扫一扫上面的微信公众号，订阅我的博客！</div>
+</div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/读书/" rel="tag"># 读书</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/04/17/hello-world/" rel="next" title="Hello World">
+                <i class="fa fa-chevron-left"></i> Hello World
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/10/16/2016-08-16-微服务技术栈-java/" rel="prev" title="微服务技术栈-JAVA">
+                微服务技术栈-JAVA <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.jpg"
+               alt="马铁利" />
+          <p class="site-author-name" itemprop="name">马铁利</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/matieli" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.dbalog.net/" title="DBA_LOG" target="_blank">DBA_LOG</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#2016年"><span class="nav-number">1.</span> <span class="nav-text">2016年</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#每日一读"><span class="nav-number">1.1.</span> <span class="nav-text">每日一读</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2016-12-31"><span class="nav-number">1.1.1.</span> <span class="nav-text">2016.12.31</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2016-12-29"><span class="nav-number">1.1.2.</span> <span class="nav-text">2016.12.29</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2016-12-28"><span class="nav-number">1.1.3.</span> <span class="nav-text">2016.12.28</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2016-12-27"><span class="nav-number">1.1.4.</span> <span class="nav-text">2016.12.27</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2016-12-25"><span class="nav-number">1.1.5.</span> <span class="nav-text">2016.12.25</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2016-12-23"><span class="nav-number">1.1.6.</span> <span class="nav-text">2016.12.23</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2016-12-22"><span class="nav-number">1.1.7.</span> <span class="nav-text">2016.12.22</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2016-12-21"><span class="nav-number">1.1.8.</span> <span class="nav-text">2016.12.21</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2016-12-20"><span class="nav-number">1.1.9.</span> <span class="nav-text">2016.12.20</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2016-12-18"><span class="nav-number">1.1.10.</span> <span class="nav-text">2016.12.18</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2016-12-14"><span class="nav-number">1.1.11.</span> <span class="nav-text">2016.12.14</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2016-12-13"><span class="nav-number">1.1.12.</span> <span class="nav-text">2016.12.13</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2016-12-12"><span class="nav-number">1.1.13.</span> <span class="nav-text">2016.12.12</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2016-12-8"><span class="nav-number">1.1.14.</span> <span class="nav-text">2016.12.8</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2016-12-6"><span class="nav-number">1.1.15.</span> <span class="nav-text">2016.12.6</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2016-12-1"><span class="nav-number">1.1.16.</span> <span class="nav-text">2016.12.1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2016-11-30"><span class="nav-number">1.1.17.</span> <span class="nav-text">2016.11.30</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2016-11-29"><span class="nav-number">1.1.18.</span> <span class="nav-text">2016.11.29</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2016-11-28"><span class="nav-number">1.1.19.</span> <span class="nav-text">2016.11.28</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2016-11-26"><span class="nav-number">1.1.20.</span> <span class="nav-text">2016.11.26</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2016-11-25"><span class="nav-number">1.1.21.</span> <span class="nav-text">2016.11.25</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2016-11-24"><span class="nav-number">1.1.22.</span> <span class="nav-text">2016.11.24</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2016-11-22"><span class="nav-number">1.1.23.</span> <span class="nav-text">2016.11.22</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2016-11-21"><span class="nav-number">1.1.24.</span> <span class="nav-text">2016.11.21</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2016-11-18"><span class="nav-number">1.1.25.</span> <span class="nav-text">2016.11.18</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2016-11-16"><span class="nav-number">1.1.26.</span> <span class="nav-text">2016.11.16</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2016-11-14"><span class="nav-number">1.1.27.</span> <span class="nav-text">2016.11.14</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2016-11-11"><span class="nav-number">1.1.28.</span> <span class="nav-text">2016.11.11</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2016-11-10"><span class="nav-number">1.1.29.</span> <span class="nav-text">2016.11.10</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2016-11-9"><span class="nav-number">1.1.30.</span> <span class="nav-text">2016.11.9</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2016-11-8"><span class="nav-number">1.1.31.</span> <span class="nav-text">2016.11.8</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2016-11-6"><span class="nav-number">1.1.32.</span> <span class="nav-text">2016.11.6</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2016-11-3"><span class="nav-number">1.1.33.</span> <span class="nav-text">2016.11.3</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2016-11-2"><span class="nav-number">1.1.34.</span> <span class="nav-text">2016.11.2</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2016-11-1"><span class="nav-number">1.1.35.</span> <span class="nav-text">2016.11.1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2016-10-29"><span class="nav-number">1.1.36.</span> <span class="nav-text">2016.10.29</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2016-10-28"><span class="nav-number">1.1.37.</span> <span class="nav-text">2016.10.28</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2016-10-27"><span class="nav-number">1.1.38.</span> <span class="nav-text">2016.10.27</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2016-10-26"><span class="nav-number">1.1.39.</span> <span class="nav-text">2016.10.26</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2016-10-25"><span class="nav-number">1.1.40.</span> <span class="nav-text">2016.10.25</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2016-10-21"><span class="nav-number">1.1.41.</span> <span class="nav-text">2016.10.21</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2016-10-19"><span class="nav-number">1.1.42.</span> <span class="nav-text">2016.10.19</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2016-10-11"><span class="nav-number">1.1.43.</span> <span class="nav-text">2016.10.11</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2016-10-05"><span class="nav-number">1.1.44.</span> <span class="nav-text">2016.10.05</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2016-09-29"><span class="nav-number">1.1.45.</span> <span class="nav-text">2016.09.29</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2016-09-27"><span class="nav-number">1.1.46.</span> <span class="nav-text">2016.09.27</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2016-09-26"><span class="nav-number">1.1.47.</span> <span class="nav-text">2016.09.26</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2016-09-24"><span class="nav-number">1.1.48.</span> <span class="nav-text">2016.09.24</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2016-09-23"><span class="nav-number">1.1.49.</span> <span class="nav-text">2016.09.23</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2016-09-22"><span class="nav-number">1.1.50.</span> <span class="nav-text">2016.09.22</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2016-09-21"><span class="nav-number">1.1.51.</span> <span class="nav-text">2016.09.21</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2016-09-20"><span class="nav-number">1.1.52.</span> <span class="nav-text">2016.09.20</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2016-09-19"><span class="nav-number">1.1.53.</span> <span class="nav-text">2016.09.19</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2016-09-18"><span class="nav-number">1.1.54.</span> <span class="nav-text">2016.09.18</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2016-09-12"><span class="nav-number">1.1.55.</span> <span class="nav-text">2016.09.12</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2016-09-10"><span class="nav-number">1.1.56.</span> <span class="nav-text">2016.09.10</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2016-09-07"><span class="nav-number">1.1.57.</span> <span class="nav-text">2016.09.07</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2016-09-05"><span class="nav-number">1.1.58.</span> <span class="nav-text">2016.09.05</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2016-09-03"><span class="nav-number">1.1.59.</span> <span class="nav-text">2016.09.03</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2016-09-02"><span class="nav-number">1.1.60.</span> <span class="nav-text">2016.09.02</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2016-08-27"><span class="nav-number">1.1.61.</span> <span class="nav-text">2016.08.27</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2016-08-26"><span class="nav-number">1.1.62.</span> <span class="nav-text">2016.08.26</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2016-08-25"><span class="nav-number">1.1.63.</span> <span class="nav-text">2016.08.25</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2016-08-24"><span class="nav-number">1.1.64.</span> <span class="nav-text">2016.08.24</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2016-08-23"><span class="nav-number">1.1.65.</span> <span class="nav-text">2016.08.23</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2016-08-21"><span class="nav-number">1.1.66.</span> <span class="nav-text">2016.08.21</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2016-08-18"><span class="nav-number">1.1.67.</span> <span class="nav-text">2016.08.18</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2016-08-11"><span class="nav-number">1.1.68.</span> <span class="nav-text">2016.08.11</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2016-08-10"><span class="nav-number">1.1.69.</span> <span class="nav-text">2016.08.10</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2016-08-09"><span class="nav-number">1.1.70.</span> <span class="nav-text">2016.08.09</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2016-08-08"><span class="nav-number">1.1.71.</span> <span class="nav-text">2016.08.08</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2016-08-04"><span class="nav-number">1.1.72.</span> <span class="nav-text">2016.08.04</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2016-08-03"><span class="nav-number">1.1.73.</span> <span class="nav-text">2016.08.03</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2016-08-02"><span class="nav-number">1.1.74.</span> <span class="nav-text">2016.08.02</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2016-08-01"><span class="nav-number">1.1.75.</span> <span class="nav-text">2016.08.01</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2016-07-28"><span class="nav-number">1.1.76.</span> <span class="nav-text">2016.07.28</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2016-07-27"><span class="nav-number">1.1.77.</span> <span class="nav-text">2016.07.27</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2016-07-25"><span class="nav-number">1.1.78.</span> <span class="nav-text">2016.07.25</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2016-07-22"><span class="nav-number">1.1.79.</span> <span class="nav-text">2016.07.22</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2016-07-20"><span class="nav-number">1.1.80.</span> <span class="nav-text">2016.07.20</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2016-07-19"><span class="nav-number">1.1.81.</span> <span class="nav-text">2016.07.19</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2016-07-18"><span class="nav-number">1.1.82.</span> <span class="nav-text">2016.07.18</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2016-07-15"><span class="nav-number">1.1.83.</span> <span class="nav-text">2016.07.15</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2016-07-14"><span class="nav-number">1.1.84.</span> <span class="nav-text">2016.07.14</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2016-07-13"><span class="nav-number">1.1.85.</span> <span class="nav-text">2016.07.13</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2016-07-12"><span class="nav-number">1.1.86.</span> <span class="nav-text">2016.07.12</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2016-07-11"><span class="nav-number">1.1.87.</span> <span class="nav-text">2016.07.11</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2016-07-07"><span class="nav-number">1.1.88.</span> <span class="nav-text">2016.07.07</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2016-07-06"><span class="nav-number">1.1.89.</span> <span class="nav-text">2016.07.06</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2016-07-05"><span class="nav-number">1.1.90.</span> <span class="nav-text">2016.07.05</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2016-07-04"><span class="nav-number">1.1.91.</span> <span class="nav-text">2016.07.04</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2016-07-01"><span class="nav-number">1.1.92.</span> <span class="nav-text">2016.07.01</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2016-06-30"><span class="nav-number">1.1.93.</span> <span class="nav-text">2016.06.30</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2016-06-29"><span class="nav-number">1.1.94.</span> <span class="nav-text">2016.06.29</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2016-06-28"><span class="nav-number">1.1.95.</span> <span class="nav-text">2016.06.28</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2016-06-27"><span class="nav-number">1.1.96.</span> <span class="nav-text">2016.06.27</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2016-06-24"><span class="nav-number">1.1.97.</span> <span class="nav-text">2016.06.24</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2016-06-23"><span class="nav-number">1.1.98.</span> <span class="nav-text">2016.06.23</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2016-06-22"><span class="nav-number">1.1.99.</span> <span class="nav-text">2016.06.22</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2016-06-20"><span class="nav-number">1.1.100.</span> <span class="nav-text">2016.06.20</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2016-06-16"><span class="nav-number">1.1.101.</span> <span class="nav-text">2016.06.16</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2016-06-15"><span class="nav-number">1.1.102.</span> <span class="nav-text">2016.06.15</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2016-06-14"><span class="nav-number">1.1.103.</span> <span class="nav-text">2016.06.14</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2016-06-13"><span class="nav-number">1.1.104.</span> <span class="nav-text">2016.06.13</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2016-06-12"><span class="nav-number">1.1.105.</span> <span class="nav-text">2016.06.12</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2016-06-07"><span class="nav-number">1.1.106.</span> <span class="nav-text">2016.06.07</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2016-06-06"><span class="nav-number">1.1.107.</span> <span class="nav-text">2016.06.06</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2016-06-02"><span class="nav-number">1.1.108.</span> <span class="nav-text">2016.06.02</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2016-05-31"><span class="nav-number">1.1.109.</span> <span class="nav-text">2016.05.31</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2016-05-30"><span class="nav-number">1.1.110.</span> <span class="nav-text">2016.05.30</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2016-05-27"><span class="nav-number">1.1.111.</span> <span class="nav-text">2016.05.27</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2016-05-25"><span class="nav-number">1.1.112.</span> <span class="nav-text">2016.05.25</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2016-05-24"><span class="nav-number">1.1.113.</span> <span class="nav-text">2016.05.24</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2016-05-23"><span class="nav-number">1.1.114.</span> <span class="nav-text">2016.05.23</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2016-05-20"><span class="nav-number">1.1.115.</span> <span class="nav-text">2016.05.20</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2016-05-19"><span class="nav-number">1.1.116.</span> <span class="nav-text">2016.05.19</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2016-05-18"><span class="nav-number">1.1.117.</span> <span class="nav-text">2016.05.18</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2016-05-17"><span class="nav-number">1.1.118.</span> <span class="nav-text">2016.05.17</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2016-05-16"><span class="nav-number">1.1.119.</span> <span class="nav-text">2016.05.16</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2016-05-13"><span class="nav-number">1.1.120.</span> <span class="nav-text">2016.05.13</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2016-05-12"><span class="nav-number">1.1.121.</span> <span class="nav-text">2016.05.12</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2016-05-11"><span class="nav-number">1.1.122.</span> <span class="nav-text">2016.05.11</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2016-05-10"><span class="nav-number">1.1.123.</span> <span class="nav-text">2016.05.10</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2016-05-05"><span class="nav-number">1.1.124.</span> <span class="nav-text">2016.05.05</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2016-05-04"><span class="nav-number">1.1.125.</span> <span class="nav-text">2016.05.04</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#之前的"><span class="nav-number">1.1.126.</span> <span class="nav-text">之前的</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">马铁利</span>
+</div>
+
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://blog.matieli.me/2016/12/18/ReadIndex/';
+          this.page.identifier = '2016/12/18/ReadIndex/';
+          this.page.title = '每日一读';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>

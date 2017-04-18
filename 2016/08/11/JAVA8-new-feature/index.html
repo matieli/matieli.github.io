@@ -1,0 +1,864 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="JAVA," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="Java8新特性，函数式编程，使用Lambdas我们能做到什么？   遍历集合(List、Map等)、Sum、Max、Min、Avg、Sort、Distinct等等 函数接口 谓词(Predicate)使用 实现Map和Reduce 实现事件处理/简化多线程   内部循环和外部循环1234567public static void test1() &amp;#123;	List&amp;lt;Integer&amp;gt">
+<meta name="keywords" content="JAVA">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JAVA8新特性">
+<meta property="og:url" content="http://blog.matieli.me/2016/08/11/JAVA8-new-feature/index.html">
+<meta property="og:site_name" content="马老三">
+<meta property="og:description" content="Java8新特性，函数式编程，使用Lambdas我们能做到什么？   遍历集合(List、Map等)、Sum、Max、Min、Avg、Sort、Distinct等等 函数接口 谓词(Predicate)使用 实现Map和Reduce 实现事件处理/简化多线程   内部循环和外部循环1234567public static void test1() &amp;#123;	List&amp;lt;Integer&amp;gt">
+<meta property="og:updated_time" content="2017-04-18T02:43:33.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JAVA8新特性">
+<meta name="twitter:description" content="Java8新特性，函数式编程，使用Lambdas我们能做到什么？   遍历集合(List、Map等)、Sum、Max、Min、Avg、Sort、Distinct等等 函数接口 谓词(Predicate)使用 实现Map和Reduce 实现事件处理/简化多线程   内部循环和外部循环1234567public static void test1() &amp;#123;	List&amp;lt;Integer&amp;gt">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://blog.matieli.me/2016/08/11/JAVA8-new-feature/"/>
+
+
+
+
+
+  <title> JAVA8新特性 | 马老三 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">马老三</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">个人博客</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://blog.matieli.me/2016/08/11/JAVA8-new-feature/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="马铁利">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="马老三">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+            
+            
+              
+                JAVA8新特性
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-08-11T06:32:24+08:00">
+                2016-08-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2016/08/11/JAVA8-new-feature/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2016/08/11/JAVA8-new-feature/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>Java8新特性，函数式编程，使用Lambdas我们能做到什么？</p>
+<blockquote>
+<ul>
+<li>遍历集合(List、Map等)、Sum、Max、Min、Avg、Sort、Distinct等等</li>
+<li>函数接口</li>
+<li>谓词(Predicate)使用</li>
+<li>实现Map和Reduce</li>
+<li>实现事件处理/简化多线程</li>
+</ul>
+</blockquote>
+<h3 id="内部循环和外部循环"><a href="#内部循环和外部循环" class="headerlink" title="内部循环和外部循环"></a><strong>内部循环和外部循环</strong></h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">test1</span><span class="params">()</span> </span>&#123;</div><div class="line">	List&lt;Integer&gt; numbers = Arrays.asList(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>);</div><div class="line"></div><div class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> number : numbers) &#123;</div><div class="line">		System.out.println(number);</div><div class="line">   &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>上述代码是传统方式的遍历一个List的写法，简单来说主要有3个不足：</p>
+<blockquote>
+<ul>
+<li>只能顺序处理list中的数据(process one by one)</li>
+<li>不能充分利用多核cpu</li>
+<li>不利于编译器优化(jit)</li>
+</ul>
+</blockquote>
+<p>下面看看使用Lambda怎么写</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//使用lambda表达式以及函数操作(functional operation)  </span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">test2</span><span class="params">()</span></span>&#123;</div><div class="line">	List&lt;Integer&gt; numbers = Arrays.asList(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>);</div><div class="line">	numbers.forEach((Integer value)-&gt; System.out.println(value));</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>或者</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//在Java8中使用双冒号操作符(double colon operator) </span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">test3</span><span class="params">()</span></span>&#123;</div><div class="line">	List&lt;Integer&gt; numbers = Arrays.asList(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>);</div><div class="line">	numbers.forEach(System.out::println);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这样就能规避上面的三个问题：</p>
+<blockquote>
+<ul>
+<li>不一定需要顺序处理List中的元素，顺序可以不确定</li>
+<li>可以并行处理，充分利用多核CPU的优势</li>
+<li>有利于JIT编译器对代码进行优化</li>
+<li>代码看起来更简洁，完全交给编译器内部循环</li>
+</ul>
+</blockquote>
+<h3 id="传递行为，而不仅仅是传值"><a href="#传递行为，而不仅仅是传值" class="headerlink" title="传递行为，而不仅仅是传值"></a><strong>传递行为，而不仅仅是传值</strong></h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//sumAll算法很简单，完成的是将List中所有元素相加。</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">sumAll</span><span class="params">(List&lt;Integer&gt; numbers)</span> </span>&#123;</div><div class="line">	<span class="keyword">int</span> total = <span class="number">0</span>;</div><div class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> number : numbers) &#123;</div><div class="line">		total += number;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> total;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>sumAll算法很简单，完成的是将List中所有元素相加。某一天如果我们需要增加一个对List中所有偶数求和的方法sumAllEven,那么就产生了sumAll2，如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">sumAll2</span><span class="params">(List&lt;Integer&gt; numbers)</span> </span>&#123;</div><div class="line">	<span class="keyword">int</span> total = <span class="number">0</span>;</div><div class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> number : numbers) &#123;</div><div class="line">		<span class="keyword">if</span> (number % <span class="number">2</span> == <span class="number">0</span>) &#123;</div><div class="line">			total += number;  </div><div class="line">		&#125;  </div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> total;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>又有一天，我们需要增加第三个方法：对List中所有大于3的元素求和，那是不是继续加下面的方法呢?sumAll3</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">sumAll3</span><span class="params">(List&lt;Integer&gt; numbers)</span> </span>&#123;</div><div class="line">	<span class="keyword">int</span> total = <span class="number">0</span>;</div><div class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> number : numbers) &#123;</div><div class="line">		<span class="keyword">if</span> (number &gt; <span class="number">3</span>) &#123;</div><div class="line">			total += number;  </div><div class="line">		&#125;  </div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> total;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>观察这三个方法我们发现，有很多重复内容，唯一不同的是方法中的if条件不一样(第一个可以看成if(true))，如果让我们优化，可能想到的第一种重构就是策略模式吧，代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Strategy</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">test</span><span class="params">(<span class="keyword">int</span> num)</span></span>;</div><div class="line">&#125;</div><div class="line"> </div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SumAllStrategy</span> <span class="keyword">implements</span> <span class="title">Strategy</span> </span>&#123;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">test</span><span class="params">(<span class="keyword">int</span> num)</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"> </div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SumAllEvenStrategy</span> <span class="keyword">implements</span> <span class="title">Strategy</span> </span>&#123;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">test</span><span class="params">(<span class="keyword">int</span> num)</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> num % <span class="number">2</span> == <span class="number">0</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"> </div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SumAllGTThreeStrategy</span> <span class="keyword">implements</span> <span class="title">Strategy</span> </span>&#123;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">test</span><span class="params">(<span class="keyword">int</span> num)</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> num &gt; <span class="number">3</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BodyClass</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> Strategy stragegy = <span class="keyword">null</span>;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">static</span> Strategy DEFAULT_STRATEGY = <span class="keyword">new</span> SumAllStrategy();</div><div class="line"> </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">BodyClass</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>(<span class="keyword">null</span>);</div><div class="line">    &#125;</div><div class="line"> </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">BodyClass</span><span class="params">(Strategy arg)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (arg != <span class="keyword">null</span>) &#123;</div><div class="line">            <span class="keyword">this</span>.stragegy = arg;</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            <span class="keyword">this</span>.stragegy = DEFAULT_STRATEGY;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"> </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">sumAll</span><span class="params">(List&lt;Integer&gt; numbers)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> total = <span class="number">0</span>;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> number : numbers) &#123;</div><div class="line">            <span class="keyword">if</span> (stragegy.test(number)) &#123;</div><div class="line">                total += number;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> total;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//调用</span></div><div class="line">BodyClass  bc = <span class="keyword">new</span> BodyClass();</div><div class="line">bc.sumAll(numbers);</div></pre></td></tr></table></figure>
+<p>这无疑使用设计模式的方式优化了冗余代码，但是可能要额外增加几个类，以后扩展也要新增，下面看看使用lambda如何实现，声明方法：第一个参数还是我们之前传递的List数组，第二个看起来可能有点陌生，通过查看jdk可以知道，这个类是一个谓词（布尔值的函数）</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">sumAllByPredicate</span><span class="params">(List&lt;Integer&gt; numbers, Predicate&lt;Integer&gt; p)</span> </span>&#123;  </div><div class="line">        <span class="keyword">int</span> total = <span class="number">0</span>;  </div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> number : numbers) &#123;  </div><div class="line">            <span class="keyword">if</span> (p.test(number)) &#123;  </div><div class="line">                total += number;  </div><div class="line">            &#125;  </div><div class="line">        &#125;  </div><div class="line">        <span class="keyword">return</span> total;  </div><div class="line">    &#125;  </div><div class="line"><span class="comment">//调用：</span></div><div class="line">sumAllByPredicate(numbers, n -&gt; <span class="keyword">true</span>);</div><div class="line">sumAllByPredicate(numbers, n -&gt; n % <span class="number">2</span> == <span class="number">0</span>);</div><div class="line">sumAllByPredicate(numbers, n -&gt; n &gt; <span class="number">3</span>);</div></pre></td></tr></table></figure>
+<p>代码是不是比上面简洁了很多？语义也很明确，重要的是不管以后怎么变，都可以一行代码就修改了。。。万金油啊</p>
+<h3 id="实现Runnable接口"><a href="#实现Runnable接口" class="headerlink" title="实现Runnable接口"></a><strong>实现Runnable接口</strong></h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 1.1使用匿名内部类  </span></div><div class="line"><span class="keyword">new</span> Thread(<span class="keyword">new</span> Runnable() &#123;  </div><div class="line">	<span class="meta">@Override</span>  </div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;  </div><div class="line">		System.out.println(<span class="string">"Hello world !"</span>);  </div><div class="line">	&#125;  </div><div class="line">&#125;).start();</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">// 1.2使用 lambda expression  </span></div><div class="line"><span class="keyword">new</span> Thread(()-&gt;System.out.println(<span class="string">"Hello lambda !"</span>)).start();</div><div class="line"></div><div class="line"><span class="comment">// 2.1使用匿名内部类  </span></div><div class="line">Runnable race1 = <span class="keyword">new</span> Runnable() &#123;  </div><div class="line">	<span class="meta">@Override</span>  </div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;  </div><div class="line">		System.out.println(<span class="string">"race1,Hello world  !"</span>);  </div><div class="line">	&#125;  </div><div class="line">&#125;;</div><div class="line"><span class="comment">//直接调用 run方法(没开新线程哦!)  </span></div><div class="line">race1.run();</div><div class="line"></div><div class="line"><span class="comment">// 2.2使用 lambda expression  </span></div><div class="line">Runnable race2 = () -&gt; System.out.println(<span class="string">"race2,Hello lambda !"</span>);  </div><div class="line"><span class="comment">// 直接调用run方法(没开新线程哦!)  </span></div><div class="line">race2.run();</div></pre></td></tr></table></figure>
+<h3 id="Consumer与Loan-Pattern"><a href="#Consumer与Loan-Pattern" class="headerlink" title="Consumer与Loan Pattern"></a><strong>Consumer与Loan Pattern</strong></h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Resource</span> </span>&#123;  </div><div class="line">      </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Resource</span><span class="params">()</span> </span>&#123;  </div><div class="line">        System.out.println(<span class="string">"Opening resource"</span>);  </div><div class="line">    &#125;  </div><div class="line">  </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">operate</span><span class="params">()</span> </span>&#123;  </div><div class="line">        System.out.println(<span class="string">"Operating on resource"</span>);  </div><div class="line">    &#125;  </div><div class="line">  </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">dispose</span><span class="params">()</span> </span>&#123;  </div><div class="line">        System.out.println(<span class="string">"Disposing resource"</span>);  </div><div class="line">    &#125;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>因为对资源对象resource执行operate方法时可能抛出RuntimeException，所以需要在finally语句块中释放资源，防止可能的内存泄漏。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">Resource resource = <span class="keyword">new</span> Resource();  </div><div class="line"><span class="keyword">try</span> &#123;  </div><div class="line">    resource.operate();  </div><div class="line">&#125; <span class="keyword">finally</span> &#123;  </div><div class="line">    resource.dispose();  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>但是有一个问题，如果很多地方都要用到这个资源，那么就存在很多段类似这样的代码，这很明显违反了DRY（Don’t Repeat It Yourself）原则。而且如果某位程序员由于某些原因忘了用try/finally处理资源，那么很可能导致内存泄漏。那咋办呢？Java 8提供了一个Consumer接口，代码改写为如下:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">ResourceJava8</span> </span>&#123;  </div><div class="line">      </div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="title">ResourceJava8</span><span class="params">()</span> </span>&#123;  </div><div class="line">        System.out.println(<span class="string">"Opening resource"</span>);  </div><div class="line">    &#125;  </div><div class="line">  </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">operate</span><span class="params">()</span> </span>&#123;  </div><div class="line">        System.out.println(<span class="string">"Operating on resource"</span>);  </div><div class="line">    &#125;  </div><div class="line">  </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">dispose</span><span class="params">()</span> </span>&#123;  </div><div class="line">        System.out.println(<span class="string">"Disposing resource"</span>);  </div><div class="line">    &#125;  </div><div class="line">  </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">withResource</span><span class="params">(Consumer&lt;ResourceJava8&gt; consumer)</span> </span>&#123;  </div><div class="line">        ResourceJava8 resource = <span class="keyword">new</span> ResourceJava8();  </div><div class="line">        <span class="keyword">try</span> &#123;  </div><div class="line">            consumer.accept(resource);  </div><div class="line">        &#125; <span class="keyword">finally</span> &#123;  </div><div class="line">            resource.dispose();  </div><div class="line">        &#125;  </div><div class="line">    &#125;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>外部要访问Resource不能通过它的构造函数了（private），只能通过withResource方法了，这样代码清爽多了，而且也完全杜绝了因人为疏忽而导致的潜在内存泄漏。调用:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ResourceJava8.withResource(resourceJava8 -&gt; resourceJava8.operate());</div></pre></td></tr></table></figure>
+<h3 id="Streams与集合"><a href="#Streams与集合" class="headerlink" title="Streams与集合"></a><strong>Streams与集合</strong></h3><p>Stream是对集合的包装,通常和lambda一起使用。 使用lambdas可以支持许多操作,如 map, filter, limit, sorted, count, min, max, sum, collect 等等。 同样,Stream使用懒运算,他们并不会真正地读取所有数据,遇到像getFirst() 这样的方法就会结束链式语法，通过下面一系列例子介绍：<br>比如我有个Person类，就是一个简单的pojo:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span></span>&#123;</div><div class="line">    <span class="keyword">private</span> String name, job, gender;  </div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> salary, age;  </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Person</span><span class="params">(String name,String job,String gender,<span class="keyword">int</span> age,<span class="keyword">int</span> salary)</span></span>&#123;</div><div class="line">        <span class="keyword">this</span>.name = name;</div><div class="line">        <span class="keyword">this</span>.job = job;</div><div class="line">        <span class="keyword">this</span>.gender = gender;</div><div class="line">        <span class="keyword">this</span>.salary = salary;</div><div class="line">        <span class="keyword">this</span>.age = age;</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> name;</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.name = name;</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getJob</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> job;</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setJob</span><span class="params">(String job)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.job = job;</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getGender</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> gender;</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setGender</span><span class="params">(String gender)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.gender = gender;</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getSalary</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> salary;</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setSalary</span><span class="params">(<span class="keyword">int</span> salary)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.salary = salary;</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getAge</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> age;</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setAge</span><span class="params">(<span class="keyword">int</span> age)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.age = age;</div><div class="line">    &#125;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="string">"Person [name="</span> + name + <span class="string">", job="</span> + job + <span class="string">", gender="</span> + gender</div><div class="line">                + <span class="string">", salary="</span> + salary + <span class="string">", age="</span> + age + <span class="string">"]"</span>;</div><div class="line">    &#125;</div><div class="line">     </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>一系列测试：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div></pre></td><td class="code"><pre><div class="line">List&lt;Person&gt;  persons = <span class="keyword">new</span> ArrayList&lt;Person&gt;() &#123;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">long</span> serialVersionUID = <span class="number">1L</span>;</div><div class="line">    &#123;</div><div class="line">        add(<span class="keyword">new</span> Person(<span class="string">"张三"</span>, <span class="string">"Java"</span>, <span class="string">"female"</span>, <span class="number">25</span>, <span class="number">1000</span>));</div><div class="line">        add(<span class="keyword">new</span> Person(<span class="string">"李四"</span>, <span class="string">"Java"</span>, <span class="string">"male"</span>, <span class="number">29</span>, <span class="number">1200</span>));</div><div class="line">        add(<span class="keyword">new</span> Person(<span class="string">"王五"</span>, <span class="string">"测试"</span>, <span class="string">"female"</span>, <span class="number">25</span>, <span class="number">1400</span>));</div><div class="line">        add(<span class="keyword">new</span> Person(<span class="string">"赵六"</span>, <span class="string">"Java"</span>, <span class="string">"male"</span>, <span class="number">31</span>, <span class="number">1800</span>));</div><div class="line">        add(<span class="keyword">new</span> Person(<span class="string">"张三三"</span>, <span class="string">"设计"</span>, <span class="string">"male"</span>, <span class="number">33</span>, <span class="number">1900</span>));</div><div class="line">        add(<span class="keyword">new</span> Person(<span class="string">"李四四"</span>, <span class="string">"需求"</span>, <span class="string">"female"</span>, <span class="number">30</span>, <span class="number">2000</span>));</div><div class="line">        add(<span class="keyword">new</span> Person(<span class="string">"王五五"</span>, <span class="string">"Java"</span>, <span class="string">"female"</span>, <span class="number">29</span>, <span class="number">2100</span>));</div><div class="line">        add(<span class="keyword">new</span> Person(<span class="string">"赵六六"</span>, <span class="string">"Java"</span>, <span class="string">"male"</span>, <span class="number">43</span>, <span class="number">2800</span>));</div><div class="line">    &#125;</div><div class="line">&#125;;</div><div class="line"><span class="comment">//1.使用foreach输出上述列表</span></div><div class="line">System.err.println(<span class="string">"1------------"</span>);</div><div class="line">Consumer&lt;Person&gt; print = e -&gt; System.out.println(e.toString());</div><div class="line">persons.forEach(print);  </div><div class="line"><span class="comment">//2.将所有员工工资涨10%,使用foreach</span></div><div class="line">System.err.println(<span class="string">"2------------"</span>);</div><div class="line">Consumer&lt;Person&gt; raise = e -&gt; e.setSalary(e.getSalary()/<span class="number">100</span>*<span class="number">10</span>+e.getSalary());</div><div class="line">persons.forEach(raise);</div><div class="line">persons.forEach(print);</div><div class="line"><span class="comment">//3.显示工资低于1500的员工，使用stream().filter()</span></div><div class="line">System.err.println(<span class="string">"3------------"</span>);</div><div class="line">persons.stream().filter((p) -&gt; (p.getSalary()&lt; <span class="number">1500</span>)).forEach(print);</div><div class="line"><span class="comment">//4.显示工资大于2000 job=java 年龄&gt;29 的女生</span></div><div class="line">System.err.println(<span class="string">"4------------"</span>);</div><div class="line">Predicate&lt;Person&gt; salaryPredicate = e -&gt; e.getSalary() &gt; <span class="number">2000</span>;</div><div class="line">Predicate&lt;Person&gt; jobPredicate = e -&gt; <span class="string">"Java"</span>.equals(e.getJob());</div><div class="line">Predicate&lt;Person&gt; agePredicate = e -&gt; e.getAge() &gt;= <span class="number">29</span>;</div><div class="line">Predicate&lt;Person&gt; genderPredicate = e -&gt; <span class="string">"female"</span>.equals(e.getGender());</div><div class="line">persons.stream().filter(salaryPredicate)</div><div class="line">                .filter(jobPredicate)</div><div class="line">                .filter(agePredicate)</div><div class="line">                .filter(genderPredicate)</div><div class="line">                .forEach(print);</div><div class="line"><span class="comment">//5.限制结果条数limit</span></div><div class="line">System.err.println(<span class="string">"5------------"</span>);</div><div class="line">persons.stream().filter(genderPredicate).limit(<span class="number">2</span>).forEach(print);</div><div class="line"><span class="comment">//6.按照年龄排序</span></div><div class="line">System.err.println(<span class="string">"6------------"</span>);</div><div class="line">persons.stream().sorted((p1,p2)-&gt; (p1.getAge() - p2.getAge()))</div><div class="line">                <span class="comment">//.sorted((p1,p2)-&gt;(p1.getName().compareTo(p2.getName())))</span></div><div class="line">                .forEach(print);</div><div class="line"><span class="comment">//7.找出工资最高max()，年龄最小的min()</span></div><div class="line">System.err.println(<span class="string">"7------------"</span>);</div><div class="line">System.out.println(persons.stream().min((p1,p2)-&gt;(p1.getSalary()-p2.getSalary())).get().toString());</div><div class="line">System.out.println(persons.stream().max((p1,p2)-&gt;(p1.getSalary()-p2.getSalary())).get().toString());</div><div class="line"> </div><div class="line"><span class="comment">//8.计算所有人的工资parallel()并行的计算</span></div><div class="line">System.err.println(<span class="string">"8------------"</span>);</div><div class="line">System.out.println(<span class="string">"所有人的工资总和："</span>+persons.stream().parallel().mapToInt(p-&gt;p.getSalary()).sum());</div><div class="line"> </div><div class="line"><span class="comment">//9.将人员姓名存放到TreeSet\set\String中</span></div><div class="line">System.err.println(<span class="string">"9------------"</span>);</div><div class="line">String str = persons.stream().map(Person::getName).collect(Collectors.joining(<span class="string">";"</span>));</div><div class="line">System.out.println(str);</div><div class="line">TreeSet&lt;String&gt; ts = persons.stream().map(Person::getName).collect(Collectors.toCollection(TreeSet::<span class="keyword">new</span>));</div><div class="line">System.out.println(<span class="string">"ts.toString():"</span>+ts.toString());</div><div class="line">Set&lt;String&gt; set = persons.stream().map(Person::getName).collect(Collectors.toSet());</div><div class="line">System.out.println(<span class="string">"set.toString():"</span>+set.toString());</div><div class="line"><span class="comment">//10.统计结果summaryStatistics()</span></div><div class="line">System.err.println(<span class="string">"10------------"</span>);</div><div class="line">List&lt;Integer&gt; numbers = Arrays.asList(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>, <span class="number">10</span>);  </div><div class="line">IntSummaryStatistics stats = numbers  </div><div class="line">          .stream()  </div><div class="line">          .mapToInt((x) -&gt; x)  </div><div class="line">          .summaryStatistics();  </div><div class="line">   </div><div class="line">System.out.println(<span class="string">"List中最大的数字 : "</span> + stats.getMax());  </div><div class="line">System.out.println(<span class="string">"List中最小的数字 : "</span> + stats.getMin());  </div><div class="line">System.out.println(<span class="string">"所有数字的总和   : "</span> + stats.getSum());  </div><div class="line">System.out.println(<span class="string">"所有数字的平均值 : "</span> + stats.getAverage());  </div><div class="line"><span class="comment">//11.去除重复元素，创建新数组</span></div><div class="line">System.err.println(<span class="string">"11------------"</span>);</div><div class="line">List&lt;Integer&gt; numbers1 = Arrays.asList(<span class="number">9</span>, <span class="number">10</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">7</span>, <span class="number">3</span>, <span class="number">4</span>);</div><div class="line">List&lt;Integer&gt; distinct = numbers1.stream().distinct().collect(Collectors.toList());</div><div class="line">System.out.println(distinct);</div></pre></td></tr></table></figure>
+<h3 id="日期处理"><a href="#日期处理" class="headerlink" title="日期处理"></a><strong>日期处理</strong></h3><p>Java8新增了LocalDate和LocalTime接口，为什么要搞一套全新的处理日期和时间的API？因为旧的java.util.Date实在是太难用了。</p>
+<blockquote>
+<ul>
+<li>java.util.Date月份从0开始，一月是0，十二月是11，变态吧！java.time.LocalDate月份和星期都改成了enum，就不可能再用错了。</li>
+<li>java.util.Date和SimpleDateFormatter都不是线程安全的，而LocalDate和LocalTime和最基本的String一样，是不变类型，不但线程安全，而且不能修改。</li>
+<li>java.util.Date是一个“万能接口”，它包含日期、时间，还有毫秒数，如果你只想用java.util.Date存储日期，或者只存储时间，那么，只有你知道哪些部分的数据是有用的，哪些部分的数据是不能用的。在新的Java8中，日期和时间被明确划分为LocalDate和LocalTime，LocalDate无法包含时间，LocalTime无法包含日期。</li>
+</ul>
+</blockquote>
+<p>当然，LocalDateTime才能同时包含日期和时间。</p>
+<p>新接口更好用的原因是考虑到了日期时间的操作，经常发生往前推或往后推几天的情况。用java.util.Date配合Calendar要写好多代码，而且一般的开发人员还不一定能写对。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test1</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">		</div><div class="line">		<span class="comment">// 1.Clock时钟</span></div><div class="line">		<span class="comment">// Clock类提供了访问当前日期和时间的方法，Clock是时区敏感的，可以用来取代 System.currentTimeMillis()</span></div><div class="line">		<span class="comment">// 来获取当前的微秒数。某一个特定的时间点也可以使用Instant类(为Final类)来表示，Instant类也可以用来创建老的java.util.Date对象。</span></div><div class="line">		System.err.println(<span class="string">"Clock时钟"</span>);</div><div class="line">		Clock c = Clock.systemDefaultZone();</div><div class="line">		System.out.println(System.currentTimeMillis());</div><div class="line">		System.out.println(c.millis());</div><div class="line">		Date date = Date.from(c.instant());</div><div class="line">		SimpleDateFormat sdf = <span class="keyword">new</span> SimpleDateFormat(<span class="string">"yyyy-MM-dd HH:mm:ss"</span>);</div><div class="line">		System.out.println(sdf.format(date));</div><div class="line">		<span class="comment">// instant精确到纳秒，比原来的date的毫秒要更精确</span></div><div class="line">		<span class="comment">// 获取当前时间</span></div><div class="line">		Instant in = Instant.now();</div><div class="line">		System.out.println(in);</div><div class="line">		<span class="comment">// 将现在的时间增加3小时2分,将产生新的实例</span></div><div class="line">		Instant in1 = in.plus(Duration.ofHours(<span class="number">3</span>).plusMinutes(<span class="number">2</span>));</div><div class="line">		System.out.println(in1);</div><div class="line">		System.out.println(in1 == in);</div><div class="line">		<span class="comment">// 关于计算的例子</span></div><div class="line">		in.minus(<span class="number">5</span>, ChronoUnit.DAYS);<span class="comment">// 计算5天前</span></div><div class="line">		in.minus(Duration.ofDays(<span class="number">5</span>));<span class="comment">// 计算5天前</span></div><div class="line"></div><div class="line">		<span class="comment">// 计算两个Instant之间的分钟数</span></div><div class="line">		<span class="keyword">long</span> diffAsMinutes1 = ChronoUnit.MINUTES.between(in, in1); <span class="comment">// 方法2</span></div><div class="line">		System.out.println(diffAsMinutes1);</div><div class="line">		<span class="comment">// instant是可比较的，有isAfter和isBefore</span></div><div class="line">		System.out.println(in.isAfter(in1));</div><div class="line">		System.out.println(in.isBefore(in1));</div><div class="line"></div><div class="line">		<span class="comment">// 2.LocalDate和LocalTime、LocalDateTime(均为Final类,不带时区)</span></div><div class="line">		System.err.println(<span class="string">"2.LocalDate和LocalTime、LocalDateTime"</span>);</div><div class="line">		LocalDate today = LocalDate.now();<span class="comment">//取当前日期</span></div><div class="line">		System.out.println(today);</div><div class="line">		<span class="comment">//获得2005年的第86天 (27-Mar-2005)</span></div><div class="line">		LocalDate localDate = LocalDate.ofYearDay(<span class="number">2005</span>, <span class="number">86</span>); </div><div class="line">		System.out.println(localDate);</div><div class="line">		<span class="comment">// 根据年月日取日期 2013年8月10日</span></div><div class="line">		localDate = LocalDate.of(<span class="number">2013</span>, Month.AUGUST, <span class="number">10</span>); </div><div class="line">		localDate = LocalDate.of(<span class="number">2013</span>, <span class="number">8</span>, <span class="number">10</span>);</div><div class="line">		</div><div class="line">		<span class="comment">// 根据字符串取</span></div><div class="line">		LocalDate.parse(<span class="string">"2014-02-28"</span>); <span class="comment">// 严格按照ISO yyyy-MM-dd验证，02写成2都不行</span></div><div class="line">		LocalDate.parse(<span class="string">"2014-02-29"</span>); <span class="comment">// 无效日期无法通过：DateTimeParseException: Invalid date</span></div><div class="line">		</div><div class="line">		<span class="comment">// 取本月第1天：</span></div><div class="line">		LocalDate firstDayOfThisMonth = today.with(TemporalAdjusters.firstDayOfMonth()); <span class="comment">// 2014-12-01</span></div><div class="line">		<span class="comment">// 取本月第2天：</span></div><div class="line">		LocalDate secondDayOfThisMonth = today.withDayOfMonth(<span class="number">2</span>); <span class="comment">// 2014-12-02</span></div><div class="line">		<span class="comment">// 取本月最后一天，再也不用计算是28，29，30还是31：</span></div><div class="line">		LocalDate lastDayOfThisMonth = today.with(TemporalAdjusters.lastDayOfMonth()); <span class="comment">// 2014-12-31</span></div><div class="line">		<span class="comment">// 取下一天：</span></div><div class="line">		LocalDate firstDayOf2015 = lastDayOfThisMonth.plusDays(<span class="number">1</span>); <span class="comment">// 变成了2015-01-01</span></div><div class="line">		<span class="comment">// 取2015年1月第一个周一，这个计算用Calendar要死掉很多脑细胞：</span></div><div class="line">		LocalDate firstMondayOf2015 = LocalDate.parse(<span class="string">"2015-01-01"</span>).with(TemporalAdjusters.firstInMonth(DayOfWeek.MONDAY)); <span class="comment">// 2015-01-05</span></div><div class="line">		</div><div class="line">		<span class="comment">//LocalTime</span></div><div class="line">		LocalTime now = LocalTime.now();<span class="comment">//带纳秒，如果想清除纳秒</span></div><div class="line">		LocalTime now1 = LocalTime.now().withNano(<span class="number">0</span>);</div><div class="line">		System.out.println(now);</div><div class="line">		System.out.println(now1);</div><div class="line">		LocalTime localTime = LocalTime.of(<span class="number">22</span>, <span class="number">33</span>); <span class="comment">// 10:33 PM</span></div><div class="line">		</div><div class="line">		System.out.println(localTime);</div><div class="line">		localTime = LocalTime.ofSecondOfDay(<span class="number">4503</span>); <span class="comment">// 返回一天中的第4503秒 (1:15:30 AM)</span></div><div class="line">		System.out.println(localTime);</div><div class="line"></div><div class="line">		LocalDateTime localDateTime0 = LocalDateTime.now();</div><div class="line">		System.out.println(localDateTime0);</div><div class="line">		<span class="comment">//当前时间加上25小时３分钟</span></div><div class="line"></div><div class="line">		LocalDateTime inTheFuture = localDateTime0.plusHours(<span class="number">25</span>).plusMinutes(<span class="number">3</span>);</div><div class="line">		System.out.println(inTheFuture);</div><div class="line">		<span class="comment">//同样也可以用在localTime和localDate中</span></div><div class="line"></div><div class="line">		System.out.println(localDateTime0.toLocalTime().plusHours(<span class="number">25</span>).plusMinutes(<span class="number">3</span>));</div><div class="line"></div><div class="line">		System.out.println(localDateTime0.toLocalDate().plusMonths(<span class="number">2</span>));</div><div class="line"></div><div class="line">		<span class="comment">//也可以使用实现TemportalAmount接口的Duration类和Period类</span></div><div class="line"></div><div class="line">		System.out.println(localDateTime0.toLocalTime().plus(Duration.ofHours(<span class="number">25</span>).plusMinutes(<span class="number">3</span>)));</div><div class="line">		System.out.println(localDateTime0.toLocalDate().plus(Period.ofMonths(<span class="number">2</span>)));</div><div class="line">		LocalDateTime localDateTime1 = LocalDateTime.MIN;</div><div class="line">		System.out.println(localDateTime1);</div><div class="line">		</div><div class="line">		<span class="comment">//LocalDateTime和Instant两者很像都是不带时区的日期和时间，Instant中是不带时区的即时时间点。可能会有疑问，即时的时间点不就是日期＋时间么</span></div><div class="line">		<span class="comment">//举个例子：两个人都是2016年4月14日出生的，一个出生在北京，一个出生在纽约；看上去他们是一起出生的(LocalDateTime的语义)，其实他们是有时间差的(Instant的语义)</span></div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="Default方法"><a href="#Default方法" class="headerlink" title="Default方法"></a><strong>Default方法</strong></h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test1</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">		Formula formula = <span class="keyword">new</span> Formula() &#123;</div><div class="line">			<span class="meta">@Override</span></div><div class="line">			<span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">calculate</span><span class="params">(<span class="keyword">int</span> a)</span> </span>&#123;</div><div class="line">				<span class="keyword">return</span> sqrt(a * <span class="number">100</span>);</div><div class="line">			&#125;</div><div class="line">		&#125;;</div><div class="line">		System.out.println(formula.calculate(<span class="number">100</span>)); <span class="comment">// 100.0</span></div><div class="line">		System.out.println(formula.sqrt(<span class="number">16</span>)); <span class="comment">// 4.0</span></div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">interface</span> <span class="title">Formula</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">double</span> <span class="title">calculate</span><span class="params">(<span class="keyword">int</span> a)</span></span>;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">default</span> <span class="keyword">double</span> <span class="title">sqrt</span><span class="params">(<span class="keyword">int</span> a)</span> </span>&#123;</div><div class="line">		<span class="keyword">return</span> Math.sqrt(a);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="字符串拼接"><a href="#字符串拼接" class="headerlink" title="字符串拼接"></a><strong>字符串拼接</strong></h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">String joined = String.join(<span class="string">"/"</span>, <span class="string">"usr"</span>,<span class="string">"local"</span>,<span class="string">"bin"</span>);</div><div class="line">String joided1=<span class="string">"usr/"</span>+<span class="string">"local/"</span>+<span class="string">"bin/"</span>;</div><div class="line">System.out.println(joined);</div><div class="line"></div><div class="line">String ids = String.join(<span class="string">", "</span>, ZoneId.getAvailableZoneIds());</div><div class="line">System.out.println(ids);</div></pre></td></tr></table></figure>
+<h3 id="Objects类"><a href="#Objects类" class="headerlink" title="Objects类"></a><strong>Objects类</strong></h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">String aa = <span class="keyword">null</span>;</div><div class="line">		</div><div class="line">Objects.requireNonNull(aa,<span class="string">" aa must be not null"</span>);</div><div class="line"></div><div class="line"></div><div class="line">Object a = <span class="keyword">null</span>;</div><div class="line">Object b = <span class="keyword">new</span> Object();</div><div class="line"><span class="keyword">if</span>(a.equals(b))&#123;</div><div class="line">	</div><div class="line">&#125;</div><div class="line"><span class="keyword">if</span>(Objects.equals(a, b))&#123;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="Base64编码"><a href="#Base64编码" class="headerlink" title="Base64编码"></a><strong>Base64编码</strong></h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Base64.Encoder encoder = Base64.getEncoder();</div><div class="line">Base64.Decoder decoder = Base64.getDecoder();</div><div class="line">String str = encoder.encodeToString(<span class="string">"你好"</span>.getBytes(StandardCharsets.UTF_8));</div><div class="line">System.out.println(str);</div><div class="line">System.out.println(<span class="keyword">new</span> String(decoder.decode(str),StandardCharsets.UTF_8));</div></pre></td></tr></table></figure>
+<h3 id="java7异常"><a href="#java7异常" class="headerlink" title="java7异常"></a><strong>java7异常</strong></h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">try</span> &#123;</div><div class="line">	Class&lt;?&gt; forName = Class.forName(<span class="string">"java.lang.Object"</span>);</div><div class="line">	</div><div class="line">	Method method = forName.getMethod(<span class="string">"toString"</span>);</div><div class="line">	</div><div class="line">	System.out.println(method.invoke(forName)+<span class="string">"===="</span>);</div><div class="line">&#125; <span class="keyword">catch</span> (IllegalAccessException | IllegalArgumentException</div><div class="line">		| InvocationTargetException | NoSuchMethodException</div><div class="line">		| SecurityException | ClassNotFoundException e) &#123;</div><div class="line">	e.printStackTrace();</div><div class="line">&#125;<span class="keyword">catch</span> (ReflectiveOperationException e) &#123;<span class="comment">// 新的捕获异常的类，以上异常的父类</span></div><div class="line">	e.printStackTrace();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="JAVA7自动资源管理"><a href="#JAVA7自动资源管理" class="headerlink" title="JAVA7自动资源管理"></a><strong>JAVA7自动资源管理</strong></h3><p>之前写法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">FileInputStream in = <span class="keyword">null</span>;  </div><div class="line">FileOutputStream out = <span class="keyword">null</span>;  </div><div class="line"><span class="keyword">try</span> &#123;  </div><div class="line">  in = <span class="keyword">new</span> FileInputStream(<span class="string">"xanadu.txt"</span>);  </div><div class="line">  out = <span class="keyword">new</span> FileOutputStream(<span class="string">"outagain.txt"</span>);  </div><div class="line">  <span class="keyword">int</span> c;  </div><div class="line">  <span class="keyword">while</span> ((c = in.read()) != -<span class="number">1</span>)  </div><div class="line">    out.write(c);  </div><div class="line">&#125; <span class="keyword">finally</span> &#123;  </div><div class="line">  <span class="keyword">if</span> (in != <span class="keyword">null</span>)  </div><div class="line">    in.close();  </div><div class="line">  <span class="keyword">if</span> (out != <span class="keyword">null</span>)  </div><div class="line">    out.close();  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>JAVA 7写法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">try</span> (  </div><div class="line">  FileInputStream in = <span class="keyword">new</span> FileInputStream(<span class="string">"xanadu.txt"</span>);  </div><div class="line">  FileOutputStream out = <span class="keyword">new</span> FileOutputStream(<span class="string">"outagain.txt"</span>)  </div><div class="line">) &#123;  </div><div class="line">  <span class="keyword">int</span> c;  </div><div class="line">  <span class="keyword">while</span>((c=in.read()) != -<span class="number">1</span> )  </div><div class="line">    out.write();  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+<div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/uploads/wechat-qcode.jpg" alt="马铁利 wechat" style="width: 200px; max-width: 100%;"/>
+    <div>欢迎您扫一扫上面的微信公众号，订阅我的博客！</div>
+</div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JAVA/" rel="tag"># JAVA</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/08/14/git-introduce/" rel="next" title="GIT介绍">
+                <i class="fa fa-chevron-left"></i> GIT介绍
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/08/11/markdown-simple-grammar/" rel="prev" title="markdown-简单语法">
+                markdown-简单语法 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.jpg"
+               alt="马铁利" />
+          <p class="site-author-name" itemprop="name">马铁利</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/matieli" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.dbalog.net/" title="DBA_LOG" target="_blank">DBA_LOG</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#内部循环和外部循环"><span class="nav-number">1.</span> <span class="nav-text">内部循环和外部循环</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#传递行为，而不仅仅是传值"><span class="nav-number">2.</span> <span class="nav-text">传递行为，而不仅仅是传值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实现Runnable接口"><span class="nav-number">3.</span> <span class="nav-text">实现Runnable接口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Consumer与Loan-Pattern"><span class="nav-number">4.</span> <span class="nav-text">Consumer与Loan Pattern</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Streams与集合"><span class="nav-number">5.</span> <span class="nav-text">Streams与集合</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#日期处理"><span class="nav-number">6.</span> <span class="nav-text">日期处理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Default方法"><span class="nav-number">7.</span> <span class="nav-text">Default方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字符串拼接"><span class="nav-number">8.</span> <span class="nav-text">字符串拼接</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Objects类"><span class="nav-number">9.</span> <span class="nav-text">Objects类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Base64编码"><span class="nav-number">10.</span> <span class="nav-text">Base64编码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#java7异常"><span class="nav-number">11.</span> <span class="nav-text">java7异常</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JAVA7自动资源管理"><span class="nav-number">12.</span> <span class="nav-text">JAVA7自动资源管理</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">马铁利</span>
+</div>
+
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://blog.matieli.me/2016/08/11/JAVA8-new-feature/';
+          this.page.identifier = '2016/08/11/JAVA8-new-feature/';
+          this.page.title = 'JAVA8新特性';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>

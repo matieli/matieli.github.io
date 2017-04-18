@@ -1,0 +1,776 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Quartz," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="&amp;emsp;&amp;emsp;若有多个任务需要调度，则配置多个JobDetail、Trigger即可，待执行的Task bean没有啥任何要求，不需要extends任何class、或者implements任何interface，只是被执行的method需要是无参数的；  但是在我们现实项目中，仅仅完成这样的功能是还不够的，我们还需要争取完成以下几点：  对所有的Task实现执行开始、结束时间的记录； 对">
+<meta name="keywords" content="Quartz">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Quartz中扩展MethodInvokingJobDetailFactoryBean实现对任务调度">
+<meta property="og:url" content="http://blog.matieli.me/2016/08/15/Quartz中扩展实现对任务调度/index.html">
+<meta property="og:site_name" content="马老三">
+<meta property="og:description" content="&amp;emsp;&amp;emsp;若有多个任务需要调度，则配置多个JobDetail、Trigger即可，待执行的Task bean没有啥任何要求，不需要extends任何class、或者implements任何interface，只是被执行的method需要是无参数的；  但是在我们现实项目中，仅仅完成这样的功能是还不够的，我们还需要争取完成以下几点：  对所有的Task实现执行开始、结束时间的记录； 对">
+<meta property="og:updated_time" content="2017-04-18T02:46:08.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Quartz中扩展MethodInvokingJobDetailFactoryBean实现对任务调度">
+<meta name="twitter:description" content="&amp;emsp;&amp;emsp;若有多个任务需要调度，则配置多个JobDetail、Trigger即可，待执行的Task bean没有啥任何要求，不需要extends任何class、或者implements任何interface，只是被执行的method需要是无参数的；  但是在我们现实项目中，仅仅完成这样的功能是还不够的，我们还需要争取完成以下几点：  对所有的Task实现执行开始、结束时间的记录； 对">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://blog.matieli.me/2016/08/15/Quartz中扩展实现对任务调度/"/>
+
+
+
+
+
+  <title> Quartz中扩展MethodInvokingJobDetailFactoryBean实现对任务调度 | 马老三 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">马老三</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">个人博客</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://blog.matieli.me/2016/08/15/Quartz中扩展实现对任务调度/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="马铁利">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="马老三">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+            
+            
+              
+                Quartz中扩展MethodInvokingJobDetailFactoryBean实现对任务调度
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-08-15T00:00:00+08:00">
+                2016-08-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2016/08/15/Quartz中扩展实现对任务调度/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2016/08/15/Quartz中扩展实现对任务调度/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>&emsp;&emsp;若有多个任务需要调度，则配置多个JobDetail、Trigger即可，待执行的Task bean没有啥任何要求，不需要extends任何class、或者implements任何interface，只是被执行的method需要是无参数的；</p>
+<blockquote>
+<p>但是在我们现实项目中，仅仅完成这样的功能是还不够的，我们还需要争取完成以下几点：</p>
+<ul>
+<li>对所有的Task实现执行开始、结束时间的记录；</li>
+<li>对每天的Task执行结果持久化、或者通过email、旺旺消息等方式告知相关owner；</li>
+<li>当我们有多台Task服务器时，如何保证每个任务只在一台服务器上执行;</li>
+</ul>
+</blockquote>
+<p>&emsp;&emsp;针对以上几个问题，我们也都有很简单、直接的办法可以搞定，比如说1、2两点可以直接在每个任务中各自编码完成，但是这样不仅每个task都要写非常类似的重复代码、而且不能保证每个任务的执行情况都被记录，因为某些task的编码人员就不会在意这些非功能性需求；对于第3点，我们也可以通过配置来完成向不同task服务器部署不一样的发布包来完成，但这给发布带来了麻烦，这意味着有多少台task服务器，就需要通过修改配置重新打包并发布多少次；</p>
+<p>&emsp;&emsp;其实我们可以利用Spring默认提供的AOP来非常优雅的解决这几个问题：扩展MethodInvokingJobDetailFactoryBean来实现对任务调度时的拦截！其关键代码为MethodInvokingJobDetailFactoryBean.MethodInvokingJob.executeInternal(JobExecutionContext context);这个method中；</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div><div class="line">151</div><div class="line">152</div><div class="line">153</div><div class="line">154</div><div class="line">155</div><div class="line">156</div><div class="line">157</div><div class="line">158</div><div class="line">159</div><div class="line">160</div><div class="line">161</div><div class="line">162</div><div class="line">163</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> com.lemon.core.quartz;</div><div class="line"></div><div class="line"><span class="keyword">import</span> java.net.InetAddress;</div><div class="line"><span class="keyword">import</span> java.net.NetworkInterface;</div><div class="line"><span class="keyword">import</span> java.net.SocketException;</div><div class="line"><span class="keyword">import</span> java.sql.Connection;</div><div class="line"><span class="keyword">import</span> java.sql.PreparedStatement;</div><div class="line"><span class="keyword">import</span> java.sql.ResultSet;</div><div class="line"><span class="keyword">import</span> java.util.ArrayList;</div><div class="line"><span class="keyword">import</span> java.util.Enumeration;</div><div class="line"><span class="keyword">import</span> java.util.List;</div><div class="line"><span class="keyword">import</span> javax.annotation.Resource;</div><div class="line"><span class="keyword">import</span> javax.sql.DataSource;</div><div class="line"><span class="keyword">import</span> org.quartz.JobDataMap;</div><div class="line"><span class="keyword">import</span> org.quartz.JobDetail;</div><div class="line"><span class="keyword">import</span> org.quartz.JobExecutionContext;</div><div class="line"><span class="keyword">import</span> org.quartz.JobExecutionException;</div><div class="line"><span class="keyword">import</span> org.quartz.impl.JobDetailImpl;</div><div class="line"><span class="keyword">import</span> org.slf4j.Logger;</div><div class="line"><span class="keyword">import</span> org.slf4j.LoggerFactory;</div><div class="line"><span class="keyword">import</span> org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean;</div><div class="line"><span class="keyword">import</span> org.springframework.util.MethodInvoker;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">JobDetailFactoryBean2</span> <span class="keyword">extends</span> <span class="title">MethodInvokingJobDetailFactoryBean</span></span>&#123;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Logger logger = LoggerFactory.getLogger(JobDetailFactoryBean.class);</div><div class="line">            </div><div class="line">    <span class="keyword">private</span> DataSource jobQuartzDataSource;</div><div class="line">    </div><div class="line">    <span class="keyword">private</span> String quartzSQL;</div><div class="line">    </div><div class="line">    <span class="meta">@Resource</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setJobQuartzDataSource</span><span class="params">(DataSource jobQuartzDataSource)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.jobQuartzDataSource = jobQuartzDataSource;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Resource</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setQuartzSQL</span><span class="params">(String quartzSQL)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.quartzSQL = quartzSQL;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">postProcessJobDetail</span><span class="params">(JobDetail jobDetail)</span> </span>&#123;</div><div class="line">        JobDataMap jobDataMap = jobDetail.getJobDataMap();</div><div class="line">        jobDataMap.put(<span class="string">"jobQuartzDataSource"</span>, jobQuartzDataSource);</div><div class="line">        jobDataMap.put(<span class="string">"quartzSQL"</span>, quartzSQL);</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">afterPropertiesSet</span><span class="params">()</span> <span class="keyword">throws</span> ClassNotFoundException,NoSuchMethodException </span>&#123;</div><div class="line">        <span class="keyword">super</span>.afterPropertiesSet();</div><div class="line"></div><div class="line">        String clazzName = ((JobDetail) <span class="keyword">super</span>.getObject()).getJobClass().getName();</div><div class="line">        logger.info(<span class="string">"origin jobClass : "</span> + clazzName);</div><div class="line">                </div><div class="line">        <span class="comment">// Consider the concurrent flag to choose between stateful and stateless job.</span></div><div class="line">        String invokeName = MethodInvokingJob.class.getName();</div><div class="line">        logger.info(<span class="string">"MethodInvokingJob.name : "</span> + invokeName);</div><div class="line">        <span class="keyword">if</span>(invokeName.equals(clazzName)) &#123;</div><div class="line">            logger.info(<span class="string">"jobClass : "</span> + clazzName);</div><div class="line">            ((JobDetailImpl)<span class="keyword">super</span>.getObject()).setJobClass(AppsMethodInvokingJob.class);</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            ((JobDetailImpl)<span class="keyword">super</span>.getObject()).setJobClass(AppsStatefulMethodInvokingJob.class);</div><div class="line">        &#125;</div><div class="line">        logger.info(<span class="string">"new jobClass : "</span> + clazzName);</div><div class="line">        </div><div class="line">        <span class="keyword">if</span>(<span class="keyword">this</span>.jobQuartzDataSource == <span class="keyword">null</span> || </div><div class="line">                <span class="keyword">this</span>.quartzSQL == <span class="keyword">null</span> || <span class="string">""</span>.equals(<span class="keyword">this</span>.quartzSQL))&#123;</div><div class="line">            logger.info(<span class="string">"jobQuartzDataSource = "</span> + <span class="keyword">this</span>.jobQuartzDataSource);    </div><div class="line">            logger.info(<span class="string">"dataSource or init select sql not found ! Pls check your config !"</span>);    </div><div class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(<span class="string">"dataSource or init select sql not found ! Pls check your config !"</span>);</div><div class="line">        &#125;</div><div class="line">        logger.info(<span class="string">"init success !"</span>);</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">AppsMethodInvokingJob</span> <span class="keyword">extends</span> <span class="title">MethodInvokingJob</span></span>&#123;</div><div class="line">        <span class="keyword">protected</span> <span class="keyword">static</span> <span class="keyword">final</span> Logger logger = LoggerFactory.getLogger(AppsMethodInvokingJob.class);</div><div class="line">        <span class="keyword">private</span> MethodInvoker methodInvoker;</div><div class="line">        <span class="keyword">private</span> String errorMessage;</div><div class="line">        </div><div class="line">        <span class="comment">/**</span></div><div class="line">         * Set the MethodInvoker to use.</div><div class="line">         */</div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setMethodInvoker</span><span class="params">(MethodInvoker methodInvoker)</span> </span>&#123;</div><div class="line">            <span class="keyword">this</span>.methodInvoker = methodInvoker;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="function"><span class="keyword">private</span> List&lt;String&gt; <span class="title">getIPs</span><span class="params">()</span> <span class="keyword">throws</span> SocketException </span>&#123;</div><div class="line">            List&lt;String&gt; ips = <span class="keyword">new</span> ArrayList&lt;String&gt;();</div><div class="line">            <span class="keyword">for</span> (Enumeration&lt;NetworkInterface&gt; en = NetworkInterface.getNetworkInterfaces(); en.hasMoreElements();) &#123;</div><div class="line">                NetworkInterface intf = en.nextElement();</div><div class="line">                <span class="keyword">for</span> (Enumeration&lt;InetAddress&gt; enumIpAddr = intf.getInetAddresses(); enumIpAddr.hasMoreElements();) &#123;</div><div class="line">                    InetAddress inetAddress = enumIpAddr.nextElement();</div><div class="line"></div><div class="line">                    <span class="keyword">if</span> (!inetAddress.isLoopbackAddress() &amp;&amp; !inetAddress.isLinkLocalAddress() &amp;&amp; inetAddress.isSiteLocalAddress()) &#123;</div><div class="line">                        String ip = inetAddress.getHostAddress().toString();</div><div class="line">                        <span class="keyword">if</span>(ip != <span class="keyword">null</span> &amp;&amp; !ip.startsWith(<span class="string">"127.0"</span>))&#123;</div><div class="line">                            ips.add(ip);</div><div class="line">                            logger.info(<span class="string">"a ip addr -&gt; "</span> + ip);</div><div class="line">                        &#125;</div><div class="line">                    &#125;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">            </div><div class="line">            <span class="keyword">return</span> ips;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="comment">/**</span></div><div class="line">         * Invoke the method via the MethodInvoker.</div><div class="line">         */</div><div class="line">        <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">executeInternal</span><span class="params">(JobExecutionContext context)</span> <span class="keyword">throws</span> JobExecutionException </span>&#123;        </div><div class="line">            Connection conn = <span class="keyword">null</span>;</div><div class="line">            PreparedStatement pstmt = <span class="keyword">null</span>;</div><div class="line">            ResultSet rs = <span class="keyword">null</span>;</div><div class="line">            <span class="keyword">try</span> &#123;            </div><div class="line">                </div><div class="line">                JobDataMap jobDataMap = context.getJobDetail().getJobDataMap();</div><div class="line">                DataSource jobQuartzDataSource = (DataSource)jobDataMap.get(<span class="string">"jobQuartzDataSource"</span>);</div><div class="line">                String quartzSQL = (String)jobDataMap.get(<span class="string">"quartzSQL"</span>);</div><div class="line">                logger.info(quartzSQL);    </div><div class="line">                List&lt;String&gt; ips = <span class="keyword">this</span>.getIPs();</div><div class="line"></div><div class="line">                <span class="comment">//根据当前服务器主机名或者IP判断是否需要执行该任务                </span></div><div class="line">                conn = jobQuartzDataSource.getConnection();</div><div class="line">                <span class="comment">//根据IP地址查数据库                </span></div><div class="line">                pstmt = conn.prepareStatement(quartzSQL);</div><div class="line">                </div><div class="line">                rs = pstmt.executeQuery();   </div><div class="line">                <span class="keyword">boolean</span> flag = <span class="keyword">false</span>;</div><div class="line">                <span class="keyword">while</span>(rs.next())&#123;</div><div class="line">                    String ip = rs.getString(<span class="string">"instid"</span>).trim();</div><div class="line">                    <span class="keyword">if</span>(ips.contains(ip))&#123;</div><div class="line">                        flag = <span class="keyword">true</span>;</div><div class="line">                        <span class="keyword">break</span>;</div><div class="line">                    &#125;</div><div class="line">                &#125;</div><div class="line">                </div><div class="line">                <span class="keyword">if</span>(flag) &#123;<span class="comment">//数据库里的IP地址匹配</span></div><div class="line">                    logger.info(<span class="string">"IP right , running the quartz task!"</span>);    </div><div class="line">                    </div><div class="line">                    <span class="comment">//调用具体task执行method代码</span></div><div class="line">                    <span class="keyword">this</span>.methodInvoker.invoke();                    </div><div class="line">                &#125;<span class="keyword">else</span> &#123;<span class="comment">//数据库里没有和IP地址匹配的数据</span></div><div class="line">                    logger.info(<span class="string">"IP not right , cannot running the quartz task!"</span>);                        </div><div class="line">                &#125;                </div><div class="line">            &#125; <span class="keyword">catch</span> (Exception ex) &#123;</div><div class="line">                logger.error(<span class="string">" accounted a error : "</span> + <span class="keyword">this</span>.errorMessage, ex);</div><div class="line">                <span class="keyword">throw</span> <span class="keyword">new</span> JobExecutionException(<span class="keyword">this</span>.errorMessage, ex, <span class="keyword">false</span>);</div><div class="line">            &#125; <span class="keyword">finally</span>&#123;</div><div class="line">                <span class="keyword">try</span>&#123;</div><div class="line">                    <span class="keyword">if</span>(rs != <span class="keyword">null</span>)</div><div class="line">                        rs.close();</div><div class="line">                    <span class="keyword">if</span>(pstmt != <span class="keyword">null</span>)</div><div class="line">                        pstmt.close();</div><div class="line">                    <span class="keyword">if</span>(conn != <span class="keyword">null</span>)</div><div class="line">                        conn.close();</div><div class="line">                &#125;<span class="keyword">catch</span>(Exception e)&#123;&#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">AppsStatefulMethodInvokingJob</span> <span class="keyword">extends</span> <span class="title">AppsMethodInvokingJob</span> </span>&#123;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+      
+    </div>
+
+    <div>
+      
+        
+<div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/uploads/wechat-qcode.jpg" alt="马铁利 wechat" style="width: 200px; max-width: 100%;"/>
+    <div>欢迎您扫一扫上面的微信公众号，订阅我的博客！</div>
+</div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Quartz/" rel="tag"># Quartz</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/08/18/JVM-introduce/" rel="next" title="JVM介绍">
+                <i class="fa fa-chevron-left"></i> JVM介绍
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/08/14/git-introduce/" rel="prev" title="GIT介绍">
+                GIT介绍 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.jpg"
+               alt="马铁利" />
+          <p class="site-author-name" itemprop="name">马铁利</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/matieli" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.dbalog.net/" title="DBA_LOG" target="_blank">DBA_LOG</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">马铁利</span>
+</div>
+
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://blog.matieli.me/2016/08/15/Quartz中扩展实现对任务调度/';
+          this.page.identifier = '2016/08/15/Quartz中扩展实现对任务调度/';
+          this.page.title = 'Quartz中扩展MethodInvokingJobDetailFactoryBean实现对任务调度';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>

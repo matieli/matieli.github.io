@@ -1,0 +1,1252 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="GIT," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="版本控制版本控制系统(Version Control System,简称VCS)是一中记录一个或多个文件的变化的系统，能够方便找回某个时期/版本的文件。 版本控制系统的发展     本地版本控制(Local Version Control System)顾名思义就是本地化的版本控制，没有网络协作等较为先进的版本控制的概念。(如RCS) 集中式版本控制(Centralized Version Con">
+<meta name="keywords" content="GIT">
+<meta property="og:type" content="article">
+<meta property="og:title" content="GIT介绍">
+<meta property="og:url" content="http://blog.matieli.me/2016/08/14/git-introduce/index.html">
+<meta property="og:site_name" content="马老三">
+<meta property="og:description" content="版本控制版本控制系统(Version Control System,简称VCS)是一中记录一个或多个文件的变化的系统，能够方便找回某个时期/版本的文件。 版本控制系统的发展     本地版本控制(Local Version Control System)顾名思义就是本地化的版本控制，没有网络协作等较为先进的版本控制的概念。(如RCS) 集中式版本控制(Centralized Version Con">
+<meta property="og:image" content="http://blog.matieli.me/assets/images/git_introduce/1.png">
+<meta property="og:image" content="http://blog.matieli.me/assets/images/git_introduce/2.png">
+<meta property="og:image" content="http://blog.matieli.me/assets/images/git_introduce/3.png">
+<meta property="og:image" content="http://blog.matieli.me/assets/images/git_introduce/4.jpg">
+<meta property="og:image" content="http://blog.matieli.me/assets/images/git_introduce/5.jpg">
+<meta property="og:image" content="http://blog.matieli.me/assets/images/git_introduce/6.jpg">
+<meta property="og:image" content="http://blog.matieli.me/assets/images/git_introduce/7.png">
+<meta property="og:image" content="http://blog.matieli.me/assets/images/git_introduce/8.png">
+<meta property="og:image" content="http://blog.matieli.me/assets/images/git_introduce/9.png">
+<meta property="og:image" content="http://blog.matieli.me/assets/images/git_introduce/10.png">
+<meta property="og:image" content="http://blog.matieli.me/assets/images/git_introduce/11.png">
+<meta property="og:image" content="http://blog.matieli.me/assets/images/git_introduce/12.png">
+<meta property="og:image" content="http://blog.matieli.me/assets/images/git_introduce/13.png">
+<meta property="og:image" content="http://blog.matieli.me/assets/images/git_introduce/14.png">
+<meta property="og:image" content="http://blog.matieli.me/assets/images/git_introduce/15.png">
+<meta property="og:image" content="http://blog.matieli.me/assets/images/git_introduce/16.png">
+<meta property="og:image" content="http://blog.matieli.me/assets/images/git_introduce/17.png">
+<meta property="og:image" content="http://blog.matieli.me/assets/images/git_introduce/18.png">
+<meta property="og:image" content="http://blog.matieli.me/assets/images/git_introduce/19.png">
+<meta property="og:image" content="http://blog.matieli.me/assets/images/git_introduce/20.png">
+<meta property="og:image" content="http://blog.matieli.me/assets/images/git_introduce/21.png">
+<meta property="og:image" content="http://blog.matieli.me/assets/images/git_introduce/22.png">
+<meta property="og:image" content="http://blog.matieli.me/assets/images/git_introduce/23.png">
+<meta property="og:image" content="http://blog.matieli.me/assets/images/git_introduce/24.png">
+<meta property="og:image" content="http://blog.matieli.me/assets/images/git_introduce/25.png">
+<meta property="og:image" content="http://blog.matieli.me/assets/images/git_introduce/26.png">
+<meta property="og:image" content="http://blog.matieli.me/assets/images/git_introduce/27.png">
+<meta property="og:image" content="http://blog.matieli.me/assets/images/git_introduce/28.png">
+<meta property="og:image" content="http://blog.matieli.me/assets/images/git_introduce/29.png">
+<meta property="og:image" content="http://blog.matieli.me/assets/images/git_introduce/30.png">
+<meta property="og:image" content="http://blog.matieli.me/assets/images/git_introduce/31.png">
+<meta property="og:image" content="http://blog.matieli.me/assets/images/git_introduce/32.png">
+<meta property="og:updated_time" content="2017-04-18T02:47:46.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="GIT介绍">
+<meta name="twitter:description" content="版本控制版本控制系统(Version Control System,简称VCS)是一中记录一个或多个文件的变化的系统，能够方便找回某个时期/版本的文件。 版本控制系统的发展     本地版本控制(Local Version Control System)顾名思义就是本地化的版本控制，没有网络协作等较为先进的版本控制的概念。(如RCS) 集中式版本控制(Centralized Version Con">
+<meta name="twitter:image" content="http://blog.matieli.me/assets/images/git_introduce/1.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://blog.matieli.me/2016/08/14/git-introduce/"/>
+
+
+
+
+
+  <title> GIT介绍 | 马老三 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">马老三</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">个人博客</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://blog.matieli.me/2016/08/14/git-introduce/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="马铁利">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="马老三">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+            
+            
+              
+                GIT介绍
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-08-14T00:00:00+08:00">
+                2016-08-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2016/08/14/git-introduce/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2016/08/14/git-introduce/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="版本控制"><a href="#版本控制" class="headerlink" title="版本控制"></a><strong>版本控制</strong></h3><p>版本控制系统(Version Control System,简称VCS)是一中记录一个或多个文件的变化的系统，能够方便找回某个时期/版本的文件。</p>
+<p>版本控制系统的发展</p>
+<p><img src="\assets\images\git_introduce\1.png" alt="image"> </p>
+<blockquote>
+<ul>
+<li>本地版本控制(Local Version Control System)顾名思义就是本地化的版本控制，没有网络协作等较为先进的版本控制的概念。(如RCS)</li>
+<li>集中式版本控制(Centralized Version Control System)运行一台版本控制服务器，提供存储项目中所有文件的服务。(如SVN、CVS)</li>
+<li>分布式版本控制(Distributed Version Control System)是一种不需要中心服务器的管理文件版本的方法，但是它也可以使用中心服务器。(如Git)</li>
+</ul>
+</blockquote>
+<p>CVCS和DVCS差异</p>
+<blockquote>
+<ul>
+<li>DVCS 通过本地提交支持离线工作，这是由 DVCS 的操作方式决定的。这与集中式版本控制完全不同，集中式版本控制要求通过到中心服务器的连接执行所有操作。这种灵活性让开发人员在飞机上也能够像在办公室中一样轻松地工作，可以一次又一次地进行提交。</li>
+<li>DVCS 比集中式系统更灵活，因为 DVCS 支持许多不同类型的工作流，从传统的集中式工作流到纯粹的特殊工作流，再到特殊工作流和集中式工作流的组合。</li>
+<li>DVCS 比集中式版本控制系统快得多，因为大多数操作在客户机上进行，速度非常快。另外，在需要进行推（push ）操作（与另一个节点通信）时，速度也更快，因为两个客户机机器上都有完整的元数据。速度差异相当显著。</li>
+</ul>
+</blockquote>
+<h3 id="Git基础"><a href="#Git基础" class="headerlink" title="Git基础"></a><strong>Git基础</strong></h3><p>Git优势</p>
+<blockquote>
+<ul>
+<li>直接记录快照，而非差异比较</li>
+<li>近乎所有操作都是本地执行</li>
+<li>时刻保持数据完整性</li>
+<li>多数操作仅添加数据</li>
+</ul>
+</blockquote>
+<p>其他系统(如svn,每个版本中记录着各个文件的具体差异)<br><img src="\assets\images\git_introduce\2.png" alt="image"></p>
+<p>直接记录快照，而非差异比较 </p>
+<p><img src="\assets\images\git_introduce\3.png" alt="image"></p>
+<p>近乎所有操作都是本地执行</p>
+<blockquote>
+<ul>
+<li>在 Git 中的绝大多数操作都只需要访问本地文件和资源，不用连网。但如果用 CVCS 的话，差不多所有操作都需要连接网络。因为 Git 在本地磁盘上就保存着所有当前项目的历史更新，所以处理起来速度飞快。</li>
+<li>举个例子，如果要浏览项目的历史更新摘要，Git 不用跑到外面的服务器上去取数据回来，而直接从本地数据库读取后展示给你看。所以任何时候你都可以马上翻阅，无需等待。如果想要看当前版本的文件和一个月前的版本之间有何差异，Git 会取出一个月前的快照和当前文件作一次差异运算，而不用请求远程服务器来做这件事，或是把老版本的文件拉到本地来作比较。</li>
+</ul>
+</blockquote>
+<p>时刻保持数据完整性</p>
+<blockquote>
+<ul>
+<li>在保存到 Git 之前，所有数据都要进行内容的校验和（checksum）计算，并将此结果作为数据的唯一标识和索引。换句话说，不可能在你修改了文件或目录之后，Git 一无所知。</li>
+<li>24b9da6552252987aa493b52f8696cd6d3b00373</li>
+<li>Git 使用 SHA-1 算法计算数据的校验和，通过对文件的内容或目录的结构计算出一个 SHA-1 哈希值，作为指纹字符串。</li>
+<li>Git 的工作完全依赖于这类指纹字串，所以你会经常看到这样的哈希值。实际上，所有保存在 Git 数据库中的东西都是用此哈希值来作索引的，而不是靠文件名。</li>
+</ul>
+</blockquote>
+<p>多数操作仅添加数据</p>
+<blockquote>
+<ul>
+<li>常用的 Git 操作大多仅仅是把数据添加到数据库。因为任何一种不可逆的操作，比如删除数据，都会使回退或重现历史版本变得困难重重。在别的 VCS 中，若还未提交更新，就有可能丢失或者混淆一些修改的内容，但在 Git 里，一旦提交快照之后就完全不用担心丢失数据，特别是养成定期推送到其他仓库的习惯的话</li>
+</ul>
+</blockquote>
+<p>Git中文件的三种状态</p>
+<blockquote>
+<ul>
+<li>已提交(committed):表示该文件已经被安全地保存在本地库中了</li>
+<li>已修改(modified):表示修改了某个文件，但还没有提交保存</li>
+<li>已暂存(staged):表示把已修改的文件放在下次提交时要保存的清单中</li>
+</ul>
+</blockquote>
+<p>Git的三个文件区域</p>
+<blockquote>
+<ul>
+<li>Git 管理项目时，文件流转的三个工作区域：Git 的工作目录、暂存区域以及本地仓库(图1)</li>
+<li>使用git add将文件从工作区添加到暂存区域(图2)</li>
+<li>使用git commit将文件从暂存区域添加到本地仓库(图3)</li>
+</ul>
+</blockquote>
+<p><img src="\assets\images\git_introduce\4.jpg" alt="image"></p>
+<p><img src="\assets\images\git_introduce\5.jpg" alt="image"></p>
+<p><img src="\assets\images\git_introduce\6.jpg" alt="image"></p>
+<h3 id="Git命令"><a href="#Git命令" class="headerlink" title="Git命令"></a><strong>Git命令</strong></h3><p>Git基本操作</p>
+<blockquote>
+<ul>
+<li>检出版本：git init  、git clone</li>
+<li>提交修改：git add 、git commit 、git pull 、 git push</li>
+<li>获取信息：git help 、git status   、git diff 、  git log 、git show 、git remote</li>
+<li>分支： git branch 、git checkout</li>
+<li>回退： git reset</li>
+</ul>
+</blockquote>
+<p>Git目录结构</p>
+<blockquote>
+<ul>
+<li>HEAD：这个git项目处在当前哪个分支里</li>
+<li>config：项目的配置信息，使用git config改动</li>
+<li>description：项目的描述信息</li>
+<li>hooks/：系统默认挂钩目录(特定情况下触发某些操作)</li>
+<li>index：索引文件</li>
+<li>logs/：各个refs的历史信息</li>
+<li>objects/：git本地仓库的所有对象(commits,trees,blobs,tags)</li>
+<li>refs/：标识你项目里的每个分支指向了哪个提交(commit)</li>
+</ul>
+</blockquote>
+<p>Git命令</p>
+<blockquote>
+<p>全局配置</p>
+<ul>
+<li>git config global user.name “matieli” #设置名称</li>
+<li>git config global user.email “ma_tl@suixingpay.com” #设置邮箱</li>
+<li>git config list #查看配置信息</li>
+</ul>
+<p>创建一个库</p>
+<ul>
+<li>git init</li>
+</ul>
+<p>克隆一个库</p>
+<ul>
+<li>git clone <a href="http://192.168.120.68/root/lemon-mongo.git" target="_blank" rel="external">http://192.168.120.68/root/lemon-mongo.git</a></li>
+</ul>
+<p>基本使用</p>
+<ul>
+<li>git help    #帮助</li>
+<li>git status #查看当前状态</li>
+<li>git log      #”j”向下浏览,”k”向上浏览,”q”退出</li>
+<li>git diff     #比较</li>
+<li>gitk          #图形日志</li>
+</ul>
+<p>增删改</p>
+<ul>
+<li>git add readme.txt    #从工作区增加readme.txt到暂存区</li>
+<li>git commit –m “add readme.txt” #提交暂存区文件到git，内容add..</li>
+<li>git rm readme.txt      #删除readme.txt，需要git commit –m “ ..”</li>
+</ul>
+<p>分支管理</p>
+<ul>
+<li>git branch -a                          #所有分支</li>
+<li>git branch dev                       #创建一个名为dev的分支</li>
+<li>git checkout dev                   #切换到dev分支</li>
+<li>git branch -m dev develop #修改分支名称由dev改成test</li>
+<li>git branch –d dev                 #删除dev分支</li>
+<li>git merge dev                       #将当前分支与dev分支合并</li>
+</ul>
+<p>标签管理</p>
+<ul>
+<li>git tag                    #查看标签列表</li>
+<li>git tag v101          #建立标签</li>
+<li>git tag –a v101 –m “version v101”     #建立含批注的标签</li>
+<li>git tag –d v101     #删除标签</li>
+</ul>
+<p>远程库</p>
+<ul>
+<li>git clone <url>                                #复制现有的远程库</url></li>
+<li>git remote add <name>  <url>    #复制现有的远程库</url></name></li>
+<li>git remote                        #显示远程库列表，加-v显示详细</li>
+<li>git push <repository>    #推送提交/修改内容到分支</repository></li>
+<li>git fetch <repository>    #查看远程库分支的修改内容</repository></li>
+<li>git pull <repository>      #读取远程分支的修改内容</repository></li>
+<li>git push –delete <repository>  <branchname> #删除远程库的分支</branchname></repository></li>
+<li>git push <repository>  <tagname>                  #建立远程库标签</tagname></repository></li>
+<li>git push –delete <repository>  <tagname>    #删除远程库标签</tagname></repository></li>
+<li>git remote set-url <name> <newurl>  #修改已注册的远程库的地址</newurl></name></li>
+<li>git remote rename <old> <new>    #修改已注册的远程库名称</new></old></li>
+</ul>
+<p>还原撤销</p>
+<ul>
+<li>git checkout – file     #恢复一个文件</li>
+<li>git reflog                    #查看HEAD的移动历史</li>
+<li>git reset –hard HEAD~ #放弃最近提交</li>
+<li>git rebase                 #重新定义分支的版本库的状态</li>
+<li>git log –grep “<pattern>“  #查找包含特定注解的提交</pattern></li>
+</ul>
+</blockquote>
+<p>Git和Svn命令差别</p>
+<table>
+<thead>
+<tr>
+<th>操作</th>
+<th>Git</th>
+<th>Svn</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>复制数据库</td>
+<td>git clone</td>
+<td>svn checkout</td>
+</tr>
+<tr>
+<td>提交</td>
+<td>git commit</td>
+<td>svn commit(※2)</td>
+</tr>
+<tr>
+<td>查看提交的详细记录</td>
+<td>git show</td>
+<td>svn cat</td>
+</tr>
+<tr>
+<td>确认状态</td>
+<td>git status</td>
+<td>svn status</td>
+</tr>
+<tr>
+<td>确认差异</td>
+<td>git diff</td>
+<td>svn diff</td>
+</tr>
+<tr>
+<td>确认记录</td>
+<td>git log</td>
+<td>svn log</td>
+</tr>
+<tr>
+<td>添加</td>
+<td>git add</td>
+<td>svn add</td>
+</tr>
+<tr>
+<td>移动</td>
+<td>git mv</td>
+<td>svn mv</td>
+</tr>
+<tr>
+<td>删除</td>
+<td>git rm</td>
+<td>svn rm</td>
+</tr>
+<tr>
+<td>取消修改</td>
+<td>git checkout / git reset(消除提交)</td>
+<td>svn revert (取消修改)</td>
+</tr>
+<tr>
+<td>创建分支</td>
+<td>git branch</td>
+<td>svn copy (※1)</td>
+</tr>
+<tr>
+<td>切换分支</td>
+<td>git checkout</td>
+<td>svn switch</td>
+</tr>
+<tr>
+<td>合并</td>
+<td>git merge</td>
+<td>svn merge</td>
+</tr>
+<tr>
+<td>创建标签</td>
+<td>git tag</td>
+<td>svn copy (※1)</td>
+</tr>
+<tr>
+<td>更新</td>
+<td>git pull / git fetch</td>
+<td>svn update</td>
+</tr>
+<tr>
+<td>反映到远端</td>
+<td>git push</td>
+<td>svn commit(※2)</td>
+</tr>
+<tr>
+<td>忽略档案目录</td>
+<td>.gitignore</td>
+<td>.svnignore</td>
+</tr>
+</tbody>
+</table>
+<h3 id="使用EGit"><a href="#使用EGit" class="headerlink" title="使用EGit"></a><strong>使用EGit</strong></h3><p>安装\配置Egit插件</p>
+<blockquote>
+<ul>
+<li>Eclipse 4.3以上已集成了Egit。window–&gt;preferences搜索git.</li>
+<li>在Eclipse Marketplace搜索Egit安装</li>
+<li>配置个人信息：最重要的是user.name和user.email</li>
+<li>Window&gt; Preferences &gt; Team &gt; Git &gt; Configurationl&gt; New Entry</li>
+</ul>
+</blockquote>
+<p><img src="\assets\images\git_introduce\7.png" alt="image"></p>
+<p>创建Git仓库</p>
+<blockquote>
+<ul>
+<li>新建项目</li>
+<li>在项目上右键&gt;Team &gt; Share Project 选择GIT,会出现下图，选中及选择仓库地址后点击Create Repository创建仓库，点击Finish。</li>
+</ul>
+</blockquote>
+<p><img src="\assets\images\git_introduce\8.png" alt="image"></p>
+<p>创建Git仓库</p>
+<blockquote>
+<ul>
+<li>创建仓库后，在目录下的.git文件夹，就是git的仓库地址。和SVN不同，GIT不会在每一个目录下建立版本控制文件夹，仅在根目录下建立仓库</li>
+<li>同时，eclipse中的project也建立git版本控制，此时未创建分支，处于NO-HEAD状态</li>
+<li>文件夹中的符号”?”表示此文件夹处于untracked状态，这样就成功创建GIT仓库。</li>
+</ul>
+</blockquote>
+<p><img src="\assets\images\git_introduce\9.png" alt="image"></p>
+<p><img src="\assets\images\git_introduce\10.png" alt="image"></p>
+<p>配置.gitignore</p>
+<p>尝试进行一次提交Team -&gt; Commit… 此时我们看到出现.settings文件，这些文件是我们不需要进行版本控制的这时候就需要配置.gitignore,打开.gitignore文件，写入” .settings”,再次提交已经过滤掉了.settings</p>
+<p><img src="\assets\images\git_introduce\11.png" alt="image"></p>
+<p>首次提交</p>
+<blockquote>
+<ul>
+<li>首次提交后，会自动生成master分支；创建B.java，可以看到图标依然是问号，处于untracked状态，即git没有对此文件进行监控。通过Team -&gt; Add to index可以将文件加入git索引，进行版本监控。</li>
+</ul>
+</blockquote>
+<p><img src="\assets\images\git_introduce\12.png" alt="image"></p>
+<p><img src="\assets\images\git_introduce\13.png" alt="image"></p>
+<p><img src="\assets\images\git_introduce\14.png" alt="image"></p>
+<blockquote>
+<ul>
+<li>图标显示有了变化(EGIT中只要Commit就可以默认将untracked的文件添加到索引再提交更新，不需要分开操作)，此时文件处于staged 状态；将新增的文件commit到仓库中，文件将处于committed状态；修改文件的内容，文件将处于modified状态。</li>
+</ul>
+</blockquote>
+<p>查看历史记录</p>
+<blockquote>
+<ul>
+<li>Team -&gt; Show in history可以查看版本历史提交记录，可以选择对比模式，查看修改内容</li>
+</ul>
+</blockquote>
+<p><img src="\assets\images\git_introduce\15.png" alt="image"></p>
+<p><img src="\assets\images\git_introduce\16.png" alt="image"></p>
+<p>远程GIT仓库</p>
+<blockquote>
+<ul>
+<li>此小结的前提是已经搭建GIT服务器，使用公司的gitLab服务器。</li>
+<li>在服务器上创建一个项目<a href="http://192.168.120.68/matieli/gitTest.git" target="_blank" rel="external">http://192.168.120.68/matieli/gitTest.git</a></li>
+<li>打开GIT资源库窗口，选择克隆资源库</li>
+</ul>
+</blockquote>
+<p><img src="\assets\images\git_introduce\17.png" alt="image"></p>
+<p><img src="\assets\images\git_introduce\18.png" alt="image"></p>
+<blockquote>
+<ul>
+<li>在gitTest项目上右键&gt;Team&gt;Remote&gt;Push…将项目推送到远程仓库。</li>
+<li>登录gitLab服务器查看在添加远程库之前的3次commits都在远程库中有体现目前就一个分支(master)。</li>
+</ul>
+</blockquote>
+<p><img src="\assets\images\git_introduce\19.png" alt="image"></p>
+<p>导入gradle项目</p>
+<blockquote>
+<ul>
+<li>在GitLab找到要导入已有的gradle项目： <a href="http://192.168.120.68/root/lemon-mongo.git" target="_blank" rel="external">http://192.168.120.68/root/lemon-mongo.git</a></li>
+<li>在Git Repositories中，使用快捷键Ctrl +V，出现Clone Git Repository 窗口，根据引导选择导入的分支、项目的存放路径(workspace)等信息，最后点击Finish，结果如下图。</li>
+</ul>
+</blockquote>
+<p><img src="\assets\images\git_introduce\20.png" alt="image"></p>
+<p><img src="\assets\images\git_introduce\21.png" alt="image"></p>
+<blockquote>
+<ul>
+<li>这个时候在选择的Directory下会有lemon-mongo的项目</li>
+<li>切换到java视图，按照导入gradle的lemon-mongo项目，Import–&gt;import…–&gt;选择Gradle Project–&gt;选择git导出时的项目路径–&gt;点击Build Model–&gt;勾选项目–&gt;Finish。</li>
+</ul>
+</blockquote>
+<p><img src="\assets\images\git_introduce\22.png" alt="image"></p>
+<p>创建新分支dev1和dev2</p>
+<blockquote>
+<ul>
+<li>Team–&gt;Switch To–&gt;new branch… 分别创建dev1和dev2分支。checkout new branch的选择选中后会自动切换到你的新建分支中。注：这个操作仅仅是创建本地分支，Team–&gt;Push branch…推送分支到远程。Switch To是切换分支的作用可以新建分支，也可以切换到git repositories视图下直接创建local和remote分支。</li>
+</ul>
+</blockquote>
+<p><img src="\assets\images\git_introduce\23.png" alt="image"></p>
+<p>合并分支</p>
+<blockquote>
+<ul>
+<li>在dev1分支中修改项目中的某个文件并且合并到master分支上。比如修改build.gradle的maven nexus地址。并推送到远程dev1分支下。这个时候dev1的分支比master分支高了一个版本，把刚才的改动合并到master分支下。切换到master分支。选择Team–&gt; Merge 选择dev1分支。这个时候master分支后会显示向上箭头1，意思是本地master比远端的master高一个版本。需要把本地的master改动推送到远端。Team–&gt; Push Branch…选择远端的master分支，Finish。登录gitLab查看master分支发现已经变成dev1的地址了。</li>
+</ul>
+</blockquote>
+<p><img src="\assets\images\git_introduce\24.png" alt="image"></p>
+<p><img src="\assets\images\git_introduce\25.png" alt="image"></p>
+<p>冲突解决</p>
+<blockquote>
+<ul>
+<li>假设在dev2分支下也修改了这个私服地址，改为：172.16.20.18。（步骤省略）</li>
+<li>使用dev2和master分支merge。这个时候肯定会冲突。</li>
+<li>很明显自动合并的冲突文件不能直接使用，我们可以手动调整，右键发生冲突的文件，选择Team -&gt; Merge Tool，然后右键点击此冲突文件，选择Team -&gt; Add to index再次将文件加入索引控制，此时文件已经不是冲突状态，并且可以进行提交并push到服务器端。</li>
+</ul>
+</blockquote>
+<p><img src="\assets\images\git_introduce\26.png" alt="image"></p>
+<p>Merge和Rebase的区别</p>
+<blockquote>
+<ul>
+<li>merge 会生成一个新得合并节点(历史记录)，而rebase不会。</li>
+<li>对于一个多人开发团队频繁提交更新的情况，如果使用merge会使得历史线图非常复杂，并且merge一次就会新增一个记录点，如果使用rebase就是完全的线性开发。</li>
+<li>建议：如果同一文件反复修改或提交次数比较多，预期会出现很多的冲突，那么可以使用merge合并，仅需要解决一次冲突即可(不过，大范围的修改，是不是应该事先就新开一个分支呢？)；如果修改范围小，预期冲突少，则建议使用rebase。</li>
+</ul>
+</blockquote>
+<p>重置功能Reset</p>
+<blockquote>
+<p>Team–&gt;Reset…</p>
+<ul>
+<li>GIT中有三种重置功能，分别是soft、mixed、hard，区别如下：<br> l  Soft - t将其他的commit重置到HEAD，就仅此而已。index和working copy中的文件都不改变。</li>
+</ul>
+</blockquote>
+<p><img src="\assets\images\git_introduce\27.png" alt="image"></p>
+<blockquote>
+<ul>
+<li>l  Mixed -改变HEAD和index，指向那个你要reset到的commit上。而working copy文件不被改变。当然会显示工作目录下有修改，但没有缓存到index中</li>
+</ul>
+</blockquote>
+<p>   <img src="\assets\images\git_introduce\28.png" alt="image"></p>
+<blockquote>
+<ul>
+<li>l  Hard -  HEAD &amp; index &amp; working copy同时改变到你要reset到的那个commit上。这个参数很危险，执行了它，你的本地修改可能就丢失了。</li>
+</ul>
+</blockquote>
+<p>  <img src="\assets\images\git_introduce\29.png" alt="image"></p>
+<h3 id="GitLab"><a href="#GitLab" class="headerlink" title="GitLab"></a><strong>GitLab</strong></h3><p>GitLab服务器</p>
+<blockquote>
+<ul>
+<li>安装步骤略，安装完效果图如下</li>
+</ul>
+</blockquote>
+<p><img src="\assets\images\git_introduce\30.png" alt="image"></p>
+<p>查看相关信息</p>
+<blockquote>
+<ul>
+<li>登录GitLab界面后，点击一个项目，进入项目空间，可以看到项目的相关信息。在这里你可以查阅项目、文件、提交的Commits、里程碑、Bug列表（Issues）、讨论墙、维基页面、成员等等</li>
+</ul>
+</blockquote>
+<p>创建项目</p>
+<blockquote>
+<ul>
+<li><p>登录GitLab界面后，你可以创建自己的项目，别的开发人员也可以加入你的项目。在右侧的Projects框里可以看到当前所有的项目、自己的项目和自己加入的项目。点击+New Project按钮可以创建新项目（顶部的+号也一样可以）。</p>
+</li>
+<li><p>a) 只需要填写一个项目名称，点击Create project按钮就可以创建项目。新项目建立在你的用户名之下,Http访问的URL格式为：<a href="http://192.168.120.68/root/lemon-mongo.git。" target="_blank" rel="external">http://192.168.120.68/root/lemon-mongo.git。</a></p>
+</li>
+<li>b) 新项目创建后，需要通过Git客户端进行初始化以后才能够使用，在新项目页面给出了通过Git命令行工具初始化的方法。</li>
+</ul>
+</blockquote>
+<p><img src="\assets\images\git_introduce\31.png" alt="image"></p>
+<p>添加项目成员</p>
+<blockquote>
+<ul>
+<li>创建好项目后需要在Members中添加成员，否则就只有创建者有权限提交代码。权限有guest、reporter、developer、master。具体权限信息查看<a href="http://192.168.120.68/help/permissions/permissions" target="_blank" rel="external">http://192.168.120.68/help/permissions/permissions</a></li>
+</ul>
+</blockquote>
+<p><img src="\assets\images\git_introduce\32.png" alt="image"></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+<div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/uploads/wechat-qcode.jpg" alt="马铁利 wechat" style="width: 200px; max-width: 100%;"/>
+    <div>欢迎您扫一扫上面的微信公众号，订阅我的博客！</div>
+</div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/GIT/" rel="tag"># GIT</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/08/15/Quartz中扩展实现对任务调度/" rel="next" title="Quartz中扩展MethodInvokingJobDetailFactoryBean实现对任务调度">
+                <i class="fa fa-chevron-left"></i> Quartz中扩展MethodInvokingJobDetailFactoryBean实现对任务调度
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/08/11/JAVA8-new-feature/" rel="prev" title="JAVA8新特性">
+                JAVA8新特性 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.jpg"
+               alt="马铁利" />
+          <p class="site-author-name" itemprop="name">马铁利</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/matieli" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.dbalog.net/" title="DBA_LOG" target="_blank">DBA_LOG</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#版本控制"><span class="nav-number">1.</span> <span class="nav-text">版本控制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Git基础"><span class="nav-number">2.</span> <span class="nav-text">Git基础</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Git命令"><span class="nav-number">3.</span> <span class="nav-text">Git命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用EGit"><span class="nav-number">4.</span> <span class="nav-text">使用EGit</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GitLab"><span class="nav-number">5.</span> <span class="nav-text">GitLab</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">马铁利</span>
+</div>
+
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://blog.matieli.me/2016/08/14/git-introduce/';
+          this.page.identifier = '2016/08/14/git-introduce/';
+          this.page.title = 'GIT介绍';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>

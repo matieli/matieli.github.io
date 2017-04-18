@@ -1,0 +1,936 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="JVM," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="JVM调优-序 1.Throughput GC指定方式： -XX:+UseParallelOldGC 或 -XX:+UseParallelGC，两者的区别是，-XX:+UseParallelOldGC同时激活新生代并行垃圾回收和老年代的并行垃圾回收，亦即，Minor GC和Full GC都是多线程的；-XX:+UseParallelGC只会激活新生代的并行垃圾回收。也就是使用了-XX:+UsePa">
+<meta name="keywords" content="JVM">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JVM调优细节">
+<meta property="og:url" content="http://blog.matieli.me/2016/08/20/JVM-Performance/index.html">
+<meta property="og:site_name" content="马老三">
+<meta property="og:description" content="JVM调优-序 1.Throughput GC指定方式： -XX:+UseParallelOldGC 或 -XX:+UseParallelGC，两者的区别是，-XX:+UseParallelOldGC同时激活新生代并行垃圾回收和老年代的并行垃圾回收，亦即，Minor GC和Full GC都是多线程的；-XX:+UseParallelGC只会激活新生代的并行垃圾回收。也就是使用了-XX:+UsePa">
+<meta property="og:updated_time" content="2017-04-18T02:50:28.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JVM调优细节">
+<meta name="twitter:description" content="JVM调优-序 1.Throughput GC指定方式： -XX:+UseParallelOldGC 或 -XX:+UseParallelGC，两者的区别是，-XX:+UseParallelOldGC同时激活新生代并行垃圾回收和老年代的并行垃圾回收，亦即，Minor GC和Full GC都是多线程的；-XX:+UseParallelGC只会激活新生代的并行垃圾回收。也就是使用了-XX:+UsePa">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://blog.matieli.me/2016/08/20/JVM-Performance/"/>
+
+
+
+
+
+  <title> JVM调优细节 | 马老三 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">马老三</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">个人博客</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://blog.matieli.me/2016/08/20/JVM-Performance/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="马铁利">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="马老三">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+            
+            
+              
+                JVM调优细节
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-08-20T00:00:00+08:00">
+                2016-08-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2016/08/20/JVM-Performance/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2016/08/20/JVM-Performance/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="JVM调优-序"><a href="#JVM调优-序" class="headerlink" title="JVM调优-序"></a><strong>JVM调优-序</strong></h3><blockquote>
+<p>1.Throughput GC指定方式： -XX:+UseParallelOldGC 或 -XX:+UseParallelGC，两者的区别是，-XX:+UseParallelOldGC同时激活新生代并行垃圾回收和老年代的并行垃圾回收，亦即，Minor GC和Full GC都是多线程的；-XX:+UseParallelGC只会激活新生代的并行垃圾回收。也就是使用了-XX:+UseParallelOldGC会自动激活-XX:+UseParallelGC。</p>
+<p>2.在生产系统中，推荐打印出垃圾收集日志，开销很小，但能提供很多信息。推荐的命令行选项的最小集：-XX:+PrintGCTimestamps -XX:+PrintGCDetails -Xloggc:<filename>-XX:+PrintGCDateStamps打印出的是日期，要求Java 6 Update 4及以上版本；-XX:+PrintGCTimeStamps打印出的是相对于JVM启动的时间偏移量。</filename></p>
+<p>3.老年代使用CMS（-XX:+UseConcMarkSweepGC），配合其使用的新生代垃圾收集器为多线程的ParNew；老年代使用Serial GC，配合其使用的新生代为单线程的DefNew。</p>
+<p>4.为低等待时间（STW停顿）调优时，可以使用这两个选项:-XX:+PrintGCApplicationStoppedTime 、-XX:+PrintGCApplicationConcurrentTime</p>
+<p>5.重视吞吐量和延迟的应用，应将-Xms和-Xmx设为一样，因为增加和缩小堆内存（包括老年代和新生代），需要Full GC。</p>
+<p>6.几个内存设置选项：-XX:NewSize=<n>[g|m|k] —— 新生代的初始和最小内存。</n></p>
+<ul>
+<li>设置该选项时应该同时设置-XX:MaxNewSize=<n>[g|m|k].-XX:MaxNewSize=<n>[g|m|k] —— 新生代的最大内存。</n></n></li>
+<li>设置该选项时应该同时设置-XX:NewSize=<n>[g|m|k].-Xmn<n>[g|m|k] —— 将新生代的初始值、最小值、最大值设为同一个值。</n></n></li>
+<li>如果-Xmx和-Xms设的值不同，此时使用了-Xmn，则Java堆的增加和缩小都不会影响新生代的大小。因此，使用-Xmn的时候,-Xmx和-Xms的值应该是一致的。</li>
+<li>-XX:PermSize=<n>[g|m|k] —— 永久代的初始和最小值。</n></li>
+<li>-XX:MaxPermSize=<n>[g|m|k] —— 永久代的最大值。</n></li>
+<li>-XX:MaxPermSize和-XX:PermSize设成一样，因为永久代的增加和缩小需要Full GC。</li>
+</ul>
+<p>7.新生代的对象promote进老年代时空间不足，以及永久代空间不足会触发Full GC。</p>
+<p>8.老年代空间不足触发了Full GC，不管永久代空间是否足够，都会对永久代进行回收；永久代不足触发的Full GC，即使老年代空间足，也会回收老年代。</p>
+<p>9.老年代Full GC之前，会进行Minor GC，除非设置了-XX:-ScavengeBeforeFullGC。</p>
+<p>10.可通过这种方式触发Full GC：jmap -histo:live <pid>，pid可以通过jps命令获得。</pid></p>
+<p>11.如果Minor GC太长，则应减小新生代的空间；若太频繁，则应增加新生代的空间。</p>
+<p>12.调优改变新生代的大小时，尽量保持老年代的大小不变；调整老年代时，新生代保持不变。</p>
+</blockquote>
+<h3 id="计算LiveData-Size"><a href="#计算LiveData-Size" class="headerlink" title="计算LiveData Size"></a><strong>计算LiveData Size</strong></h3><blockquote>
+<ul>
+<li>Live Data Size是应用运行稳定，经历过Full GC之后老年代和永久代的堆内存占用。最好是观察多次取均值。</li>
+<li>强制Full GC：jmap –histo:live <pid></pid></li>
+<li><pid>可以通过jps命令获得。</pid></li>
+</ul>
+</blockquote>
+<h3 id="初始堆大小"><a href="#初始堆大小" class="headerlink" title="初始堆大小"></a><strong>初始堆大小</strong></h3><blockquote>
+<p>一般，-Xms和-Xmx的初始值应当设为老年代Live Data Size的3到4倍；-XX:PermSize和-XX:MaxPermSize的初始值应当设为永久代Live Data Size的1.2到1.5倍；新生代的初始大小应当设为老年代Live Data Size的1到1.5倍。</p>
+</blockquote>
+<h3 id="为低延迟-响应性调优"><a href="#为低延迟-响应性调优" class="headerlink" title="为低延迟/响应性调优"></a><strong>为低延迟/响应性调优</strong></h3><blockquote>
+<p>如果吞吐量GC的持续时间或频度比应用要求高很多的话，考虑换CMS。</p>
+</blockquote>
+<h3 id="细化新生代大小"><a href="#细化新生代大小" class="headerlink" title="细化新生代大小"></a><strong>细化新生代大小</strong></h3><blockquote>
+<p>尽管Minor GC的时间与新生代中可触及的对象数有关，但一般来说，新生代越小，Minor GC耗时越短，但，减少新生代的大小，会增加Minor GC的频度。因为在相同的对象分配速率下，新生代越小，满的越快；相反，增加新生代的大小会降低Minor GC的频度。若发现Minor GC耗时太长，正确的做法是减小新生代的大小；若Minor GC太频繁，正确的做法是加大新生代的大小。</p>
+<p>在改变新生代大小时，注意保持老年代不变。</p>
+<p>根据计算，得到大概的对象分配速率。在增大新生代以减低频度的时候，计算出大概要增加到多大。</p>
+<p>改变新生代大小时需要时刻注意：</p>
+<ul>
+<li>1.老年代的大小不应该小于Live Data Size的1.5倍；</li>
+<li>2.新生代的大小至少需要是堆大小（即，-Xmx和-Xms指定的）的10%；</li>
+<li>3.增加Java堆大小时，不要超过JVM可用的物理内存（超过可能导致操作系统使用虚拟内存）。</li>
+</ul>
+<p>如果仍不能满足，只能要么改变应用，要么改变JVM部署模式，要么重新考虑应用的延迟要求。</p>
+</blockquote>
+<h3 id="细化老年代大小"><a href="#细化老年代大小" class="headerlink" title="细化老年代大小"></a><strong>细化老年代大小</strong></h3><blockquote>
+<p>通过观察老年代空间增长以及每次Minor GC的时间戳得出晋升（promotion）速率。</p>
+<p>计算出Full GC的大概频度，与应用需求相比，如果高于应用需求，增加老年代的大小以降低Full GC的频度，增加老年代大小时，注意保持新生代不变。</p>
+<p>当修改老年代大小时，可能会导致应用只有Full GC，通常都是老年代空间不够大，即使Full GC后还是不足以放下所有从新生代晋升过来的对象导致的。</p>
+<p>老年代空间不够的标识：Full GC后，新生代仍有大部分空间被占用。当老年代没有足够的空间来处理新生代晋升来的对象时，这些对象将回退（back up）到新生代。</p>
+</blockquote>
+<h3 id="为低延迟微调CMS"><a href="#为低延迟微调CMS" class="headerlink" title="为低延迟微调CMS"></a><strong>为低延迟微调CMS</strong></h3><blockquote>
+<p>若能避免CMS的内存整理操作，就可以避免Parallel GC那种STW整理，但空间不足时，仍会触发老年代的STW整理。</p>
+<p>CMS调优的目标：避免老年代的STW整理。</p>
+<p>相比其它收集器，CMS需要更多微调，尤其是：</p>
+<ul>
+<li>1.微调新生代的大小；</li>
+<li>2.微调老年代并发收集的触发周期。</li>
+</ul>
+<p>由于CMS收集老年代时大部分时候是与应用一起运行的，所以吞吐量会低一些，但延迟也会降低。</p>
+<p>CMS中，老年代空间耗尽，将会触发单线程的STW整理，这通常比吞吐量GC的Full GC时间长。</p>
+<p>因此，避免老年代空间耗尽很重要！</p>
+<p>从吞吐量GC迁移到CMS的一般原则是将老年代的大小增加20%到30%.</p>
+<p>CMS老年代碎片的解决办法：</p>
+<ul>
+<li>1.整理老年代（STW，应避免）；</li>
+<li>2.增加老年代大小（不能从本质上解决碎片问题，但能推迟因碎片而导致的STW整理的时间）；</li>
+<li>3.降低新生代对象晋升到老年代的频率。</li>
+</ul>
+<p>与CMS GC不同，吞吐量GC默认启用了一个称为adaptive sizing的特性，会自动调整eden space和survivor space的大小。</p>
+<p>Minor GC时，如果to survivor space不够大，放不下所有从eden space和from survivor space拷贝过来的对象，放不下的部分将直接晋升到老年代，这可能导致老年代增长过快而触发STW整理，这是需要避免的事情。</p>
+<p>避免survivor space不足而导致对象过早晋升到老年代的办法就是加大survivor space，改变survivor space大小的参数：</p>
+<ul>
+<li>-XX:SurvivorRatio=<ratio> ratio必须大于0</ratio></li>
+<li>Survivor space的大小 = -Xmn/(ratio+2) ，加2是因为有两个survivor space，ratio值越大，survivor space越小。</li>
+</ul>
+<p>对于给定的新生代大小，减小survivor space ratio将增加survivor space的大小，同时减小eden space的大小；同样，增加survivor space ratio将减小survivor space的大小，同时增加eden space的大小。</p>
+<p>需要意识到，减小eden space会增加Minor GC的频度，从而导致对象年龄上升过快。</p>
+<p>Tenuring threshold是一个对象的年龄，对象的年龄即该对象所经历的Minor GC的次数。当对象首次创建时，其年龄是0，经历一次Minor GC后，该对象仍然存活的话，其年龄为1.</p>
+<p>新生代中，年龄超过JVM计算出的tenuring threshold的对象将会晋升到老年代。</p>
+<p>Tenuring threshold的计算是基于经历一次Minor GC后新生代中保存的可触及对象的大小以及target survivor space占用情况。相关的两个参数：</p>
+<ul>
+<li>-XX:MaxTenuringThreshold=15</li>
+<li>-XX:+PrintTenuringDistribution</li>
+</ul>
+</blockquote>
+<h3 id="Survivor-space对象年龄"><a href="#Survivor-space对象年龄" class="headerlink" title="Survivor space对象年龄"></a><strong>Survivor space对象年龄</strong></h3><blockquote>
+<p>通过-XX：+PrintTenuringDistribution打印出的信息，Desired Survivor Size=某个survivor space * target survivor ratio.</p>
+<p>Target survivor ratio是Hotspot用来表示survivor space目标占用百分比。</p>
+<p>每个年龄以及该年龄所占的字节数：total是本行以及前面行所表示年龄占用的字节数之和。</p>
+<p>Desired survivor size小于total表示survivor space溢出，即，本次Minor GC中，部分对象直接晋升到了老年代。Survivor space溢出表示survivor space不足。</p>
+<p>一般，new threshold 一直小于max tenuring threshold，或desired survivor size小于total survivor bytes表示survivor space小了。</p>
+<p>加大survivor space会减小eden space，eden space减小会增加Minor GC的频度。如果这样导致了Minor GC不能满足应用要求，就要在增加survivor space的时候保持eden space不变。也就是，增加survivor space的时候，新生代也要增加。内存充足的情况下，尽量保持eden space不变。</p>
+<p>如果发现从某个年龄开始往后的年龄的占用（total）空间没有什么变化，表示经历这么多次Minor GC，它们都没有得到回收。或许可以将MaxTenuringThreshold的值改小一些，以减小Minor GC时来回拷贝对象的开销。但是，如果从GC日志中没有发现MaxTenuringThreshold这个年龄所占用的空间，表示对象在到达最大年龄之前都被回收了。这样，一般将对象保留在新生代会更好，虽然有一些Minor GC拷贝的开销，但放到老年代回收则可能产生更多碎片以及可能触发整理老年代的操作（CMS GC）。</p>
+<p>-XX:TargetSurvivorRatio=<percent>.指定的值即survivor space的占用百分比，而不是ratio。模式是50.极少需要调整taeget survivor occupancy。</percent></p>
+<p>CMS调优的目标是保持老年代的空闲空间，以避免STW整理。成功调优CMS要求老年代对象回收的速度至少达到新生代对象的晋升速度。要达到这个目标，可结合以下两点：</p>
+<ul>
+<li>1.足够大的老年代空间；</li>
+<li>2.尽早开始CMS收集，以使回收速度快于晋升速度。</li>
+</ul>
+<p>CMS周期的开始是基于老年代空间占用的。如果CMS周期启动的太迟，可能赶不上新生代对象晋升速度；如果启动的太早，会带来不必要的开销，还可能影响到应用的吞吐量。一般过早启动CMS周期比过晚启动好，因为晚起动的后果很糟糕。</p>
+<p>Hotspot试图自适应地计算出空间占用了多少就启动CMS周期。CMS中出现STW整理的关键词：concurrent mode failure。如果在GC日志中发现了这样的字样，可以使用下面的参数提早启动CMS周期：</p>
+<ul>
+<li>-XX:CMSInitiatingOccupancyFraction=<percent></percent></li>
+</ul>
+<p>指定的值表示老年代空间占用达到多少时会触发CMS周期的启动。与上面参数一起使用的一个参数是：</p>
+<ul>
+<li>-XX:+UseCMSInitiatingOccupancyOnly</li>
+</ul>
+<p>这个参数表示，总是使用-XX:CMSInitiatingOccupancyFraction所表示的比例来触发CMS周期的启动，否则，只会在第一次触发CMS周期的时候使用指定的比例，然后会自适应的调整后续CMS周期的启动时间。也就是说，首次CMS周期之后，就不再使用指定的比例了。</p>
+<ul>
+<li>-XX:CMSInitiatingOccupancyFraction所指定的占用比例应该大于老年代Live Data Size所占的比例，否则,CMS收集器将不停地运行。-XX:CMSInitiatingOccupancyFraction的值至少需要是老年代Live Data Size的1.5倍。</li>
+</ul>
+</blockquote>
+<h3 id="CMS周期是否启动的太早或太迟"><a href="#CMS周期是否启动的太早或太迟" class="headerlink" title="CMS周期是否启动的太早或太迟"></a><strong>CMS周期是否启动的太早或太迟</strong></h3><blockquote>
+<p>太迟：CMS初始标记后不久就有Full GC。</p>
+<p>太早：CMS周期中回收的空间很少，CMS初始标记到reset期间对空间占用下降的很少。</p>
+<p>CMS默认不回收永久代，尽管GC日志中有CMS Perm的字样。启动CMS回收永久代的参数：</p>
+<ul>
+<li>-XX:+CMSClassUnloadingEnabled</li>
+</ul>
+<p>如果是Java 6 Update 3或更早的版本，还需要启动以下参数：</p>
+<ul>
+<li>-XX:+CMSPermGenSweepingEnabled</li>
+</ul>
+<p>指定永久代占用多少时启动CMS回收：</p>
+<ul>
+<li>-XX:CMSInitiatingPermOccupancyFraction=<percent></percent></li>
+</ul>
+<p>-（上面第一个参数也还是需要使用的，第二个参数看版本）</p>
+<p>如果希望永久代一直按这个比例触发CMS回收，还必须指定：</p>
+<ul>
+<li>-XX:+UseCMSInitiatingOccupancyOnly</li>
+</ul>
+<p>一个CMS周期中有两个阶段是STW的：</p>
+<ul>
+<li>1.初始标记；</li>
+<li>2.重标记</li>
+</ul>
+<p>尽管初始标记是单线程的，但很少会花费较长时间。重标记阶段是多线程的，可用的线程数可以通过下面的参数配置：</p>
+<ul>
+<li>-XX:ParallelGCThreads=<n></n></li>
+</ul>
+</blockquote>
+
+      
+    </div>
+
+    <div>
+      
+        
+<div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/uploads/wechat-qcode.jpg" alt="马铁利 wechat" style="width: 200px; max-width: 100%;"/>
+    <div>欢迎您扫一扫上面的微信公众号，订阅我的博客！</div>
+</div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JVM/" rel="tag"># JVM</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/09/01/RabbitMQ-env/" rel="next" title="Rabbit MQ环境搭建与集群">
+                <i class="fa fa-chevron-left"></i> Rabbit MQ环境搭建与集群
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/08/18/JVM-introduce/" rel="prev" title="JVM介绍">
+                JVM介绍 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.jpg"
+               alt="马铁利" />
+          <p class="site-author-name" itemprop="name">马铁利</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/matieli" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.dbalog.net/" title="DBA_LOG" target="_blank">DBA_LOG</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#JVM调优-序"><span class="nav-number">1.</span> <span class="nav-text">JVM调优-序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#计算LiveData-Size"><span class="nav-number">2.</span> <span class="nav-text">计算LiveData Size</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#初始堆大小"><span class="nav-number">3.</span> <span class="nav-text">初始堆大小</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#为低延迟-响应性调优"><span class="nav-number">4.</span> <span class="nav-text">为低延迟/响应性调优</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#细化新生代大小"><span class="nav-number">5.</span> <span class="nav-text">细化新生代大小</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#细化老年代大小"><span class="nav-number">6.</span> <span class="nav-text">细化老年代大小</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#为低延迟微调CMS"><span class="nav-number">7.</span> <span class="nav-text">为低延迟微调CMS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Survivor-space对象年龄"><span class="nav-number">8.</span> <span class="nav-text">Survivor space对象年龄</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CMS周期是否启动的太早或太迟"><span class="nav-number">9.</span> <span class="nav-text">CMS周期是否启动的太早或太迟</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">马铁利</span>
+</div>
+
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://blog.matieli.me/2016/08/20/JVM-Performance/';
+          this.page.identifier = '2016/08/20/JVM-Performance/';
+          this.page.title = 'JVM调优细节';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>

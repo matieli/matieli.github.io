@@ -1,0 +1,1042 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="JVM," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="序 引用计数算法 给对象中添加引用计数器，每当有一个地方引用它时，计数器值+1；当引用失效时，计数器值-1；任何时候为0时就是不在使用。   需要单独的字段存储计数器，增加了存储空间的开销； 每次赋值都需要更新计数器，增加了时间开销； 垃圾对象便于辨识，只要计数器为0，就可作为垃圾回收； 及时回收垃圾，没有延迟性； 不能解决循环引用的问题；   举例：对象objA和objB都有属性instance">
+<meta name="keywords" content="JVM">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JVM介绍">
+<meta property="og:url" content="http://blog.matieli.me/2016/08/18/JVM-introduce/index.html">
+<meta property="og:site_name" content="马老三">
+<meta property="og:description" content="序 引用计数算法 给对象中添加引用计数器，每当有一个地方引用它时，计数器值+1；当引用失效时，计数器值-1；任何时候为0时就是不在使用。   需要单独的字段存储计数器，增加了存储空间的开销； 每次赋值都需要更新计数器，增加了时间开销； 垃圾对象便于辨识，只要计数器为0，就可作为垃圾回收； 及时回收垃圾，没有延迟性； 不能解决循环引用的问题；   举例：对象objA和objB都有属性instance">
+<meta property="og:image" content="http://blog.matieli.me/assets/images/jvm_introduce/1.png">
+<meta property="og:image" content="http://blog.matieli.me/assets/images/jvm_introduce/2.jpg">
+<meta property="og:image" content="http://blog.matieli.me/assets/images/jvm_introduce/3.jpg">
+<meta property="og:image" content="http://blog.matieli.me/assets/images/jvm_introduce/4.jpg">
+<meta property="og:image" content="http://blog.matieli.me/assets/images/jvm_introduce/5.jpg">
+<meta property="og:image" content="http://blog.matieli.me/assets/images/jvm_introduce/6.png">
+<meta property="og:image" content="http://blog.matieli.me/assets/images/jvm_introduce/5.jpg">
+<meta property="og:updated_time" content="2017-04-18T02:48:50.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JVM介绍">
+<meta name="twitter:description" content="序 引用计数算法 给对象中添加引用计数器，每当有一个地方引用它时，计数器值+1；当引用失效时，计数器值-1；任何时候为0时就是不在使用。   需要单独的字段存储计数器，增加了存储空间的开销； 每次赋值都需要更新计数器，增加了时间开销； 垃圾对象便于辨识，只要计数器为0，就可作为垃圾回收； 及时回收垃圾，没有延迟性； 不能解决循环引用的问题；   举例：对象objA和objB都有属性instance">
+<meta name="twitter:image" content="http://blog.matieli.me/assets/images/jvm_introduce/1.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://blog.matieli.me/2016/08/18/JVM-introduce/"/>
+
+
+
+
+
+  <title> JVM介绍 | 马老三 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">马老三</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">个人博客</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://blog.matieli.me/2016/08/18/JVM-introduce/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="马铁利">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="马老三">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+            
+            
+              
+                JVM介绍
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-08-18T00:00:00+08:00">
+                2016-08-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2016/08/18/JVM-introduce/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2016/08/18/JVM-introduce/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="序"><a href="#序" class="headerlink" title="序"></a><strong>序</strong></h3><p><img src="\assets\images\jvm_introduce\1.png" alt="image"></p>
+<p><strong>引用计数算法</strong></p>
+<p>给对象中添加引用计数器，每当有一个地方引用它时，计数器值+1；当引用失效时，计数器值-1；任何时候为0时就是不在使用。</p>
+<blockquote>
+<ul>
+<li>需要单独的字段存储计数器，增加了存储空间的开销；</li>
+<li>每次赋值都需要更新计数器，增加了时间开销；</li>
+<li>垃圾对象便于辨识，只要计数器为0，就可作为垃圾回收；</li>
+<li>及时回收垃圾，没有延迟性；</li>
+<li>不能解决循环引用的问题；</li>
+</ul>
+</blockquote>
+<p>举例：对象objA和objB都有属性instance，赋值为objA. Instance=objB和objB. Instance=objA，除此之外这2个对象没有其他任何引用(已经可以确定为“垃圾”)，但他们因为相互引用着，导致他们的计数器都不为0，于是引用计数器无法通知GC回收他们。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * 引用计数</div><div class="line"> * <span class="doctag">@author</span> Tieli.Ma</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ReferenceCountingGC</span> </span>&#123;</div><div class="line">	<span class="keyword">public</span> Object instance = <span class="keyword">null</span>;</div><div class="line">	<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> _1MB = <span class="number">1024</span> * <span class="number">1024</span>;</div><div class="line">	<span class="comment">/**</span></div><div class="line">	 * 只是为了占点内存</div><div class="line">	 */</div><div class="line">	<span class="keyword">private</span> <span class="keyword">byte</span>[] bigSize = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">2</span> * _1MB];</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">		ReferenceCountingGC objA = <span class="keyword">new</span> ReferenceCountingGC();</div><div class="line">		ReferenceCountingGC objB = <span class="keyword">new</span> ReferenceCountingGC();</div><div class="line">		objA.instance = objB;</div><div class="line">		objB.instance = objA;</div><div class="line"></div><div class="line">		objA = <span class="keyword">null</span>;</div><div class="line">		objB = <span class="keyword">null</span>;</div><div class="line"></div><div class="line">		<span class="comment">// 假设在这里发生GC，那么objA与objB是否会被回收</span></div><div class="line">		System.gc();</div><div class="line"></div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>引用计数算法(Reference Counting)的实现简单，判断也很高效，在大多数情况下是一个不错的算法。Java中没有使用它的主要原因是，它无法解决相互引用的问题。</p>
+<p><strong>GC Roots</strong></p>
+<p>可达性分析算法(根搜索算法)</p>
+<p>通过一些列名为“GC Roots”的对象作为起始点，向下搜索，搜索经过的路径称为“引用链”。当一个对象找不到任何“连线”时，证明此对象是无用的。<br>几个对象之间相互有联系，但是GC Roots是不可达的，那么也是可回收的对象。</p>
+<p>可作为GC Roots对象包含以下几种：</p>
+<blockquote>
+<ul>
+<li>虚拟机栈中引用的对象</li>
+<li>方法区中的类静态属性引用的对象</li>
+<li>方法区中的常量引用的对象</li>
+<li>本地方法中（native方法）引用的对象</li>
+</ul>
+</blockquote>
+<p><strong>何谓引用</strong></p>
+<p>Jdk1.2之后，引用分为强引用(Strong Reference)、软引用(Soft Reference)、弱引用(Weak Reference)、虚引用(Phantom Reference)，这4种引用强度依次减弱。</p>
+<blockquote>
+<ul>
+<li>强引用：Object o =new Object();只要强引用还在，则不会回收。</li>
+<li>软引用：描述非必须对象，内存溢出之前会再次回收，回收后还是不够，则抛出内存溢出。使用Jdk中SoftReference实现</li>
+<li>弱引用：描述非必须对象，回收时，无论当前内存是否足够，都会回收掉只被弱引用关联的对象。使用Jdk中的WeakReference实现。</li>
+<li>虚引用(幻影引用)：最弱的一种引用关系，不会对生存时间构成影响，也不会无法取得一个实例。用它的唯一目的，就是系统这个对象在被回收前，收到一个系统通知。使用Jdk中的PhantomReference实现</li>
+</ul>
+</blockquote>
+<p><strong>救命稻草</strong></p>
+<p>经过根搜索算法之后也并非是“非死不可”，一个对象的“死亡”必须经过2次标记过程；如果经过GC Roots之后没有引用链会进行第一次标记并进行一次筛选。筛选条件是是否有必要执行finalize();没有覆盖finalize()和已经被虚拟机调用过视为没必要执行。</p>
+<p>如果有必要执行finalize()，扔到F-Queue队列，交给优先级很低的finalizer线程执行。执行含义为调用finalize()，但并不会等待方法结束；</p>
+<p>稍后GC会对F-Queue中的对象小规模标记，如果说在finalize()中成功“解救自己”(重新与引用链上的任意对象关联，比如自己.this赋值给某类变量或对象成员变量)，那么在第二次标记的时就会被“解救”。如果在finalize()中未能逃脱，那么就“离死不远”了。</p>
+<p>但这个“救命稻草”不要使用。finalize()只会被执行一次。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Finalize()演示</div><div class="line"> * 1.对象可以在被GC时自我拯救。 </div><div class="line"> * 2.这种自救的机会只有一次，因为一个对象的finalize()方法最多只会被系统自动调用一次</div><div class="line"> * <span class="doctag">@author</span> Tieli.Ma</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FinalizeTest</span> </span>&#123;</div><div class="line">	<span class="keyword">private</span> <span class="keyword">static</span> FinalizeTest obj = <span class="keyword">null</span>;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">isAlive</span><span class="params">()</span> </span>&#123;</div><div class="line">		System.out.println(<span class="string">"yes, i am still alive :)"</span>);</div><div class="line">	&#125;</div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">finalize</span><span class="params">()</span> <span class="keyword">throws</span> Throwable </span>&#123;</div><div class="line">		<span class="keyword">super</span>.finalize();</div><div class="line">		System.out.println(<span class="string">"finalize mehtod executed!"</span>);</div><div class="line">		FinalizeTest.obj = <span class="keyword">this</span>;</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Throwable </span>&#123;</div><div class="line">		obj = <span class="keyword">new</span> FinalizeTest();</div><div class="line">		obj = <span class="keyword">null</span>;<span class="comment">// 对象第一次成功拯救自己</span></div><div class="line">		System.gc();</div><div class="line">		Thread.sleep(<span class="number">500</span>);<span class="comment">// 因为Finalizer方法优先级很低，暂停0.5秒，以等待它</span></div><div class="line">		deadOrAlive();</div><div class="line">		obj = <span class="keyword">null</span>;<span class="comment">// 这次自救却失败了</span></div><div class="line">		System.gc();</div><div class="line">		Thread.sleep(<span class="number">500</span>);</div><div class="line">		deadOrAlive();</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">deadOrAlive</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">if</span> (obj != <span class="keyword">null</span>) &#123;</div><div class="line">			obj.isAlive();</div><div class="line">		&#125; <span class="keyword">else</span> &#123;</div><div class="line">			System.out.println(<span class="string">"no, i am dead :("</span>);</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><strong>回收方法区</strong></p>
+<p>方法区也称永久代(JAVA8中使用元数据区Meta-space代替)</p>
+<p>存储了每个类的信息（包括类的名称、方法信息、字段信息）、静态变量、常量以及编译器编译后的代码等。</p>
+<p>主要回收废弃(没有任何地方引用)常量和无用的类</p>
+<p>废弃常量包含字面量、类或接口、方法、字段的符号引用等</p>
+<p>无用的类包含三个方面</p>
+<blockquote>
+<ul>
+<li>没有该类的任何实例存在</li>
+<li>加载该类的ClassLoader已经被回收</li>
+<li>该类对应的java.lang.Class对象没有任何地方引用，无法通过反射访问该类。</li>
+</ul>
+</blockquote>
+<p>满足这三个条件时，虚拟机仅仅是“可以”回收，不像对象，不用了必然回收。可以通过虚拟机参数-Xnoclassgc控制。还可以使用 -verbose:class 查看加载的类。</p>
+<p>大量使用反射、动态代理等频繁自定义ClassLoader场景需要虚拟机有类卸载机制，否则方法区可能会内存溢出。</p>
+<h3 id="垃圾收集算法"><a href="#垃圾收集算法" class="headerlink" title="垃圾收集算法"></a><strong>垃圾收集算法</strong></h3><h4 id="标记清除算法"><a href="#标记清除算法" class="headerlink" title="标记清除算法"></a><strong>标记清除算法</strong></h4><p>最基础的垃圾回收算法，后续算法都是基于它的思路和缺点而来</p>
+<p>分为两个阶段“标记”和“清除”，先标记出所有要回收的对象，标记完成后统一回收。</p>
+<blockquote>
+<p>缺点:</p>
+<ul>
+<li>效率：标记和清除2个过程的效率都不高</li>
+<li>空间：标记清除后会出现大量不连续的碎片，碎片太多可能导致某个对象来时，没有足够的联系的空间存储，而不得不在进行一次垃圾回收</li>
+</ul>
+</blockquote>
+<p><img src="\assets\images\jvm_introduce\2.jpg" alt="image"></p>
+<h4 id="复制算法"><a href="#复制算法" class="headerlink" title="复制算法"></a><strong>复制算法</strong></h4><p>为了解决效率问题出现的复制算法</p>
+<p>将可用内存划分成2块大小相等的块，每次使用其中一块。当这一块用完了就将还存活的对象复制到令一块。然后把使用过的内存清理掉。这样每次回收不会产生碎片只需移动堆的指针，实现简单、高效运行。</p>
+<blockquote>
+<p>缺点:</p>
+<ul>
+<li>每次可使用内存仅为一半。</li>
+</ul>
+</blockquote>
+<p><img src="\assets\images\jvm_introduce\3.jpg" alt="image"></p>
+<h4 id="标记整理算法"><a href="#标记整理算法" class="headerlink" title="标记整理算法"></a><strong>标记整理算法</strong></h4><p>复制算法在对象存活较高时，执行较多复制操作，效率会降低</p>
+<p>标记操作和“标记-清除”算法一致，后续操作不只是直接清理对象，而是在清理无用对象完成后让所有存活的对象都向一端移动，并更新引用其对象的指针。</p>
+<blockquote>
+<p>缺点:</p>
+<ul>
+<li>在标记-清除的基础上还需进行对象的移动，成本相对较高，好处则是不会产生内存碎片。</li>
+</ul>
+</blockquote>
+<p><img src="\assets\images\jvm_introduce\4.jpg" alt="image"></p>
+<h4 id="分代收集算法"><a href="#分代收集算法" class="headerlink" title="分代收集算法"></a><strong>分代收集算法</strong></h4><p>分代收集算法并不是一个新的算法</p>
+<p>根据对象的存活周期的不同将内存划分为几块。一般把Java堆分为新生代和老年代，这样就可以根据各个年代的特点采用最适当的收集算法。在新生代，每次垃圾收集时都发现有大批对象死去，只有少量存活，那就选用复制算法，只需要付出少量存活对象的复制成本就可以完成收集。而老年代中因为对象存活率高、没有额外空间对他进行分配担保，就必须使用“标记-整理”和“标记-清除”算法进行回收。</p>
+<p>看到这可能会有人问“复制算法不是只能使用分配的内存一半吗？为什么新生代还要使用它？”</p>
+<p>因为新生代中分为3个区域，Eden、2个Survivor。Eden和其中一个Survivor一起工作，组成了复制算法中的一半，而另一个Survivor则是复制算法的另一半。JVM的Eden和Survivor默认比例为8：1，即Eden=80%，Survivor=10%，(有2个Survivor)，所以每次复制算法中“浪费”的资源只有10%。</p>
+<h3 id="垃圾收集器"><a href="#垃圾收集器" class="headerlink" title="垃圾收集器"></a><strong>垃圾收集器</strong></h3><p><img src="\assets\images\jvm_introduce\5.jpg" alt="image"></p>
+<h4 id="概念理解"><a href="#概念理解" class="headerlink" title="概念理解"></a><strong>概念理解</strong></h4><p>并发和并行</p>
+<blockquote>
+<ul>
+<li>并行(Parallel)：指多条垃圾收集线程并行工作，但此时用户线程扔处于等待状态</li>
+<li>并发(Concurrent)：指用户线程和垃圾收集线程同时执行(但并不一定是并行的，可能为交替执行)，用户线程在继续执行，而垃圾收集器在另外一个cpu上执行</li>
+</ul>
+</blockquote>
+<p>Minor GC 和 Major GC(Full GC)</p>
+<blockquote>
+<ul>
+<li>新生代GC(Minor GC)：指发生在新生代的垃圾收集动作，因为Java对象大多都具备朝生夕灭的特性，所以Minor GC非常频繁，一般回收速度也比较快</li>
+<li>老年代GC（Major GC / Full GC）：指发生在老年代的GC，出现了Major GC，经常会伴随至少一次的Minor GC（但非绝对的）。Major GC的速度一般会比Minor GC慢10倍以上</li>
+</ul>
+</blockquote>
+<p>STW：Stop The World，只进行垃圾回收，暂停一切用户线程</p>
+<blockquote>
+<ul>
+<li>目前为止的任何垃圾收集器都会stw，只是停顿的时间长短而已。</li>
+</ul>
+</blockquote>
+<h4 id="串行GC"><a href="#串行GC" class="headerlink" title="串行GC"></a><strong>串行GC</strong></h4><p>Serial是基本的、历史悠久的、单线程执行、新生代收集器、使用复制算法、JVM Client模式下默认的新生代收集器。</p>
+<p>对于限定单个cpu的环境来说，Serial由于没有线程交互的开销，专心做垃圾回收自然可以获得最高效的效率。</p>
+<p>Serial Old是Serial收集器的老年代版本，它同样使用一个单线程执行收集，使用标记-整理算法。主要使用在Client模式下的虚拟机。</p>
+<h4 id="并行GC"><a href="#并行GC" class="headerlink" title="并行GC"></a><strong>并行GC</strong></h4><p>Parallel Scavenge收集器也是一个新生代收集器，它也是使用复制算法的收集器，又是并行多线程收集器。Parallel Scavenge收集器的特点是它的关注点与其他收集器不同，CMS等收集器的关注点是尽可能地缩短垃圾收集时用户线程的停顿时间，而Parallel Scavenge收集器的目标则是达到一个可控制的吞吐量。</p>
+<p>Parallel Old是Parallel Scavenge收集器的老年代版本，使用多线程和标记-整理算法。</p>
+<p>ParNew收集器其实就是Serial收集器的多线程版本，除了使用多条线程进行垃圾收集之外，其余行为与Serial收集器一样。</p>
+<p>如果老年代使用CMS收集器，基本也只能和ParNew进行合作。</p>
+<h4 id="并发GC-CMS"><a href="#并发GC-CMS" class="headerlink" title="并发GC-CMS"></a><strong>并发GC-CMS</strong></h4><p>CMS(Concurrent Mark Sweep)收集器是以保证最短回收停顿时间的收集器。基于标记清除算法实现的。收集过程分为以下：</p>
+<blockquote>
+<ul>
+<li>初始标记(STW initial mark）：初始标记仅仅只是标记一下GC Roots能直接关联到的对象，速度很快。</li>
+<li>并发标记(concurrent mark)：并发标记阶段就是进行GC Roots Tracing的过程。</li>
+<li>并发预处理(concurrent precleaning)：通过重新扫描，减少下一个阶段”重新标记”的工作。</li>
+<li>重新标记(STW remark)：重新标记阶段是为了修正并发标记期间因用户程序继续运作而导致标记产生变动的那一部分对象的标记记录。</li>
+<li>并发清除(concurrent sweep)：并发清除阶段会清除对象。</li>
+<li>并发重置（concurrent reset）:重置cms的收集器，等待下次回收</li>
+</ul>
+</blockquote>
+<p><img src="\assets\images\jvm_introduce\6.png" alt="image"></p>
+<p>优点：并发收集、低停顿。</p>
+<p>缺点：</p>
+<blockquote>
+<ul>
+<li>CMS收集器对CPU资源非常敏感。在并发阶段，虽然不会导致用户线程停顿，但是会占用CPU资源而导致引用程序变慢，总吞吐量下降。CMS默认启动的回收线程数是：(CPU数量+3) / 4。</li>
+<li>CMS收集器无法处理浮动垃圾，在开始回收同时，程序在继续提供服务还是会产生可回收对象称为浮动垃圾。可能出现“Concurrent Mode Failure“，导致一次Full  GC。（出现“Concurrent Mode Failure“ 临时启用Serial Old收集器来重新进行老年代的垃圾收集，这样停顿时间就很长了。）</li>
+<li>CMS是基于“标记-清除”算法实现的收集器，使用“标记-清除”算法收集后，会产生大量碎片。</li>
+</ul>
+</blockquote>
+<p>浮动垃圾，一般可通过设置尽可能早的触发GC而保证</p>
+<p>碎片问题，CMS中有属性设置，GC后 伴随一次内存整理</p>
+<h4 id="并发GC-G1"><a href="#并发GC-G1" class="headerlink" title="并发GC-G1"></a><strong>并发GC-G1</strong></h4><p>G1(Garbage First)收集器是JDK1.7提供的一个新收集器，G1收集器基于标记-整理算法实现，也就是说不会产生内存碎片。还有一个特点之前的收集器进行收集的范围都是整个新生代或老年代，而G1将整个Java堆(包括新生代，老年代)。</p>
+<p>G1特点</p>
+<blockquote>
+<ul>
+<li>并行和并发：利用多核、多cpu，少停顿</li>
+<li>分代收集：尽管不需要其他收集器配合，内部也是分代不同方式处理</li>
+<li>空间整合：标记—清理和复制两种算法结合</li>
+<li>可预测的停顿：可预测的时间停顿模型</li>
+</ul>
+</blockquote>
+<p>G1收集器之所以能建立可预测的停顿时间模型，是因为它可以有计划地避免在整个Java堆中进行全区域的垃圾收集。G1跟踪各个Region里面的垃圾堆积的价值大小（回收所获得的空间大小以及回收所需时间的经验值），在后台维护一个优先列表，每次根据允许的收集时间，优先回收价值最大的Region（这也就是Garbage-First名称的来由）。这种使用Region划分内存空间以及有优先级的区域回收方式，保证了G1收集器在有限的时间内可以获取尽可能高的收集效率。</p>
+<p>G1执行过程</p>
+<p>G1收集器的运作大致可划分为以下几个步骤：</p>
+<blockquote>
+<ul>
+<li>初始标记（Initial Marking）：仅仅只是标记一下GC Roots能直接关联到的对象，并且修改TAMS（Next Top at Mark Start）的值，让下一阶段用户程序并发运行时，能在正确可用的Region中创建新对象，这阶段需要停顿线程，但耗时很短。</li>
+<li>并发标记（Concurrent Marking）：从GC Root开始对堆中对象进行可达性分析，找出存活的对象，这阶段耗时较长，但可与用户程序并发执行。</li>
+<li>最终标记（Final Marking）：为了修正在并发标记期间因用户程序继续运作而导致标记产生变动的那一部分标记记录，虚拟机将这段时间对象变化记录在线程Remembered Set Logs里面，最终标记阶段需要把Remembered Set Logs的数据合并到Remembered Set中，这阶段需要停顿线程，但是可并行执行。</li>
+<li>筛选回收（Live Data Counting and Evacuation）：首先对各个Region的回收价值和成本进行排序，根据用户所期望的GC停顿时间来制定回收计划，这个阶段其实也可以做到与用户程序一起并发执行，但是因为只回收一部分Region，时间是用户可控制的，而且停顿用户线程将大幅提高收集效率。</li>
+</ul>
+</blockquote>
+<h4 id="垃圾收集器总结"><a href="#垃圾收集器总结" class="headerlink" title="垃圾收集器总结"></a><strong>垃圾收集器总结</strong></h4><p><img src="\assets\images\jvm_introduce\5.jpg" alt="image"></p>
+<p>如果垃圾收集算法是内存回收的方法论，垃圾收集器是具体实现。</p>
+<p>上述对各个收集器进行了比较，但目的不是找出最好的，到现在为止都是个有利弊没有全能的。我们只能选择对具体应用选择最合适的收集器。</p>
+<h3 id="常见参数汇总"><a href="#常见参数汇总" class="headerlink" title="常见参数汇总"></a><strong>常见参数汇总</strong></h3><p>1.堆设置</p>
+<blockquote>
+<ul>
+<li>-Xms：初始堆大小</li>
+<li>-Xmx：最大堆大小</li>
+<li>-XX:NewSize=n:设置年轻代大小（-Xmn）</li>
+<li>-XX:MaxNewSize=n:设置年轻代大小</li>
+<li>-XX:NewRatio=n:设置年轻代和年老代的比值。默认：2。</li>
+<li>-XX:SurvivorRatio=n:年轻代中Eden区与两个Survivor区的比值。注意Survivor区有两个。默认：8，表示Eden：Survivor=8：2，一个Survivor区占整个年轻代的1/10</li>
+<li>-XX:MaxTenuringThreshold：经历多少次Minor GC后到老年代</li>
+<li>-XX:PretenureSizeThreshold：直接晋升到年老代对象的大小</li>
+</ul>
+</blockquote>
+<p>2.收集器设置</p>
+<blockquote>
+<ul>
+<li>-XX:+UseSerialGC：使用串行收集器</li>
+<li>-XX:+UseParallelGC：使用并行收集器</li>
+<li>-XX:+UseParalledlOldGC：使用并行年老代收集器</li>
+<li>-XX:+UseConcMarkSweepGC：使用CMS+并发收集器</li>
+</ul>
+</blockquote>
+<p>3.并行收集器设置</p>
+<blockquote>
+<ul>
+<li>-XX:ParallelGCThreads=n:设置并行收集器收集时使用的CPU数。并行收集线程数。</li>
+<li>-XX:MaxGCPauseMillis=n:设置并行收集最大暂停时间</li>
+<li>-XX:GCTimeRatio=n:设置垃圾回收时间占程序运行时间的百分比。公式为1/(1+n)，默认为99</li>
+</ul>
+</blockquote>
+<p>4.CMS收集器设置</p>
+<blockquote>
+<ul>
+<li>-XX:UseCMSInitiatingOccupancyOnly:只有达到阈值时才CMS GC</li>
+<li>-XX:CMSInitiatingOccupancyFraction: 堆上使用75％后开始CMS收集。</li>
+<li>-XX:+UseCMSCompactAtFullCollection：在FULL GC的时， 对年老代的碎片整理</li>
+<li>-XX:CMSFullGCsBeforeCompaction：执行多少次不压缩的Full GC后，执行一次带压缩的</li>
+<li>-XX:+CMSScavengeBeforeRemark：强制remark之前开始一次minor gc</li>
+<li>-XX:+CMSParallelRemarkEnabled：并行remark</li>
+</ul>
+</blockquote>
+<p>5.辅助信息</p>
+<blockquote>
+<ul>
+<li>-XX:+PrintGCDetails ：打印较为详细的GC信息</li>
+<li>-XX:+PrintGC：打印GC信息</li>
+<li>-XX:+PrintGCDateStamps：打印GC时间戳</li>
+<li>-XX:+PrintClassHistogram ：打印类的直方图</li>
+<li>-Xloggc:log/gc.log：打印GC信息到指定文件 可以设置绝对路径的。</li>
+<li>-XX:+DisableExplicitGC：禁用system.gc</li>
+<li>-XX:+ExplicitGCInvokesConcurrent：无论系统什么时候调用都执行CMS GC，而不是Full GC.</li>
+<li>-XX:LargePageSizeInBytes：设置堆内存的内存页大小</li>
+<li>-XX:-HeapDumpOnOutOfMemoryError：OOM时候生成dump</li>
+<li>-XX:HeapDumpPath：xxx:dump文件路径</li>
+</ul>
+</blockquote>
+<h3 id="常见命令行工具"><a href="#常见命令行工具" class="headerlink" title="常见命令行工具"></a><strong>常见命令行工具</strong></h3><p>1.jps –展示正在运行的虚拟机进程</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">jps [Options] [hostid]</div><div class="line">Options，选项，我们一般使用 -gcutil 查看gc情况hostid，VM的进程号，即当前运行的java进程号如：jps <span class="_">-l</span></div><div class="line">展示当前机器正在运行的MainClass和jvmid</div></pre></td></tr></table></figure>
+<p>2.jinfo– 实时查看和调整jvm参数</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">Jinfo [Option] &lt;Pid&gt;</div><div class="line">Options 选项</div><div class="line">Pid  java进程</div><div class="line">如 jinfo -sysprops 18500</div><div class="line">查看18500的属性</div><div class="line">如jinfo -flag LargePageSizeInBytes 17346</div><div class="line">查看17346的LargePageSizeInBytes大小</div></pre></td></tr></table></figure>
+<p>3.jstat –JVM统计监测工具</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">jstat [Options] vmid [interval] [count]</div><div class="line">Options，选项，我们一般使用 -gcutil 查看gc情况vmid，VM的进程号，即当前运行的java进程号interval，间隔时间，单位为秒或者毫秒count，打印次数，如果缺省则打印无数次</div><div class="line">如：jstat -gc 12538 5000</div><div class="line">即会每5秒一次显示进程号为12538的java进成的GC情况</div></pre></td></tr></table></figure>
+<p>4.jmap–堆转储文件快照(dump文件)</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">Jmap [Options] &lt;Pid&gt;</div><div class="line">Options 选项</div><div class="line">Pid  java进程</div><div class="line">如 jmap –heap 12538</div><div class="line">查看12538的堆内存</div><div class="line">如jmap -dump:format=b,file=/home/app/dump1.bin 17346</div><div class="line">生成dump文件</div></pre></td></tr></table></figure>
+<p>5.jhat –堆转储文件分析工具</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">jhat [filename]</div><div class="line">filename ，文件名</div><div class="line">如：jhat /home/app/dump1.bin</div><div class="line">分析dump文件，但尽量不用。原因1：耗资源；2：通过http方式可查看，但功能简陋</div></pre></td></tr></table></figure>
+<p>6.jstack–java堆栈跟踪工具</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">Jstack [option] vmid</div><div class="line">option:选项可通过-help查看</div><div class="line">vmid :pid</div><div class="line">如：jstack –l 19632</div><div class="line">查看19632的线程堆栈信息</div><div class="line">关于线程堆栈信息，java5之后再java.lang.Thread中增加了方法getAllStackTraces(),通过代码可以实现jstack的大部分功能。</div></pre></td></tr></table></figure>
+<h3 id="常见可视化工具"><a href="#常见可视化工具" class="headerlink" title="常见可视化工具"></a><strong>常见可视化工具</strong></h3><blockquote>
+<p>Jconsole-Java监控与管理控制台</p>
+<ul>
+<li>内存、线程、类、VM等信息</li>
+<li>修改程序运行时的值</li>
+</ul>
+<p>VisualVM-多合一故障处理工具</p>
+<ul>
+<li>除了支持Jconsole所有功能外还支持性能分析。有大量插件可使用。</li>
+</ul>
+</blockquote>
+
+      
+    </div>
+
+    <div>
+      
+        
+<div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/uploads/wechat-qcode.jpg" alt="马铁利 wechat" style="width: 200px; max-width: 100%;"/>
+    <div>欢迎您扫一扫上面的微信公众号，订阅我的博客！</div>
+</div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JVM/" rel="tag"># JVM</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/08/20/JVM-Performance/" rel="next" title="JVM调优细节">
+                <i class="fa fa-chevron-left"></i> JVM调优细节
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/08/15/Quartz中扩展实现对任务调度/" rel="prev" title="Quartz中扩展MethodInvokingJobDetailFactoryBean实现对任务调度">
+                Quartz中扩展MethodInvokingJobDetailFactoryBean实现对任务调度 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.jpg"
+               alt="马铁利" />
+          <p class="site-author-name" itemprop="name">马铁利</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/matieli" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.dbalog.net/" title="DBA_LOG" target="_blank">DBA_LOG</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#序"><span class="nav-number">1.</span> <span class="nav-text">序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#垃圾收集算法"><span class="nav-number">2.</span> <span class="nav-text">垃圾收集算法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#标记清除算法"><span class="nav-number">2.1.</span> <span class="nav-text">标记清除算法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#复制算法"><span class="nav-number">2.2.</span> <span class="nav-text">复制算法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#标记整理算法"><span class="nav-number">2.3.</span> <span class="nav-text">标记整理算法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#分代收集算法"><span class="nav-number">2.4.</span> <span class="nav-text">分代收集算法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#垃圾收集器"><span class="nav-number">3.</span> <span class="nav-text">垃圾收集器</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#概念理解"><span class="nav-number">3.1.</span> <span class="nav-text">概念理解</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#串行GC"><span class="nav-number">3.2.</span> <span class="nav-text">串行GC</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#并行GC"><span class="nav-number">3.3.</span> <span class="nav-text">并行GC</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#并发GC-CMS"><span class="nav-number">3.4.</span> <span class="nav-text">并发GC-CMS</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#并发GC-G1"><span class="nav-number">3.5.</span> <span class="nav-text">并发GC-G1</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#垃圾收集器总结"><span class="nav-number">3.6.</span> <span class="nav-text">垃圾收集器总结</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常见参数汇总"><span class="nav-number">4.</span> <span class="nav-text">常见参数汇总</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常见命令行工具"><span class="nav-number">5.</span> <span class="nav-text">常见命令行工具</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常见可视化工具"><span class="nav-number">6.</span> <span class="nav-text">常见可视化工具</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">马铁利</span>
+</div>
+
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://blog.matieli.me/2016/08/18/JVM-introduce/';
+          this.page.identifier = '2016/08/18/JVM-introduce/';
+          this.page.title = 'JVM介绍';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>
